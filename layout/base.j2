@@ -35,6 +35,8 @@
         in the root of your domain and delete these references -->
   <link rel="shortcut icon" href="{{ media_url('/favicon.ico') }}">
   <link rel="apple-touch-icon" href="{{ media_url('/apple-touch-icon.png') }}">
+  <link href='http://fonts.googleapis.com/css?family=Mate+SC|Oxygen' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
   {% endblock favicons %}
 
   {% block css %}
@@ -54,12 +56,12 @@
   <div id="container">
       {% block container %}
       <div id="main" role="main">
-          <header class="banner clearfix">
+          <header class="clearfix">
               {% block header -%}
-              <h1>BASIC</h1>
+              <h1>Vaidik Kapoor</h1>
               {%- endblock %}
 
-              {% block nav %}
+              {% block nav_header %}
               {% from "macros.j2" import render_nav with context %}
               {{ render_nav(menu, '') }}
               {% endblock %}
@@ -73,7 +75,13 @@
       </div>
 
       <footer>
-          Powered by <a href="http://ringce.com/hyde">hyde</a>.
+          {% block nav_footer %}
+          {% from "macros.j2" import render_nav with context %}
+          {{ render_nav(menu, '') }}
+          {% endblock %}
+          <section class="credits">
+              Built using <a href="http://ringce.com/hyde" target="_blank">Hyde</a>.
+          </section>
       </footer>
     {% endblock container %}
   </div> <!--! end of #container -->

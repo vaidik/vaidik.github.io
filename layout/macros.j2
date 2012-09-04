@@ -1,16 +1,16 @@
 {% macro render_excerpt(res, class=None) %}
 {% refer to res.url as post %}
-<article {{'class='~class if class }}>
-<h3><a href="{{ content_url(res.url) }}">{{ res.meta.title }}</a></h3>
-<a href="{{ content_url(res.url) }}">{{ post.image|markdown|typogrify }}</a>
-{{ post.excerpt|markdown|typogrify }}
-<time datetime="{{ res.meta.created.strftime('%Y-%m-%d') }}">
-    Posted: {{ res.meta.created.strftime('%a, %d %b %Y') }}
-</time>
-</article>
+    <article {{'class='~class if class }}>
+        <h3><a href="{{ content_url(res.url) }}">{{ res.meta.title }}</a></h3>
+            <a href="{{ content_url(res.url) }}">{{ post.image|markdown|typogrify }}</a>
+        {{ post.excerpt|markdown|typogrify }}
+        <time datetime="{{ res.meta.created.strftime('%Y-%m-%d') }}">
+            Posted: {{ res.meta.created.strftime('%a, %d %b %Y') }}
+        </time>
+    </article>
 {% endmacro %}
 
-{% macro render_nav(menu, cls=None) -%}
+{% macro render_nav(menu, cls=None) %}
 {% if menu -%}
 <nav {{'class='~cls if cls }}>
     {% for item in menu -%}
@@ -33,4 +33,21 @@
     {%- endfor %}
 </nav>
 {%- endif %}
-{%- endmacro %}
+{% endmacro %}
+
+{% macro render_post(res, excerpt=False) %}
+{% refer to res.url as post %}
+    <article class="post">
+        <aside>
+            <time datetime="{{ res.meta.created.strftime('%Y-%m-%d') }}">
+                {{ res.meta.created.strftime('%B %d, %Y') }}
+            </time>
+        </aside>
+        <section>
+            <h2>
+                <a href="{{ content_url(res.url) }}">{{ res.meta.title }}</a>
+            </h2>
+            {{ post.excerpt }}
+        </section>
+    </article>
+{% endmacro %}

@@ -47,7 +47,11 @@
             <h2>
                 <a href="{{ content_url(res.url) }}">{{ res.meta.title }}</a>
             </h2>
-            {{ post.excerpt }}
+            {% if excerpt == True %}
+                {{ post.excerpt|markdown|typogrify }}
+            {% else %}
+                {{ post.post|markdown|typogrify }}
+            {% endif %}
         </section>
     </article>
 {% endmacro %}

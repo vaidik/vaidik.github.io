@@ -6,6 +6,15 @@
     margin: 0;
 }
 
+::selection {
+    background: #D14836; /* Safari */
+    color: white;
+}
+::-moz-selection {
+    background: #D14836; /* Firefox */
+    color: white;
+}
+
 article,aside,details,figcaption,figure,
 footer,header,hgroup,menu,nav,section {
     display:block;

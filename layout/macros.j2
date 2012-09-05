@@ -54,10 +54,10 @@
             </{{ heading  }}>
             {% if excerpt == True %}
                 {{ post.excerpt|markdown|typogrify }}
+                <a href="{{ content_url(res.url) }}">Read More...</a>
             {% else %}
                 {{ post.post|markdown|typogrify }}
             {% endif %}
-            <a href="{{ content_url(res.url) }}">Read More...</a>
         </section>
     </article>
 {% endmacro %}

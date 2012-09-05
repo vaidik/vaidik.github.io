@@ -9,6 +9,6 @@ description: Personal blog of Vaidik Kapoor.
 {% set latest = site.content.walk_resources_sorted_by_time()|first %}
 
 {% if latest -%}
-{{ render_post(latest) }}
+{{ render_post(latest, True) }}
 
 {%- endif %}

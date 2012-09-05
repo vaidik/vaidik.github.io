@@ -37,21 +37,27 @@
 
 {% macro render_post(res, excerpt=False) %}
 {% refer to res.url as post %}
-    <article class="post">
+    <article class="post{% if excerpt == True %} excerpt{% endif %}">
         <aside>
             <time datetime="{{ res.meta.created.strftime('%Y-%m-%d') }}">
                 {{ res.meta.created.strftime('%B %d, %Y') }}
             </time>
         </aside>
+        {% if excerpt == True %}
+            {% set heading = 'h3' %}
+        {% else %}
+            {% set heading = 'h2' %}
+        {% endif %}
         <section>
-            <h2>
+            <{{ heading }}>
                 <a href="{{ content_url(res.url) }}">{{ res.meta.title }}</a>
-            </h2>
+            </{{ heading  }}>
             {% if excerpt == True %}
                 {{ post.excerpt|markdown|typogrify }}
             {% else %}
                 {{ post.post|markdown|typogrify }}
             {% endif %}
+            <a href="{{ content_url(res.url) }}">Read More...</a>
         </section>
     </article>
 {% endmacro %}

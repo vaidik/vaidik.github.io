@@ -1,17 +1,14 @@
 ---
 extends: base.j2
 default_block: main
-title: BASIC - A hyde website
-description: Home page for the BASIC hyde template
+title: Vaidik Kapoor
+description: Personal blog of Vaidik Kapoor.
 ---
 
 {% from "macros.j2" import render_post with context %}
-<section class="blog_excerpt">
 {% set latest = site.content.walk_resources_sorted_by_time()|first %}
 
 {% if latest -%}
 {{ render_post(latest) }}
 
 {%- endif %}
-
-</section>

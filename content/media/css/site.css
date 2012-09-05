@@ -55,7 +55,7 @@ a.active {
 
 body {
     text-shadow: 0px 2px 0px #efefef;
-    font-size: 15px;
+    font-size: 16px;
 
     margin: 20px;
     background-color: #E8ECEE;
@@ -85,6 +85,10 @@ header h1 {
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.75);
   margin-bottom: 10px;
 }
+
+h1 { font-size: 2.4em; }
+h2 { font-size: 1.8em; }
+h3 { font-size: 1.5em; }
 
 footer {
     border-top: 4px solid silver;
@@ -161,7 +165,10 @@ nav a {
 }
 
 .post p {
-    margin: 16px 0px;
+    margin: 15px 0px;
+    line-height: 20px;
+    font-family: 'Balthazar', serif;
+    font-size: 1.2em;
 }
 
 .post:after {
@@ -171,6 +178,10 @@ nav a {
   visibility: hidden;
   height: 0;
   clear: both;
+}
+
+.excerpt {
+    padding-bottom: 40px;
 }
 
 /* posts stuff ends here */

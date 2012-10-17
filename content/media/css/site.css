@@ -186,6 +186,10 @@ nav a {
     font-size: 1.2em;
 }
 
+.post img {
+    margin: 8px;
+}
+
 .post:after {
   clear: both;
   content: ".";

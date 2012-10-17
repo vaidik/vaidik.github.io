@@ -179,7 +179,7 @@ nav a {
     margin-bottom: 10px;
 }
 
-.post p {
+.post p,ol,ul {
     margin: 15px 0px;
     line-height: 20px;
     font-family: 'Balthazar', serif;

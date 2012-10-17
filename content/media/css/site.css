@@ -66,7 +66,6 @@ body {
     text-shadow: 0px 2px 0px #efefef;
     font-size: 16px;
 
-    margin: 20px;
     background-color: #E8ECEE;
 
     color: #41596B;
@@ -92,7 +91,7 @@ header h1 {
   cursor: default;
 
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.75);
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 h1 { font-size: 2.4em; }
@@ -129,7 +128,7 @@ footer nav {
 
 nav {
   border-top: 2px solid gray;
-  padding: 20px 0px;
+  padding: 12px 0px;
   margin: auto;
   width: 70%;
   display: block;

@@ -3,6 +3,6 @@
 {% block main %}
 
 {% for res in resource.node.walk_resources_sorted_by_time() %}
-    {{ render_post(res, True) }}
+    {{ render_post(res, True, False) }}
 {% endfor %}
 {% endblock %}

@@ -35,7 +35,7 @@
 {%- endif %}
 {% endmacro %}
 
-{% macro render_post(res, excerpt=False) %}
+{% macro render_post(res, excerpt=False, content=True) %}
 {% refer to res.url as post %}
     <article class="post{% if excerpt == True %} excerpt{% endif %}">
         <aside>
@@ -52,11 +52,13 @@
             <{{ heading }}>
                 <a href="{{ content_url(res.url) }}">{{ res.meta.title }}</a>
             </{{ heading  }}>
-            {% if excerpt == True %}
-                {{ post.excerpt|markdown|typogrify }}
-                <a href="{{ content_url(res.url) }}">Read More...</a>
-            {% else %}
-                {{ post.post|markdown|typogrify }}
+            {% if content == True %}
+                {% if excerpt == True %}
+                    {{ post.excerpt|markdown|typogrify }}
+                    <a href="{{ content_url(res.url) }}">Read More...</a>
+                {% else %}
+                    {{ post.post|markdown|typogrify }}
+                {% endif %}
             {% endif %}
         </section>
     </article>

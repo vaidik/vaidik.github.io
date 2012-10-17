@@ -6,9 +6,10 @@ description: Personal blog of Vaidik Kapoor.
 ---
 
 {% from "macros.j2" import render_post with context %}
-{% set latest = site.content.walk_resources_sorted_by_time()|first %}
 
-{% if latest -%}
-{{ render_post(latest, True) }}
-
-{%- endif %}
+{% for res in resource.node.walk_resources_sorted_by_time() %}
+    {{ render_post(res, True) }}
+    {% if loop.index == 4 %}
+        {% break %}
+    {% endif %}
+{% endfor %}

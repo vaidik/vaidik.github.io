@@ -35,10 +35,12 @@
         in the root of your domain and delete these references -->
   <link rel="shortcut icon" href="{{ media_url('/favicon.ico') }}">
   <link rel="apple-touch-icon" href="{{ media_url('/apple-touch-icon.png') }}">
+  {% endblock favicons %}
+
+  <!-- External Fonts -->
   <link href='http://fonts.googleapis.com/css?family=Mate+SC|Oxygen' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Balthazar' rel='stylesheet' type='text/css'>
-  {% endblock favicons %}
 
   {% block css %}
   <link rel="stylesheet" href="{{ media_url('css/site.css') }}">

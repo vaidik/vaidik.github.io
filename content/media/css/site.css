@@ -157,6 +157,7 @@ nav a {
 /* posts stuff starts here  */
 .post {
   padding-bottom: 60px;
+  font-size: 1.2em;
 }
 
 .post aside {
@@ -164,7 +165,6 @@ nav a {
   text-align: right;
   width: 180px;
 
-  font-size: 1.0em;
   float: left;
 }
 
@@ -180,10 +180,14 @@ nav a {
 }
 
 .post p,ol,ul {
-    margin: 15px 0px;
+    margin-top: 15px;
+    margin-bottom: 15px;
     line-height: 20px;
     font-family: 'Balthazar', serif;
-    font-size: 1.2em;
+}
+
+ol,ul {
+    margin-left: 30px;
 }
 
 .post img {

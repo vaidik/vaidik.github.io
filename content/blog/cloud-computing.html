@@ -1,0 +1,82 @@
+---
+title:  What is Cloud Computing?
+description:
+    Many students have discussed their project ideas for their Systems & Network Programming course with me. One thing that I have noticed a lot is that a lot of students have been trying to do something in Cloud Computing. However, I get this feeling that they have just proposed this without completely understanding what Cloud Computing really is. This post is an attempt to explain Cloud Computing to students, what they can do with it or more specifically what they can do for their Systems & Network Programming course.
+created: !!timestamp '2013-03-20 19:30:00'
+tags:
+    - college
+---
+
+{% mark image -%}
+
+{%- endmark %}
+
+{% mark excerpt -%}
+
+    Many students have discussed their project ideas for their Systems & Network Programming course with me. One thing that I have noticed a lot is that a lot of students have been trying to do something in [Cloud Computing][Cloud]. However, I get this feeling that they have just proposed this without completely understanding what Cloud Computing really is. This post is an attempt to explain Cloud Computing to students, what they can do with it or more specifically what they can do for their Systems & Network Programming course.
+
+[Cloud]: http://en.wikipedia.org/wiki/Cloud_computing
+
+{%- endmark %}
+
+Before further continuing this discussion, I'd request anyone who is doing a project related to *Cloud Computing* (or anyone who is just interested as well) to go through the following links first to get an idea about what it is:
+
+* A [short video][SalesForce] by SalesForce (SalesForce is one of the companies that made its fortune early because of Cloud Computing and validates the entire concept of SalesForce)
+* Another [short video][RACK] by Rackspace (Rackspace is one of the leading Cloud services provider. Many of the services you are using today run on Rackspace's infrastructure)
+* Explanation on [HowStuffWorks][HSW]
+
+Did you go through the above links? If not, please go through them and then continue.
+
+What seems to me as most of the students understand by Cloud Computing is something really fancy. What I generally hear is that "we will do this (something) on the cloud". And when I ask "how do you do it" - there is no answer. The truth is that you know the answer. If you have gone through the links I have shared with you above, I think it is safe to assume that you understand that Cloud Computing is nothing but:
+
+* using a machine (or a virtual machine) that you don't physically have instead of using a machine that you physically have.
+* you can scale the resources. Example, you have a machine with you that has an Intel Core i5 3.2 GHz processor with 4 GB of RAM. You have a project for which you need, lets say 8 GB of RAM, you can certainly do that by buying new RAM and adding it to your machine. But what are the problems with this: you have to buy new RAM and then you have to live with it even after your project gets over and you don't need it on an everyday basis? All that money probably went waste. This was a rather simple example but their can be more complex and expensive requirements. With Cloud Computing, you can easily scale your virual machines to "just about any practical" configuration and pay for it until you use it and then stop paying it. That ways its more feasible and economical.
+
+Since you are just working on virtual machines that you don't physically have, it just means that anything that you can run on your laptop, you can run it on that virtual machine provisioned to you by a Cloud service provider (like Amazon Web Services or Rackspace). So when you request a new virtual machine, then you ask for a virtual machine (VM) with a particular configuration decided by you and what Operating System you want installed on it: Linux or Windows. And now that you have your VM, all you have to do is move your files from your laptop to your new VM, install the required software/libraries/whatever, and you are good to go.
+
+But this is not Cloud Computing? This is just using the Cloud because it is not feasible for you to have resource of your own at this point in time. At the end of the day, they are just another set of (virtual) machines that you are using. That's it!
+
+So, don't think Cloud Computing is rocket science or I should say using Cloud services is not rocket science. You just need to spend a day or two and you will be good to go.
+
+What is rocket science is, though, how do these Cloud services come into existence? Who makes these services and how to they technically achieve this? Give a thought to this and read more about it. I'd suggest reading this [research paper][EUpaper]. This does not explain the challenges clearly but you might get an idea about the complexities of building a cloud infrastructure to provide external or internal cloud services.
+
+Now coming back to your projects, what most of the students seem to understand of Cloud Computing is using the Cloud. There are some who don't understand the term fully at all. That's alright. Please read more if it interests you and if you want to use the term safely. As I requested, please go through the links I shared in the beginning. Just running some program/software that you have written on a cloud VM instead of your own machine does not make your project any special WRT Cloud Computing. So your project in that case does not make much use of Cloud Computing. Probably, there needs to be more to your project.
+
+Do you remember that I mentioned something about scaling earlier? Well, there are two types of scaling - vertical and horizontal. Vertical scaling means adding more resources like RAM, CPU, etc. to a given machine or VM - I gave an example of this earlier. Horizontal scaling means instead of adding resources to a machine or VM, you add more machines and/or VMs and make a cluster out of it and then distribute work in that cluster. If you want to do something serious in Cloud Computing, then I suggest that you work on project that goes on these lines. What can you do on these lines? For example: you have been writing a lot of programs based on theclient-server model for your lab assignments. Lets say you want to build a service to provide live cricket scores. How will you do this? One way to achieve this is write a server that somehow gets live scores of matches and write clients that request the server for the scores. The clients can be anywhere in the network. Lets say its India vs Australia today and everyone is excited to know scores and everyone has this client. If everyone (lets say 100) people try to get scores at the same time, how will you server take care of this? Its easy and you have done this. For every new connection, create a new thread. But, every new thread and every new socket comes with a cost. The OS under a given hardware capacity cannot handle more than a fixed number of threads depending on what you are doing in those threads. So how will your server serve more than 100 people at the same time? You can do one thing. You can perhaps add more hardware resources and your server will be able to handle more incoming requests. But how much can you add? There is obviously a limit to that. In that case, you start scaling horizontally. How does that work? A general idea is that you can have multiple computers form a cluster in such a way that one machine receives all the request and does something so that those requests are performed on some other machine(s). This way the front-facing machine will be majorly responsible for handling connections and since all the work is done by other machines, the resources you save up on will help you handle more connections.
+
+To read about more scalability and vertical and horizontal scaling, check out these links:
+
+* [http://www.quora.com/Scalability/What-is-scalability-and-why-is-it-important][1]
+* [http://ht.ly/cAhPe][2]
+* [http://en.wikipedia.org/wiki/Scalability#Scale_horizontally_vs._vertically][3]
+
+[1]: http://www.quora.com/Scalability/What-is-scalability-and-why-is-it-important
+[2]: http://ht.ly/cAhPe
+[3]: http://en.wikipedia.org/wiki/Scalability#Scale_horizontally_vs._vertically
+
+In real world, this is not the only thing that people do make scalable software. There is a lot of other things that need to be taken care of. But its a step-by-step process. The above example was to give you a general idea of how to proceed. On these lines, you can work in any direction and learn how to develop scalable systems. An amazing use-case to make use of Cloud Computing could be to support auto-scaling. For example if we consider the cluster in the above example, if it can handle X number of connections at the same time and the bottle neck is not handling the number of connections but the number of machines that can do the required work at the same time. Now, most of the cloud service providers give you a way to write simple scripts to automatically create new VMs. So, you may do something like:
+
+    if no_of_connections + 20 >= X:
+          // run script to create a new VM
+          // this adds the capacity to do more processing automatically :)
+
+Read this question on [Quora][QQ]. This explains auto-scaling with an example.
+
+Another aspect of doing a project related to Cloud Computing is doing something for building a cloud infrastructure. Big or small is not the question right now. For example, the paper I shared above was an academic project. The project is called [Eucalyptus][EU] and is open-source. That means that you can get that project's code and change it and/or contribute to that project. If you have an idea for feature addition or improvement in the current implementation of Eucalpytus, then you can try to do that as well. These types of projects are more central to Cloud Computing. This will also involve a lot of low-level sytem programming. Similarly, there are other projects called [OpenStack][OS] and [Apache CloudStack][CS].
+
+I hope I have been able to explain Cloud Computing clearly. If you still have doubts, please get in touch with me and I will try my best to help.
+
+If you are really interested in knowing more about Cloud Computing, here is a free resource by Rackspace Hosting to start with:
+
+* [http://www.rackspace.com/knowledge_center/cloudu/][4]
+
+[4]: http://www.rackspace.com/knowledge_center/cloudu/
+
+[SalesForce]: http://www.salesforce.com/in/cloudcomputing/
+[RACK]: http://www.youtube.com/watch?v=hjrdThuwpZ0
+[HSW]: http://computer.howstuffworks.com/cloud-computing/cloud-computing.htm
+[EUpaper]: http://www.cca08.org/papers/Paper32-Daniel-Nurmi.pdf
+[QQ]: http://www.quora.com/What-is-auto-scaling-and-why-is-it-important
+[EU]: http://www.eucalyptus.com/participate
+[OS]: http://www.openstack.org/
+[CS]: http://incubator.apache.org/cloudstack/

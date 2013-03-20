@@ -57,8 +57,10 @@ To read about more scalability and vertical and horizontal scaling, check out th
 In real world, this is not the only thing that people do make scalable software. There is a lot of other things that need to be taken care of. But its a step-by-step process. The above example was to give you a general idea of how to proceed. On these lines, you can work in any direction and learn how to develop scalable systems. An amazing use-case to make use of Cloud Computing could be to support auto-scaling. For example if we consider the cluster in the above example, if it can handle X number of connections at the same time and the bottle neck is not handling the number of connections but the number of machines that can do the required work at the same time. Now, most of the cloud service providers give you a way to write simple scripts to automatically create new VMs. So, you may do something like:
 
     if no_of_connections + 20 >= X:
-          // run script to create a new VM
-          // this adds the capacity to do more processing automatically :)
+          // run script to create a new VM and add it to your cluster
+          // this adds the capacity to do more work. :)
+
+Again, the above mentioned way is just to show you a really really simple picture. Things get more complex as you build more complex systems. 
 
 Read this question on [Quora][QQ]. This explains auto-scaling with an example.
 

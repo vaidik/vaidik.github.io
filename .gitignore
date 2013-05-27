@@ -1,1 +1,4 @@
 *.*~
+*.pyc
+.hyde_deps
+deploy/*

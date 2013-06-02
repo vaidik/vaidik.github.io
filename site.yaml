@@ -54,3 +54,7 @@ tagger:
             archive_extension: html
             meta:
                 listable: false
+
+publisher:
+    ghpages:
+        type: publishers.ghpages.GhPages

@@ -1,0 +1,1086 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <title>
+        BASIC blog full text feed    </title>
+        <link href="blog/atom.xml" rel="self" />
+    
+        <link href="/"/>
+    
+        
+    <updated>2013-05-27T19:49:45Z</updated>
+
+    <id>/blog/atom.xml/</id>
+
+            <entry>
+            <title type="html">What is Cloud Computing?</title>
+            <author><name>Vaidik Kapoor</name></author>
+            <link href="/blog/cloud-computing.html"/>
+            <updated>2013-03-20T19:30:00Z</updated>
+            <published>2013-03-20T19:30:00Z</published>
+            <id>/blog/cloud-computing.html</id>
+                        <category   scheme="/blog/tags"
+                        term="college"
+                        label="College" />
+            
+            <content type="html">
+                                &lt;p&gt;Many students have discussed their project ideas for their Systems &lt;span class=&#34;amp&#34;&gt;&amp;amp;&lt;/span&gt; Network Programming course with me. One thing that I have noticed a lot is that a lot of students have been trying to do something in &lt;a href=&#34;http://en.wikipedia.org/wiki/Cloud_computing&#34;&gt;Cloud Computing&lt;/a&gt;. However, I get this feeling that they have just proposed this without completely understanding what Cloud Computing really is. This post is an attempt to explain Cloud Computing to students, what they can do with it or more specifically what they can do for their Systems &lt;span class=&#34;amp&#34;&gt;&amp;amp;&lt;/span&gt; Network Programming&amp;nbsp;course.&lt;/p&gt;
+&lt;p&gt;Before further continuing this discussion, I&amp;#8217;d request anyone who is doing a project related to &lt;em&gt;Cloud Computing&lt;/em&gt; (or anyone who is just interested as well) to go through the following links first to get an idea about what it&amp;nbsp;is:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A &lt;a href=&#34;http://www.salesforce.com/in/cloudcomputing/&#34;&gt;short video&lt;/a&gt; by SalesForce (SalesForce is one of the companies that made its fortune early because of Cloud Computing and validates the entire concept of&amp;nbsp;SalesForce)&lt;/li&gt;
+&lt;li&gt;Another &lt;a href=&#34;http://www.youtube.com/watch?v=hjrdThuwpZ0&#34;&gt;short video&lt;/a&gt; by Rackspace (Rackspace is one of the leading Cloud services provider. Many of the services you are using today run on Rackspace&amp;#8217;s&amp;nbsp;infrastructure)&lt;/li&gt;
+&lt;li&gt;Explanation on &lt;a href=&#34;http://computer.howstuffworks.com/cloud-computing/cloud-computing.htm&#34;&gt;HowStuffWorks&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Did you go through the above links? If not, please go through them and then&amp;nbsp;continue.&lt;/p&gt;
+&lt;p&gt;What seems to me as most of the students understand by Cloud Computing is something really fancy. What I generally hear is that &amp;#8220;we will do this (something) on the cloud&amp;#8221;. And when I ask &amp;#8220;how do you do it&amp;#8221; - there is no answer. The truth is that you know the answer. If you have gone through the links I have shared with you above, I think it is safe to assume that you understand that Cloud Computing is nothing&amp;nbsp;but:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;using a machine (or a virtual machine) that you don&amp;#8217;t physically have instead of using a machine that you physically&amp;nbsp;have.&lt;/li&gt;
+&lt;li&gt;you can scale the resources. Example, you have a machine with you that has an Intel Core i5 3.2 GHz processor with 4 &lt;span class=&#34;caps&#34;&gt;GB&lt;/span&gt; of &lt;span class=&#34;caps&#34;&gt;RAM&lt;/span&gt;. You have a project for which you need, lets say 8 &lt;span class=&#34;caps&#34;&gt;GB&lt;/span&gt; of &lt;span class=&#34;caps&#34;&gt;RAM&lt;/span&gt;, you can certainly do that by buying new &lt;span class=&#34;caps&#34;&gt;RAM&lt;/span&gt; and adding it to your machine. But what are the problems with this: you have to buy new &lt;span class=&#34;caps&#34;&gt;RAM&lt;/span&gt; and then you have to live with it even after your project gets over and you don&amp;#8217;t need it on an everyday basis? All that money probably went waste. This was a rather simple example but their can be more complex and expensive requirements. With Cloud Computing, you can easily scale your virual machines to &amp;#8220;just about any practical&amp;#8221; configuration and pay for it until you use it and then stop paying it. That ways its more feasible and&amp;nbsp;economical.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Since you are just working on virtual machines that you don&amp;#8217;t physically have, it just means that anything that you can run on your laptop, you can run it on that virtual machine provisioned to you by a Cloud service provider (like Amazon Web Services or Rackspace). So when you request a new virtual machine, then you ask for a virtual machine (&lt;span class=&#34;caps&#34;&gt;VM&lt;/span&gt;) with a particular configuration decided by you and what Operating System you want installed on it: Linux or Windows. And now that you have your &lt;span class=&#34;caps&#34;&gt;VM&lt;/span&gt;, all you have to do is move your files from your laptop to your new &lt;span class=&#34;caps&#34;&gt;VM&lt;/span&gt;, install the required software/libraries/whatever, and you are good to&amp;nbsp;go.&lt;/p&gt;
+&lt;p&gt;But this is not Cloud Computing? This is just using the Cloud because it is not feasible for you to have resource of your own at this point in time. At the end of the day, they are just another set of (virtual) machines that you are using. That&amp;#8217;s&amp;nbsp;it!&lt;/p&gt;
+&lt;p&gt;So, don&amp;#8217;t think Cloud Computing is rocket science or I should say using Cloud services is not rocket science. You just need to spend a day or two and you will be good to&amp;nbsp;go.&lt;/p&gt;
+&lt;p&gt;What is rocket science is, though, how do these Cloud services come into existence? Who makes these services and how to they technically achieve this? Give a thought to this and read more about it. I&amp;#8217;d suggest reading this &lt;a href=&#34;http://www.cca08.org/papers/Paper32-Daniel-Nurmi.pdf&#34;&gt;research paper&lt;/a&gt;. This does not explain the challenges clearly but you might get an idea about the complexities of building a cloud infrastructure to provide external or internal cloud&amp;nbsp;services.&lt;/p&gt;
+&lt;p&gt;Now coming back to your projects, what most of the students seem to understand of Cloud Computing is using the Cloud. There are some who don&amp;#8217;t understand the term fully at all. That&amp;#8217;s alright. Please read more if it interests you and if you want to use the term safely. As I requested, please go through the links I shared in the beginning. Just running some program/software that you have written on a cloud &lt;span class=&#34;caps&#34;&gt;VM&lt;/span&gt; instead of your own machine does not make your project any special &lt;span class=&#34;caps&#34;&gt;WRT&lt;/span&gt; Cloud Computing. So your project in that case does not make much use of Cloud Computing. Probably, there needs to be more to your&amp;nbsp;project.&lt;/p&gt;
+&lt;p&gt;Do you remember that I mentioned something about scaling earlier? Well, there are two types of scaling - vertical and horizontal. Vertical scaling means adding more resources like &lt;span class=&#34;caps&#34;&gt;RAM&lt;/span&gt;, &lt;span class=&#34;caps&#34;&gt;CPU&lt;/span&gt;, etc. to a given machine or &lt;span class=&#34;caps&#34;&gt;VM&lt;/span&gt; - I gave an example of this earlier. Horizontal scaling means instead of adding resources to a machine or &lt;span class=&#34;caps&#34;&gt;VM&lt;/span&gt;, you add more machines and/or VMs and make a cluster out of it and then distribute work in that cluster. If you want to do something serious in Cloud Computing, then I suggest that you work on project that goes on these lines. What can you do on these lines? For example: you have been writing a lot of programs based on theclient-server model for your lab assignments. Lets say you want to build a service to provide live cricket scores. How will you do this? One way to achieve this is write a server that somehow gets live scores of matches and write clients that request the server for the scores. The clients can be anywhere in the network. Lets say its India vs Australia today and everyone is excited to know scores and everyone has this client. If everyone (lets say 100) people try to get scores at the same time, how will you server take care of this? Its easy and you have done this. For every new connection, create a new thread. But, every new thread and every new socket comes with a cost. The &lt;span class=&#34;caps&#34;&gt;OS&lt;/span&gt; under a given hardware capacity cannot handle more than a fixed number of threads depending on what you are doing in those threads. So how will your server serve more than 100 people at the same time? You can do one thing. You can perhaps add more hardware resources and your server will be able to handle more incoming requests. But how much can you add? There is obviously a limit to that. In that case, you start scaling horizontally. How does that work? A general idea is that you can have multiple computers form a cluster in such a way that one machine receives all the request and does something so that those requests are performed on some other machine(s). This way the front-facing machine will be majorly responsible for handling connections and since all the work is done by other machines, the resources you save up on will help you handle more&amp;nbsp;connections.&lt;/p&gt;
+&lt;p&gt;To read about more scalability and vertical and horizontal scaling, check out these&amp;nbsp;links:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.quora.com/Scalability/What-is-scalability-and-why-is-it-important&#34;&gt;http://www.quora.com/Scalability/What-is-scalability-and-why-is-it-important&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://ht.ly/cAhPe&#34;&gt;http://ht.ly/cAhPe&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Scalability#Scale_horizontally_vs._vertically&#34;&gt;http://en.wikipedia.org/wiki/Scalability#Scale_horizontally_vs._vertically&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In real world, this is not the only thing that people do make scalable software. There is a lot of other things that need to be taken care of. But its a step-by-step process. The above example was to give you a general idea of how to proceed. On these lines, you can work in any direction and learn how to develop scalable systems. An amazing use-case to make use of Cloud Computing could be to support auto-scaling. For example if we consider the cluster in the above example, if it can handle X number of connections at the same time and the bottle neck is not handling the number of connections but the number of machines that can do the required work at the same time. Now, most of the cloud service providers give you a way to write simple scripts to automatically create new VMs. So, you may do something&amp;nbsp;like:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;if no_of_connections + 20 &amp;gt;= X:
+      // run script to create a new VM and add it to your cluster
+      // this adds the capacity to do more work. :)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Again, the above mentioned way is just to show you a really really simple picture. Things get more complex as you build more complex&amp;nbsp;systems. &lt;/p&gt;
+&lt;p&gt;Read this question on &lt;a href=&#34;http://www.quora.com/What-is-auto-scaling-and-why-is-it-important&#34;&gt;Quora&lt;/a&gt;. This explains auto-scaling with an&amp;nbsp;example.&lt;/p&gt;
+&lt;p&gt;Another aspect of doing a project related to Cloud Computing is doing something for building a cloud infrastructure. Big or small is not the question right now. For example, the paper I shared above was an academic project. The project is called &lt;a href=&#34;http://www.eucalyptus.com/participate&#34;&gt;Eucalyptus&lt;/a&gt; and is open-source. That means that you can get that project&amp;#8217;s code and change it and/or contribute to that project. If you have an idea for feature addition or improvement in the current implementation of Eucalpytus, then you can try to do that as well. These types of projects are more central to Cloud Computing. This will also involve a lot of low-level sytem programming. Similarly, there are other projects called &lt;a href=&#34;http://www.openstack.org/&#34;&gt;OpenStack&lt;/a&gt; and &lt;a href=&#34;http://incubator.apache.org/cloudstack/&#34;&gt;Apache CloudStack&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I hope I have been able to explain Cloud Computing clearly. If you still have doubts, please get in touch with me and I will try my best to&amp;nbsp;help.&lt;/p&gt;
+&lt;p&gt;If you are really interested in knowing more about Cloud Computing, here is a free resource by Rackspace Hosting to start&amp;nbsp;with:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.rackspace.com/knowledge_center/cloudu/&#34;&gt;http://www.rackspace.com/knowledge_center/cloudu/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;            </content>
+        </entry>
+            <entry>
+            <title type="html">Need for a Good Personal Expenses Management App</title>
+            <author><name>Vaidik Kapoor</name></author>
+            <link href="/blog/need-for-personal-expenses-management-app.html"/>
+            <updated>2013-03-17T01:40:00Z</updated>
+            <published>2013-03-17T01:40:00Z</published>
+            <id>/blog/need-for-personal-expenses-management-app.html</id>
+                        <category   scheme="/blog/tags"
+                        term="projects"
+                        label="Projects" />
+                        <category   scheme="/blog/tags"
+                        term="mobile"
+                        label="Mobile" />
+                        <category   scheme="/blog/tags"
+                        term="ideas"
+                        label="Ideas" />
+            
+            <content type="html">
+                                &lt;p&gt;I recently bought my first smart phone - &lt;a href=&#34;http://www.google.co.in/nexus/4/&#34;&gt;Nexus 4&lt;/a&gt;. Until before that,
+the only mobile device that I used to use was my Apple iPad 2. In fact, I
+still use it. Besides various things that I do on my phone, I also want to
+easily keep a track of my spending. Being a college student, that is important
+for me. However during the little time I have spent with my mobile devices, I
+have only realized that there isn&amp;#8217;t a &lt;em&gt;free&lt;/em&gt; app good enough that has been
+able to catch my attention and fulfill my basic&amp;nbsp;needs.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Please note&lt;/strong&gt;: I am not talking about an app for wealth management. I don&amp;#8217;t
+have much knowledge about it and I don&amp;#8217;t know what goes in&amp;nbsp;it.&lt;/p&gt;
+&lt;p&gt;The &lt;em&gt;basic needs&lt;/em&gt; of an app like this, &lt;span class=&#34;caps&#34;&gt;IMHO&lt;/span&gt;,&amp;nbsp;are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;allow adding of expenditure with date, type, and other basic&amp;nbsp;info.&lt;/li&gt;
+&lt;li&gt;allow tracking of the money you owe to&amp;nbsp;somebody.&lt;/li&gt;
+&lt;li&gt;allow adding of your incoming pocket money (this is not money in your long
+   term savings account, just the money you withdraw or the budget you set out
+   of your&amp;nbsp;income).&lt;/li&gt;
+&lt;li&gt;cross platform with tight security and web&amp;nbsp;access.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Apart from the above &lt;em&gt;basic needs&lt;/em&gt;, everything else is just icing on the cake.
+But even the icing can or rather will be instrumental in actually making the
+usable. For example, I think that the following features can be extremely
+useful and can draw&amp;nbsp;attention:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Allow adding of recurring expenses. For example, rent, medical expenses,
+   phone bills, subscriptions,&amp;nbsp;etc.&lt;/li&gt;
+&lt;li&gt;Allow importing of receipts from various sources like email, scanning of
+   receipts,&amp;nbsp;etc.&lt;/li&gt;
+&lt;li&gt;Provide some basic statistics like daily, monthly, yearly expenditure. And
+   trends in your expenses. And perhaps a few simple statistical tools for
+   personal&amp;nbsp;analysis.&lt;/li&gt;
+&lt;li&gt;And of course, a great User&amp;nbsp;Experience!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The above list is definitely not an exhaustive list as this is a list I have
+built based on my experiences and the experiences of some friends who I talk to
+everyday. One thing that I really miss out of the above mentioned requirements
+is none of the apps allow you to track how much money you another person. &lt;span class=&#34;caps&#34;&gt;IMHO&lt;/span&gt;,
+that is very important to track as that is the money that you have not spent
+but you have spent it i.e. the balance money today you have out of your monthly
+(or whatever cycle you use) budget includes the money you have spent. And that
+can be misleading if you tend to forget the amount of money you owe in totality
+to people. And then you overspend. This comes out of my personal experience.
+I am sure there are services for keeping track of the money that you owe. I
+have heard of &lt;a href=&#34;http://www.ioweyou.co.uk/&#34;&gt;I Owe You&lt;/a&gt;, but its really not&amp;nbsp;usable.&lt;/p&gt;
+&lt;p&gt;There are some apps that have some of these, but definitely not all of these.
+I have not tried paid apps yet in Apple AppStore. I have tried just about every
+app in PlayStore. And I am yet to come across even a single one that does all
+of the above&amp;nbsp;mentioned.&lt;/p&gt;
+&lt;p&gt;The only app that I feel comes a little close to a few points I have
+highlighted above is &lt;a href=&#34;http://toshl.com&#34;&gt;Toshl&lt;/a&gt;. Toshl is simple to use as far as adding
+expenses is concerned. Its &lt;span class=&#34;caps&#34;&gt;UI&lt;/span&gt; is more pleasing than that of any of its
+competitors that I have&amp;nbsp;used.&lt;/p&gt;
+&lt;p&gt;Currently, I use &lt;a href=&#34;http://toshl.com&#34;&gt;Toshl&lt;/a&gt; to manage my daily expenses. And I use &lt;a href=&#34;http://asana.com&#34;&gt;Asana&lt;/a&gt;
+(yes, that awesome project management application) to track the money I owe
+different people. What I do with Asana is that I have created a separate
+project where every task is the name of the person and I add the money I owe in
+the notes of that person&amp;#8217;s task. Its a dirty way but it still looks more organized
+to me. Besides, Asana is a lot more easy to use than any of these&amp;nbsp;apps.&lt;/p&gt;
+&lt;p&gt;What we need is a functional and usable personal expenses management app. This
+app should be that to personal expenses management what is &lt;a href=&#34;http://asana.com&#34;&gt;Asana&lt;/a&gt; to project
+management, &lt;a href=&#34;http://any.do&#34;&gt;Any.Do&lt;/a&gt; to To-Do Lists, &lt;a href=&#34;http://dropbox.com&#34;&gt;Dropbox&lt;/a&gt; to File Sharing and&amp;nbsp;Backup.&lt;/p&gt;
+&lt;p&gt;Is there an app hidden somewhere that I have not been able to find out or heard
+of? Is there some app that you think is better than Toshl and fulfills some of
+these requirements? Or do you have some inputs to add to the requirements?
+Please let me know. Perhaps some day we will make an app like that together and
+open-source it.&amp;nbsp;:)&lt;/p&gt;            </content>
+        </entry>
+            <entry>
+            <title type="html">SMS Based FAQ Retrieval</title>
+            <author><name>Vaidik Kapoor</name></author>
+            <link href="/blog/nlp-project-2013.html"/>
+            <updated>2013-03-02T10:00:00Z</updated>
+            <published>2013-03-02T10:00:00Z</published>
+            <id>/blog/nlp-project-2013.html</id>
+                        <category   scheme="/blog/tags"
+                        term="projects"
+                        label="Projects" />
+                        <category   scheme="/blog/tags"
+                        term="nlp"
+                        label="Nlp" />
+                        <category   scheme="/blog/tags"
+                        term="college"
+                        label="College" />
+            
+            <content type="html">
+                                &lt;p&gt;In the recent years, we have seen that the number of mobile users have grown
+exponentially. With smart phones coming in, information is available to most
+anywhere and everywhere. However, it is available to only those who can afford
+it.
+Accessing information on an old phone that cannot support, for example,
+opening a website is rather limited. The need for the same can be supported by
+the fact that most of Indian mobile users are still largely limited to using
+old mobile phones than new powerful smart phones because either they can&amp;#8217;t 
+afford it or they are not educated enough to operate them. And that makes it
+difficult to for that audience to get information on-the-move. Similarly, the
+number of telecomm users in India is approx. ten times more than the number of
+Internet&amp;nbsp;users.&lt;/p&gt;
+&lt;p&gt;The importance of making information available to such an audience is
+extremely important. Even MediaWiki has realized &lt;a href=&#34;http://www.mediawiki.org/wiki/Wikipedia_over_SMS_%26_USSD&#34;&gt;the importance of this&lt;/a&gt;
+for Wikipedia. &lt;span class=&#34;caps&#34;&gt;SMS&lt;/span&gt; and Voice Calls are the interfaces left for exchange of
+information in that&amp;nbsp;case.&lt;/p&gt;
+&lt;p&gt;In this project, our goal is to accept queries via &lt;span class=&#34;caps&#34;&gt;SMS&lt;/span&gt; and respond to the
+sender by finding the most appropriate &lt;span class=&#34;caps&#34;&gt;FAQ&lt;/span&gt; from a corpus of&amp;nbsp;FAQs. &lt;/p&gt;
+&lt;p&gt;The presentation we prepared to present our synopsis during the
+class can be found &lt;a href=&#34;https://docs.google.com/presentation/d/1fQzfgajaM5AIvrP3f3dYFEjB0SzO1akupkZ8S09d1Hk/edit#slide=id.p&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The project members for this project&amp;nbsp;are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Aahana&amp;nbsp;Tomar&lt;/li&gt;
+&lt;li&gt;Akarsh&amp;nbsp;Sanghi&lt;/li&gt;
+&lt;li&gt;Arpit&amp;nbsp;Agarwal&lt;/li&gt;
+&lt;li&gt;Vaidik&amp;nbsp;Kapoor&lt;/li&gt;
+&lt;/ul&gt;            </content>
+        </entry>
+            <entry>
+            <title type="html">Marg - A Simple Request Router written in PHP</title>
+            <author><name>Vaidik Kapoor</name></author>
+            <link href="/blog/marg.html"/>
+            <updated>2012-11-10T10:00:00Z</updated>
+            <published>2012-11-10T10:00:00Z</published>
+            <id>/blog/marg.html</id>
+                        <category   scheme="/blog/tags"
+                        term="web_development"
+                        label="Web_Development" />
+                        <category   scheme="/blog/tags"
+                        term="http"
+                        label="Http" />
+                        <category   scheme="/blog/tags"
+                        term="php"
+                        label="Php" />
+            
+            <content type="html">
+                                &lt;p&gt;&lt;a href=&#34;http://github.com/vaidikkp/marg&#34;&gt;Marg&lt;/a&gt; is a simple &lt;span class=&#34;caps&#34;&gt;HTTP&lt;/span&gt; Request Router, written in &lt;span class=&#34;caps&#34;&gt;PHP&lt;/span&gt;. It has a very simple &lt;span class=&#34;caps&#34;&gt;API&lt;/span&gt;
+and is motivated by my understanding and experience of using existing frameworks
+like Django, Flask, Drupal and some other pieces of code I have read in the past.
+Though I have written this code for my personal use, its free for anyone to use.
+The idea behind writing &lt;a href=&#34;http://github.com/vaidikkp/marg&#34;&gt;Marg&lt;/a&gt; was to have a boilerplate code for myself which I can
+use for my own&amp;nbsp;projects.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://github.com/vaidikkp/marg&#34;&gt;Marg&lt;/a&gt; has a really simple &lt;span class=&#34;caps&#34;&gt;API&lt;/span&gt; and it is really easy to use. And one of the reasons
+for this is that it does not do everything for you. It does not follow the 
+Batteries Included philosophy. All it does for you is that it routes incoming &lt;span class=&#34;caps&#34;&gt;HTTP&lt;/span&gt;
+requests for you to the right request handlers. You may use functions or classes
+to write your request handlers, and then you define routes for each
+of those request&amp;nbsp;handlers.&lt;/p&gt;
+&lt;h3&gt;The&amp;nbsp;Code&lt;/h3&gt;
+&lt;p&gt;So lets just dive into some&amp;nbsp;code:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+
+include &#39;marg/marg.php&#39;;
+
+$routes = array(
+    &#39;/&#39; =&amp;gt; &#39;home&#39;,
+);
+
+function home() {
+    echo &#39;Hello World!&#39;;
+}
+
+Marg::run($routes);
+
+?&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;So that&amp;#8217;s a really simple example. What we have done here is that we have
+defined a new function (controller) called &amp;#8220;home&amp;#8221;. This is basically a function and we want
+it to handle our request everytime a client requests the &amp;#8220;/&amp;#8221; &lt;span class=&#34;caps&#34;&gt;URI&lt;/span&gt;. So to do exactly
+the same thing, we have defined this function and we have a $routes variable
+to tell &lt;a href=&#34;http://github.com/vaidikkp/marg&#34;&gt;Marg&lt;/a&gt; to route the incoming request to &amp;#8220;/&amp;#8221; to this request handler. $routes
+is an associative array where the key is the &lt;span class=&#34;caps&#34;&gt;URI&lt;/span&gt; for which you want to handle and the value
+is the name of the request handler or an array (we will see this later) which will handle the
+request. Finally, we call the run() method, passing the $routes variable to it as the only&amp;nbsp;argument.&lt;/p&gt;
+&lt;p&gt;Now open the &amp;#8220;/&amp;#8221; &lt;span class=&#34;caps&#34;&gt;URI&lt;/span&gt; in the browser and you will get a nice &amp;#8220;Hello&amp;nbsp;World!&amp;#8221;.&lt;/p&gt;
+&lt;p&gt;Let&amp;#8217;s make things a little more complex. Let&amp;#8217;s handle different kinds of&amp;nbsp;requests.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+
+include &#39;marg/marg.php&#39;;
+
+$routes = array(
+    &#39;/&#39; =&amp;gt; &#39;home&#39;,
+);
+
+function home() {
+
+    echo &#39;&amp;lt;h1&amp;gt;Hello World!&amp;lt;/h1&amp;gt;&#39;;
+
+    global $request;
+
+    if ($request-&amp;gt;verb == &#39;GET&#39;) {
+        echo &#39;This is a GET request.&#39;;
+    } else {
+        header(&#39;HTTP/1.1 405 Method Not Allowed&#39;);
+        echo &#39;Method Not Allowed&#39;;
+    }
+}
+
+Marg::run($routes);
+
+?&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In the above example, we have explicitly made sure that our home controller handles
+only &lt;span class=&#34;caps&#34;&gt;GET&lt;/span&gt; requests. Rather, we want all the non-&lt;span class=&#34;caps&#34;&gt;GET&lt;/span&gt; requests to get rejected. The right
+way of doing this is by sending the 405 Method Not Allowed response header. Since &lt;span class=&#34;caps&#34;&gt;PHP&lt;/span&gt;
+was made for the web, you can determine the type of request through many ways. However,
+&lt;a href=&#34;http://github.com/vaidikkp/marg&#34;&gt;Marg&lt;/a&gt; simplifies it for you so that you don&amp;#8217;t have to take care of this all the time.
+&lt;a href=&#34;http://github.com/vaidikkp/marg&#34;&gt;Marg&lt;/a&gt; provides you with a $request global object that has information about the incoming
+request. The &amp;#8220;verb&amp;#8221; property of the $request object tells you the &amp;#8220;&lt;span class=&#34;caps&#34;&gt;HTTP&lt;/span&gt; verb&amp;#8221; or &lt;span class=&#34;caps&#34;&gt;HTTP&lt;/span&gt;
+method used for the incoming request. As you can see, we have added a short snippet to
+check the method and if it is not &lt;span class=&#34;caps&#34;&gt;GET&lt;/span&gt;, then we send the appropriate header and&amp;nbsp;response.&lt;/p&gt;
+&lt;p&gt;Another way to do this is implement a &amp;#8220;raise&amp;#8221; function. The way to do that is&amp;nbsp;this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+
+function home() {
+    echo &#39;&amp;lt;h1&amp;gt;Hello World!&amp;lt;/h1&amp;gt;&#39;;
+
+    global $request;
+
+    if ($request-&amp;gt;verb == &#39;GET&#39;) {
+        echo &#39;This is a GET request.&#39;;
+    } else {
+        raise(&#39;405&#39;);
+    }
+}
+
+function raise_405() {
+    header(&#39;HTTP/1.1 405 Method Not Allowed&#39;);
+    echo &#39;&amp;lt;h1&amp;gt;405: Method Not Allowed&amp;lt;/h1&amp;gt;&#39;;
+}
+
+?&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;span class=&#34;dquo&#34;&gt;&amp;#8220;&lt;/span&gt;raise&amp;#8221; is used to raise what I call &lt;span class=&#34;caps&#34;&gt;HTTP&lt;/span&gt; exceptions. They are not exceptions like exceptions
+in &lt;span class=&#34;caps&#34;&gt;PHP&lt;/span&gt; or any programming language for that matter. These are essentially functions that you
+might want to use to keep your code clean and readable. The way to do this is implement a 
+function named in the following format: raise_HTTP_CODE. So to raise a 405 &lt;span class=&#34;caps&#34;&gt;HTTP&lt;/span&gt; exception,
+all you have to do is call the raise() function with the code as an argument, like so:&amp;nbsp;raise(&amp;#8216;405&amp;#8217;).&lt;/p&gt;
+&lt;p&gt;raise() function exists for improving code readability and nothing else only as of now.
+It does not do much right now, but there is more that I want to do with it in the future -
+just haven&amp;#8217;t found a way to do it&amp;nbsp;yet.&lt;/p&gt;
+&lt;p&gt;The above example can also be implemented like&amp;nbsp;so:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+
+include &#39;marg/marg.php&#39;;
+
+$routes = array(
+    &#39;/&#39; =&amp;gt; array(&#39;home&#39;, array(&#39;GET&#39;, &#39;POST&#39;)),
+);
+
+function home() {
+    echo &#39;Hello World!&#39;;
+}
+
+Marg::run($routes);
+
+?&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This way you can inform &lt;a href=&#34;http://github.com/vaidikkp/marg&#34;&gt;Marg&lt;/a&gt; about which methods your controller will handle and if a request
+comes in with an &lt;span class=&#34;caps&#34;&gt;HTTP&lt;/span&gt; method not specified in that array, then a 405 is&amp;nbsp;raised.&lt;/p&gt;
+&lt;p&gt;Alternatively, you may also write the same $routes variable like&amp;nbsp;so:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+
+$routes = array(
+    &#39;/&#39; =&amp;gt; array(
+        &#39;controller&#39; =&amp;gt; &#39;home&#39;,
+        &#39;methods&#39; =&amp;gt; array(&#39;GET&#39;, &#39;POST&#39;)
+    ),
+);
+
+?&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The above method is just another explicit way of expressing what we did in the previous&amp;nbsp;example.&lt;/p&gt;
+&lt;p&gt;We have seen how to use functions to handle your requests. Now, lets take a look at how you&amp;#8217;d do
+the same thing using classes in&amp;nbsp;&lt;span class=&#34;caps&#34;&gt;PHP&lt;/span&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+
+include &#39;marg/marg.php&#39;;
+
+$routes = array(
+    &#39;/&#39; =&amp;gt; array(&#39;home&#39;, array(&#39;GET&#39;, &#39;POST&#39;)),
+    &#39;/classes&#39; =&amp;gt; &#39;ClassesExample&#39;,
+);
+
+function home() { 
+    ...
+}
+
+class ClassesExample {
+    public function get() {
+        echo &#39;&amp;lt;h1&amp;gt;This is an example of how to use classes with [Marg][MARG].&amp;lt;/h1&amp;gt;&#39;;
+        echo &#39;&amp;lt;p&amp;gt;This is a GET request.&amp;lt;/p&amp;gt;&#39;;
+    }
+
+    public function post() {
+        echo &#39;&amp;lt;h1&amp;gt;This is an example of how to use classes with [Marg][MARG].&amp;lt;/h1&amp;gt;&#39;;
+        echo &#39;&amp;lt;p&amp;gt;This is a POST request.&amp;lt;/p&amp;gt;&#39;;
+    }
+};
+
+Marg::run($routes);
+
+?&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In the above example, we have used a class instead of a function. And our class implements
+a get() method and a post() method to handle &lt;span class=&#34;caps&#34;&gt;GET&lt;/span&gt; and &lt;span class=&#34;caps&#34;&gt;POST&lt;/span&gt; requests coming to &amp;#8220;/classes&amp;#8221; &lt;span class=&#34;caps&#34;&gt;URI&lt;/span&gt;.
+That&amp;#8217;s all we have to do to handle different requests separately. If an incoming request is
+not a &lt;span class=&#34;caps&#34;&gt;GET&lt;/span&gt; or &lt;span class=&#34;caps&#34;&gt;POST&lt;/span&gt; request (say it is a &lt;span class=&#34;caps&#34;&gt;PUT&lt;/span&gt; request), then a 405 will be&amp;nbsp;raised.&lt;/p&gt;
+&lt;h3&gt;setUp and&amp;nbsp;tearDown&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;http://github.com/vaidikkp/marg&#34;&gt;Marg&lt;/a&gt; also allows you to define setUp and tearDown for incoming requests at two different
+levels. To define a setUp and a tearDown for all the incoming requests i.e. the global level,
+this is what you&amp;#8217;d&amp;nbsp;do:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+
+include &#39;marg/marg.php&#39;;
+
+$routes = array(
+    &#39;/&#39; =&amp;gt; array(&#39;home&#39;, array(&#39;GET&#39;, &#39;POST&#39;)),
+);
+
+function home() {
+    echo &#39;Hello World!&#39;;
+}
+
+Marg::run($routes);
+Marg::addSetUp(function () {  echo &#39;&amp;lt;html&amp;gt;&amp;lt;head&amp;gt;&amp;lt;title&amp;gt;Marg Examples&amp;lt;/title&amp;gt;&amp;lt;/head&amp;gt;&amp;lt;body&amp;gt;&#39;; });
+Marg::addTearDown(function () { echo &#39;&amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt;&#39;; });
+
+?&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Every time you get an incoming request, first the global setUp callback will be called, then the
+controller is called and then the global tearDown callback will be called. In this example, we
+have used an anonymous function available in &lt;span class=&#34;caps&#34;&gt;PHP&lt;/span&gt;&amp;nbsp;5.3+.&lt;/p&gt;
+&lt;p&gt;You may also add setUp and tearDown at controller levels like&amp;nbsp;so:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+
+class ClassesExample {
+    public function setUp() {
+        echo &#39;&amp;lt;h1&amp;gt;This is an example of how to use classes with [Marg][MARG].&amp;lt;/h1&amp;gt;&#39;;
+        echo &#39;&amp;lt;center&amp;gt;&#39;;
+    }
+
+    public function tearDown() {
+        echo &#39;&amp;lt;/center&amp;gt;&#39;;
+    }
+
+    public function get() {
+        echo &#39;&amp;lt;p&amp;gt;This is a GET request.&amp;lt;/p&amp;gt;&#39;;
+    }
+
+    public function post() {
+        echo &#39;&amp;lt;h1&amp;gt;This is an example of how to use classes with [Marg][MARG].&amp;lt;/h1&amp;gt;&#39;;
+        echo &#39;&amp;lt;p&amp;gt;This is a POST request.&amp;lt;/p&amp;gt;&#39;;
+    }
+};
+
+?&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;So now when a request comes in, the global setUp is called first, then the setUp at class level
+is called, then the class method is called, then the class tearDown is called and finally the
+global tearDown is&amp;nbsp;called.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Please note&lt;/strong&gt; that you can use setUp and tearDown at controller levels only with classes and
+not with&amp;nbsp;functions.&lt;/p&gt;
+&lt;h3&gt;Responses&lt;/h3&gt;
+&lt;p&gt;You must have noticed that &lt;a href=&#34;http://github.com/vaidikkp/marg&#34;&gt;Marg&lt;/a&gt; does not provide any way of simplifying how you generate
+your responses. Well, there can be a lot of things that I could have done on that front but
+that would have been really a lot of opiniated design decisions that I did not want to
+enforce onto others and myself as well because I do tend to change how I write my applications
+with time and experience. So how you handle your responses depends entirely on you. You may
+want to use a templating engine like &lt;a href=&#34;http://www.smarty.net/&#34;&gt;Smarty&lt;/a&gt; or may be you want to write a custom response
+generation engine yourself. Its up to&amp;nbsp;you!&lt;/p&gt;
+&lt;h3&gt;How and&amp;nbsp;why?&lt;/h3&gt;
+&lt;p&gt;While I was interning at &lt;a href=&#34;https://wingify.com&#34;&gt;Wingify&lt;/a&gt; (the creators of &lt;a href=&#34;http://visualwebsiteoptimizer.com&#34;&gt;Visual Website Optimizer&lt;/a&gt;, check
+it out in case you don&amp;#8217;t know what it is &amp;#8216;coz its awesome!), one of the projects I
+was working on was development of a &lt;span class=&#34;caps&#34;&gt;REST&lt;/span&gt; &lt;span class=&#34;caps&#34;&gt;API&lt;/span&gt; for &lt;a href=&#34;http://visualwebsiteoptimizer.com&#34;&gt;Visual Website Optimizer&lt;/a&gt; (&lt;span class=&#34;caps&#34;&gt;VWO&lt;/span&gt;).
+I hadn&amp;#8217;t worked on a dedicated &lt;span class=&#34;caps&#34;&gt;REST&lt;/span&gt; &lt;span class=&#34;caps&#34;&gt;API&lt;/span&gt; before this, mostly because there was 
+never a need to do the same. But I&amp;#8217;d always think of working on one for a project,
+just didn&amp;#8217;t know that it would be &lt;a href=&#34;http://visualwebsiteoptimizer.com&#34;&gt;&lt;span class=&#34;caps&#34;&gt;VWO&lt;/span&gt;&lt;/a&gt;. Anyways, I wanted to get everything right
+and so I started to read about &lt;span class=&#34;caps&#34;&gt;API&lt;/span&gt; design and best practices. While doing this,
+one good thing that happened with me was that I got in the habbit of reading
+specs. I read many parts of the &lt;span class=&#34;caps&#34;&gt;HTTP&lt;/span&gt; 1.1 spec many times. I read docs of many
+web services&amp;#8217; APIs like Github&amp;#8217;s, Facebook&amp;#8217;s, Google Data Protocol&amp;#8217;s, and many
+more. And, I got to learn a great deal of things, how they are done, why they are
+done,&amp;nbsp;etc.&lt;/p&gt;
+&lt;p&gt;Put together the knowledge and experience I had gathered by using various 
+frameworks over the last couple of years and all the information and the new 
+things that I had gathered while learning about &lt;span class=&#34;caps&#34;&gt;API&lt;/span&gt; design and best practices, I
+started working on designing the &lt;span class=&#34;caps&#34;&gt;API&lt;/span&gt; spec and then started writing code for the
+same. It was an amazing experience. After every addition to the code base, I used
+to validate my work with the best practices I had layed down for our use case. And
+in the whole process I learned a lot of&amp;nbsp;things.&lt;/p&gt;
+&lt;p&gt;Sometime back, I was working on a small weekend project and had to write an &lt;span class=&#34;caps&#34;&gt;API&lt;/span&gt; for it
+that would send responses in &lt;span class=&#34;caps&#34;&gt;JSON&lt;/span&gt;. After working on it for a while, I realized my 
+approach and code were quite similar to the one I applied while working on the &lt;a href=&#34;http://visualwebsiteoptimizer.com&#34;&gt;&lt;span class=&#34;caps&#34;&gt;VWO&lt;/span&gt;&lt;/a&gt;
+&lt;span class=&#34;caps&#34;&gt;API&lt;/span&gt; project. Therefore, I decided to make use of all the things I learned while working
+at &lt;a href=&#34;https://wingify.com&#34;&gt;Wingify&lt;/a&gt; and write my own boilerplate code for my own use. So this became my new weekend
+project which resulted in &lt;a href=&#34;http://github.com/vaidikkp/marg&#34;&gt;Marg&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I thank &lt;a href=&#34;https://wingify.com&#34;&gt;Wingify&lt;/a&gt; here for giving me the opportunity to work on that project. I got the 
+opportunity to learn a great deal through the project I was asked to work&amp;nbsp;on!&lt;/p&gt;
+&lt;h3&gt;Feedback&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;http://github.com/vaidikkp/marg&#34;&gt;Marg&lt;/a&gt; was more of a weekend project. I have added code to it but haven&amp;#8217;t been able to really
+devote time to it. I am sure it has some glitches. I&amp;#8217;d be really happy to have some feedback.
+So, please take out some time and let me know how you feel about&amp;nbsp;it.&lt;/p&gt;            </content>
+        </entry>
+            <entry>
+            <title type="html">First Time at PyCon India</title>
+            <author><name>Vaidik Kapoor</name></author>
+            <link href="/blog/pycon-india-2012.html"/>
+            <updated>2012-10-06T10:00:00Z</updated>
+            <published>2012-10-06T10:00:00Z</published>
+            <id>/blog/pycon-india-2012.html</id>
+                        <category   scheme="/blog/tags"
+                        term="python"
+                        label="Python" />
+                        <category   scheme="/blog/tags"
+                        term="pycon"
+                        label="Pycon" />
+                        <category   scheme="/blog/tags"
+                        term="foss"
+                        label="Foss" />
+            
+            <content type="html">
+                                &lt;p&gt;&lt;a href=&#34;http://in.pycon.org/2012/&#34;&gt;PyCon India 2012&lt;/a&gt; happened in Bangalore this year and it was my first PyCon India ever.
+Given that not a lot of good events/conferences for geeks happen here in Delhi/&lt;span class=&#34;caps&#34;&gt;NCR&lt;/span&gt; and
+&lt;a href=&#34;http://us.pycon.org/2012/&#34;&gt;PyCon &lt;span class=&#34;caps&#34;&gt;US&lt;/span&gt;&lt;/a&gt; and &lt;a href=&#34;http://denver2012.drupal.org/&#34;&gt;DrupalCon Denver&lt;/a&gt; were the last two conferences that I attended earlier this
+year in March, I was getting impatient to attend another conference and get together with
+some geeks. I like it because there is lots to learn from the sessions and the smart people 
+who attend these events, and its always fun to know how busy the people you know are
+innovating new and awesome&amp;nbsp;stuff.&lt;/p&gt;
+&lt;p&gt;First of all, I&amp;#8217;d like to thank the &lt;a href=&#34;http://in.pycon.org/2012/&#34;&gt;PyCon India&lt;/a&gt; organizing team for the amazing hard work
+they had put in. PyCon is a completely volunteer driven effort and wouldn&amp;#8217;t have been
+possible without the hard work put in by all the involved&amp;nbsp;volunteers.&lt;/p&gt;
+&lt;h3&gt;Tutorials&lt;/h3&gt;
+&lt;p&gt;PyCon India was a 3-day long conference with the first day dedicated to tutorials and
+the last two days taking care of the keynotes and presentations. There were a couple of
+interesting tutorials. To start with in the first block of tutorials, the only one that
+I found to be close to my interests was &lt;a href=&#34;http://piyush.me/&#34;&gt;Piyush Kumar&amp;#8217;s&lt;/a&gt; and &lt;a href=&#34;https://twitter.com/konarkmodi&#34;&gt;Konark Modi&amp;#8217;s&lt;/a&gt; tutorial on
+&lt;a href=&#34;http://in.pycon.org/2012/funnel/pyconindia2012/62-celery-for-background-task-processing-and-deferred-execution&#34;&gt;Background Task Processing and Deferred Execution using Celery&lt;/a&gt;. Unfortunately, I missed
+this one because I was catching up with some friends at the conference venue. In the
+second slot of tutorials, again I found only one tutorial interesting and that was &lt;a href=&#34;http://in.pycon.org/2012/funnel/pyconindia2012/55-simple-linux-cluster-with-python-and-beanstalkd&#34;&gt;Building Simple Clusters using Beanstalkd&lt;/a&gt;. I thought it would be something new but it was just about
+using Message Queue systems to distribute tasks amongst your worker processes running on different machines, something
+that I have already done before. I did leave that tutorial a bit early but I wouldn&amp;#8217;t say
+it was bad. Perhaps I misunderstood the topic a bit and was expecting too much out of it.
+All in all, the only take away from the tutorials day was that I got to meet some old friends.
+However, I wish it was not like that. Tutorials are a good opportunity for audience
+of all kinds (i.e. beginner, intermediate and even expert) to learn something new.
+Unfortunately, that was not the case this time. &lt;span class=&#34;caps&#34;&gt;IMHO&lt;/span&gt;, the tutorial topics were either too
+use-case specific or something that I already knew. :P Also, it was general feedback from
+the people I know that the tutorial speakers were not very well prepared. I hope that
+won&amp;#8217;t be the case in the future conferences. Attendees buy tutorial tickets because they
+really expect to learn something new and if they don&amp;#8217;t get it, they get upset and perhaps
+won&amp;#8217;t attend tutorials in the&amp;nbsp;future.&lt;/p&gt;
+&lt;h3&gt;Sessions&lt;/h3&gt;
+&lt;p&gt;The last two days of the conference had many sessions. I missed a couple of sessions that
+I wanted to attend, including &lt;a href=&#34;http://in.pycon.org/2012/funnel/pyconindia2012/46-automated-data-analysis-with-python&#34;&gt;Anand&amp;#8217;s session&lt;/a&gt; (even the second time, shame on me). Out of
+the four or five sessions that I attended, I found two sessions good. Most of the other
+sessions gave me a feeling that the session speakers were not prepared at all whereas 
+some sessions were merely presentation of documentation of existing Python libraries.
+This is one thing that I wouldn&amp;#8217;t want to experience again. In fact, if a person has
+proposed a session, then that person must prepare it well because his audience expects 
+that they will get to take something valuable away when they attend that session but
+unfortunately many sessions at this PyCon had only disappointment as the only take away.
+I am not going to name sessions here but some sessions were really bad. Yes, its the
+responsibility of the organizers to make sure that the sessions are good. But, as a 
+speaker I believe I would want not want to disappoint my audience at least content-wise
+or I will not propose a session at all. Why volunteer to give a session when you are not
+going to prepare properly? Session speakers must understand this that someone else could
+perhaps present a better sessions with better content than theirs. I hope this will not happen again and the organizing committee 
+will take care of this as they have already noticed this issue&amp;nbsp;themselves.&lt;/p&gt;
+&lt;p&gt;I spoke at PyCon India as well. My session was on &lt;a href=&#34;http://in.pycon.org/2012/funnel/pyconindia2012/34-queue-everything-and-please-everyone&#34;&gt;Queues for Web Applications&lt;/a&gt;. It was session for an audience
+between beginner and intermediate level. As I earlier pointed out that many sessions were merely presentations
+of documentations of some Python libraries and I expected that would happen as well, I made it a point to not
+make my session a tutorial. So my session was more about how I got introduced to real-world queues and how I
+understood things and started implementing it and went on to choose more complex and more sophisticated tools
+to solve problems. I wouldn&amp;#8217;t say that I was disappointed with the turn out. Though I was a little disappointed
+with myself for getting nervous while presenting as it was the first time I spoke at a big event like PyCon India.
+At the end, I did get some good comments from some people from the audience, some good questions as well and that 
+made my day!&amp;nbsp;:)&lt;/p&gt;
+&lt;h3&gt;Keynotes&lt;/h3&gt;
+&lt;p&gt;I at least expected the keynotes to be a little more interesting. The first keynote, by
+David Mertz, was more centred around the &lt;a href=&#34;http://www.python.org/psf/&#34;&gt;Python Software Foundation&lt;/a&gt; and related projects.
+I am not indicating that it was a bad keynote, but not something that I take a lot of 
+interest in or plan to do so in the near future (and that was the general feedback).
+The second keynote, by &lt;a href=&#34;http://jacobian.org&#34;&gt;Jacob Kaplan Moss&lt;/a&gt;, was definitely centred around an interesting
+topic - the Real-Time Web and how he sees the web evolving. Real-Time Web is definitely a hot thing and &lt;a href=&#34;https://hacks.mozilla.org/2012/07/getusermedia-is-ready-to-roll/&#34;&gt;WebRTC&lt;/a&gt; looks like
+an amazing initiative towards it. It will change a lot of things and not just web
+applications. For example, Javascript APIs for capturing photophraphs and videos using 
+device camera and accessing sound input from device microphone will enable developers to
+challenge existing VoIP services. WebRTC is also working towards &lt;span class=&#34;caps&#34;&gt;P2P&lt;/span&gt; amongst different
+browsers, which again will open a whole new range of possibilities for&amp;nbsp;developers.&lt;/p&gt;
+&lt;p&gt;Jacob&amp;#8217;s demonstration of &lt;a href=&#34;http://meteor.com&#34;&gt;MeteorJS&lt;/a&gt; was also interesting. Meteor allows developers to build
+real-time apps really easily with almost the same set of Javascript APIs for the server
+and the client. MeteorJS is pretty interesting. Its good to see the line between
+client-server getting blurred. Jacob&amp;#8217;s point was to make real-time apps in Django or 
+similar frameworks right now is very very difficult whereas it shouldn&amp;#8217;t be. You need to 
+setup multiple systems and then make all of them work together to see some real-time
+magic. Meteor definitely strives to make things like that really easy. Now, we cannot 
+bring Python/Django on the client side like Meteor has done. But, do we really need to do
+so immaterial of the fact that it is not possible? How difficult it really is right now
+to make real-time apps with existing frameworks? How easy does Meteor make it? Can we be
+sattisfied with something not as easy as Meteor but definitely much easier than existing
+solutions? There are some interesting questions arounds this that I think about these
+days. Perhaps I will write a post just on this if I am able to think of any concrete
+approach. Anyways, Jacob&amp;#8217;s talk was not bad, but not exciting enough as I was expecting
+it to&amp;nbsp;be.&lt;/p&gt;
+&lt;h3&gt;Overall&amp;nbsp;Experience&lt;/h3&gt;
+&lt;p&gt;So these were the PyCon India 2012 days. Apart from the conference, I had an amazing time
+meeting friends and new people. Want to thank &lt;a href=&#34;http://twitter.com/flyankur&#34;&gt;Ankur Saxena&lt;/a&gt;, &lt;a href=&#34;http://ashishdubey.info/blog/&#34;&gt;Ashish Dubey&lt;/a&gt;,
+&lt;a href=&#34;http://piyush.me/&#34;&gt;Piyush Kumar&lt;/a&gt;, &lt;a href=&#34;https://twitter.com/konarkmodi&#34;&gt;Konark Modi&lt;/a&gt; and &lt;a href=&#34;https://twitter.com/GurteshwarSingh&#34;&gt;Gurteshwar Singh&lt;/a&gt; for all the amazing conversations we had.
+Got to learn lots from everyone! I would not say that the conference was bad but it was not
+good enough and it can be much better and it should be much&amp;nbsp;better!&lt;/p&gt;
+&lt;p&gt;Since I got involved with &lt;span class=&#34;caps&#34;&gt;FOSS&lt;/span&gt; projects and communities in Delhi/&lt;span class=&#34;caps&#34;&gt;NCR&lt;/span&gt;, I started attending
+conferences and events because I feel that there always is a take away value in them in
+the form of learning from sessions, experience, networking, and getting a chance to get
+more deeply involved with these projects. At PyCon India 2012, this was really missing
+and this is perhaps one of the factors that I will keep in mind in deciding to attend
+or not to the next PyCon India. Lets see how the preparation of future PyCons in India
+shapes&amp;nbsp;up.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Update&lt;/strong&gt;: I forgot to write about my own session in this post. Its now added at the end of the &amp;#8220;Sessions&amp;#8221;&amp;nbsp;section.&lt;/p&gt;            </content>
+        </entry>
+            <entry>
+            <title type="html">Being a Mozilla Rep</title>
+            <author><name>Vaidik Kapoor</name></author>
+            <link href="/blog/mozilla-rep.html"/>
+            <updated>2012-09-06T10:00:00Z</updated>
+            <published>2012-09-06T10:00:00Z</published>
+            <id>/blog/mozilla-rep.html</id>
+                        <category   scheme="/blog/tags"
+                        term="mozilla"
+                        label="Mozilla" />
+                        <category   scheme="/blog/tags"
+                        term="foss"
+                        label="Foss" />
+            
+            <content type="html">
+                                &lt;p&gt;I have been contributing to &lt;a href=&#34;http://www.mozilla.org/en-US/&#34;&gt;Mozilla&lt;/a&gt; for about over a year now in different ways. I have not been doing much evangelism outsite my college because I love coding and
+that is how I have been contributing so far. Yes, I have organized some events in my college which, unfortunately, I did not publicise enough in the community either 
+prior or post events. But these events were really successful. With the help of some other volunteers in my college, I was able to really convert a couple of guys into
+code contributors. The output of these events was amazing. One day, I just applied to become a &lt;a href=&#34;https://wiki.mozilla.org/ReMo&#34;&gt;Mozilla Rep&lt;/a&gt;. And guess what, I became one. My mentor is &lt;a href=&#34;http://fuzzyfox.mozhunt.com/&#34;&gt;FuzzyFox&lt;/a&gt;. I look forward to learning a lot from him!&amp;nbsp;:)&lt;/p&gt;
+&lt;p&gt;Coincidentally, the &lt;a href=&#34;https://www.facebook.com/groups/mozilla.delhincr/&#34;&gt;Mozilla Delhi/&lt;span class=&#34;caps&#34;&gt;NCR&lt;/span&gt;&lt;/a&gt; community was meeting up soon after I became the Rep. &lt;a href=&#34;http://kinshuksunil.com/&#34;&gt;Kinshuk Sunil&lt;/a&gt;, another Rep from the Delhi/&lt;span class=&#34;caps&#34;&gt;NCR&lt;/span&gt; region (and my unofficial Mozilla mentor), announced it in the
+community group on Facebook. I&amp;#8217;d like to thank everyone again who wished me. When I attended the meetup, I somehow felt, though slightly, that people started
+treating me a little differently&amp;#8230; as if I had achieved something or I became a leader or something. As I see myself as a Mozilla Rep, I am still a volunteer, though
+my scope of duties as a volunteer has increased from being just a Mozilla volunteer and loyalist to helping others support the Mozilla Mission and get involved with
+Mozilla. I hope I will still be treated as a fellow volunteer as I always used&amp;nbsp;to.&lt;/p&gt;
+&lt;p&gt;Anyways, the community met up to gather feedback on the &lt;a href=&#34;https://wiki.mozilla.org/Mozparty&#34;&gt;Summer Code Party&lt;/a&gt; events across Delhi/&lt;span class=&#34;caps&#34;&gt;NCR&lt;/span&gt; and what to do further. Some colleges successfully organized Summer
+Code Party and received a considerable participation whereas some were not able to participate and organize events at all. That&amp;#8217;s alright! However, we did not have 
+enough Summer Code Party events in Delhi/&lt;span class=&#34;caps&#34;&gt;NCR&lt;/span&gt; to host a massive Hack Jam as decided previously. Therefore, in this meeting we decided to scrap the idea of Hack Jam and
+convert it into a MozCamp. MozCamp Delhi will be happen in the format of an &lt;a href=&#34;http://en.wikipedia.org/wiki/Unconference&#34;&gt;Unconference&lt;/a&gt; and is now scheduled to happen on September 22 &lt;span class=&#34;amp&#34;&gt;&amp;amp;&lt;/span&gt; 23 at &lt;a href=&#34;http://jmi.ac.in/&#34;&gt;Jamia Milia Islamia&lt;/a&gt; University campus. The Delhi/&lt;span class=&#34;caps&#34;&gt;NCR&lt;/span&gt; community cannot be thankful enough to the university and our fellow contributors there for helping us organize this. We are planning to cover a multitide of topics/areas related to the&amp;nbsp;web.&lt;/p&gt;
+&lt;p&gt;Right after the meetup, I had to treat everybody for becoming a Rep. And the treat turned out to be an unconventional one. We ended up having some mouth watering &lt;a href=&#34;http://en.wikipedia.org/wiki/Baati&#34;&gt;Litti
+Chokha&lt;/a&gt; on a road side stall. That was&amp;nbsp;fun!&lt;/p&gt;
+&lt;h3&gt;As a Mozilla&amp;nbsp;Rep&lt;/h3&gt;
+&lt;p&gt;It is rare to find non-engineers getting involved with &lt;span class=&#34;caps&#34;&gt;FOSS&lt;/span&gt; projects like Mozilla here in India i.e. majority of the volunteers and contributors are either engineering students or people from the tech community. Rarely you will find people with a non-engineering/non-scientific background getting involved with &lt;span class=&#34;caps&#34;&gt;FOSS&lt;/span&gt; projects. Since we have such a huge number of engineers and engineers-in-the-making involved, we should at least have a considerable amount of code contribution to these &lt;span class=&#34;caps&#34;&gt;FOSS&lt;/span&gt; projects. Unfortunately, that is not the case. I have noticed this (at least here in Delhi/&lt;span class=&#34;caps&#34;&gt;NCR&lt;/span&gt;) that the community is always busy in evangelism. Evangelism is important but most of the times the audience at the receiving end is technical. So why not try to help them become code contributors along with supporters of Mozilla&amp;nbsp;Mission.&lt;/p&gt;
+&lt;p&gt;As a Mozilla Rep, this is what I would like to focus on and build here in Delhi/&lt;span class=&#34;caps&#34;&gt;NCR&lt;/span&gt; - a developer community which contributes code to different Mozilla projects as&amp;nbsp;well.&lt;/p&gt;
+&lt;p&gt;If you are in Delhi/&lt;span class=&#34;caps&#34;&gt;NCR&lt;/span&gt; (or anywhere else) and want to get involved with Mozilla to support the &lt;a href=&#34;http://www.mozilla.org/about/mission.html&#34;&gt;Mozilla Mission&lt;/a&gt; by volunteering and contributing in any way, do get in touch with me or &lt;a href=&#34;http://kinshuksunil.com/&#34;&gt;Kinshuk Sunil&lt;/a&gt; and we will do our best to help you&amp;nbsp;out.&lt;/p&gt;            </content>
+        </entry>
+            <entry>
+            <title type="html">The New Blog</title>
+            <author><name>Vaidik Kapoor</name></author>
+            <link href="/blog/the-new-blog.html"/>
+            <updated>2012-09-05T10:00:00Z</updated>
+            <published>2012-09-05T10:00:00Z</published>
+            <id>/blog/the-new-blog.html</id>
+                        <category   scheme="/blog/tags"
+                        term="thoughts"
+                        label="Thoughts" />
+            
+            <content type="html">
+                                &lt;p&gt;Yes, finally I have done it. After delaying it for so long, I have finally made
+my new blog. Its not complete yet but its mostly done. There is a lot I have been
+wanting to write for some time now and I don&amp;#8217;t like the idea of using
+Wordpress.com or Blogspot or Blogger or any other blogging platform out there for
+some reason. I want my blog, made with love and care! :)
+My old blog was made on &lt;a href=&#34;http://wordpress.org&#34;&gt;Wordpress&lt;/a&gt; and an existing theme I had almost completely
+customized. This new blog is made using &lt;a href=&#34;http://hyde.github.com&#34;&gt;Hyde&lt;/a&gt;. Hyde is a &lt;a href=&#34;http://mickgardner.com/2011/04/27/An-Introduction-To-Static-Site-Generators.html&#34;&gt;static site generator&lt;/a&gt;, like &lt;a href=&#34;http://jekyllrb.com/&#34;&gt;Jekyll&lt;/a&gt; which powers &lt;a href=&#34;http://pages.github.com/&#34;&gt;Github Pages&lt;/a&gt;, and it is written in &lt;a href=&#34;http://www.python.org/&#34;&gt;Python&lt;/a&gt;. Why did I not
+choose Jekyll - because of Python. I know Python and I don&amp;#8217;t know &lt;a href=&#34;http://www.ruby-lang.org/&#34;&gt;Ruby&lt;/a&gt;. I didn&amp;#8217;t
+even have plans to learn it or anything about it. Hyde, on the other hand, is
+built on top of a &lt;a href=&#34;https://www.djangoproject.com/&#34;&gt;Django&lt;/a&gt;, one of the best web frameworks out there and it uses
+&lt;a href=&#34;http://jinja.pocoo.org/docs/&#34;&gt;Jinja2&lt;/a&gt; for&amp;nbsp;templating.&lt;/p&gt;
+&lt;p&gt;As I said, this blog is only almost complete. So you will see things changing and
+new things coming in very soon&amp;nbsp;here.&lt;/p&gt;
+&lt;p&gt;Also, I expressed that I wish to write. And that&amp;#8217;s true. Unfortunately, I have
+exams starting tomorrow in college. So my actual &lt;em&gt;first blog post&lt;/em&gt; on this shiny
+new blog of mine is&amp;nbsp;due.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Breaking news&lt;/strong&gt; - if you are/were looking for any of my old blog posts, I am sorry
+I am not going to put them back because I can&amp;#8217;t - I lost my old blog&amp;#8217;s backup.
+Yes, that raises a lot of questions - &amp;#8220;did you not have a backup&amp;#8221;, etc. Something
+messy happened sometime back when I lost a lot of my precious data, including the
+backup of my old blog. So&amp;#8230; really&amp;nbsp;sorry!&lt;/p&gt;            </content>
+        </entry>
+            <entry>
+            <title type="html">Google Summer of Code 2012</title>
+            <author><name>Vaidik Kapoor</name></author>
+            <link href="/blog/google-summer-of-code.html"/>
+            <updated>2011-12-20T15:57:00Z</updated>
+            <published>2011-12-20T15:57:00Z</published>
+            <id>/blog/google-summer-of-code.html</id>
+                        <category   scheme="/blog/tags"
+                        term="projects"
+                        label="Projects" />
+                        <category   scheme="/blog/tags"
+                        term="nlp"
+                        label="Nlp" />
+                        <category   scheme="/blog/tags"
+                        term="college"
+                        label="College" />
+            
+            <content type="html">
+                                &lt;p&gt;Introduction to Google Summer of Code program and what a student needs to do
+to apply and get selected in the program. This article is an attempt to create
+a guide for the program out of the personal experiences I have had with the&amp;nbsp;program.&lt;/p&gt;
+&lt;p&gt;For those of you who don&amp;#8217;t know what GSoC is, it is a program (like an
+internship and you have to work from home) in which you get to work on a
+project for another existing open-source project. For example, you may work
+on a project that is about improving some part of Mozilla Firefox or you
+may work on something like writing a library for OpenCV or you get to work
+on a MediaWiki plugin. The projects that get get selected for Google Summer
+of Code are very very good projects and if you get to work on them, you get
+to learn a lot. You get to learn about best programming practices, how to
+work in an open-source community, version controlling, development
+procedures, etc. You will also be assigned a mentor who will guide you
+through your project and review your work. GSoC is for 3 months. You can
+work from anywhere in the world. And, the best part is that you get paid.
+Last year it was $5000, which is a lot of&amp;nbsp;money.&lt;/p&gt;
+&lt;p&gt;Apart from all that, you get to know good people in your field and you
+learn a lot. These people may become your potential employers in the&amp;nbsp;future.&lt;/p&gt;
+&lt;p&gt;The idea behind GSoC is to get more contributors for open-source projects.
+So ideally, once you are done with GSoC, it is your responsibility to
+continue to work on your code and improve it or provide patches for bugs
+when necessary. Ideally, you should also get involved deeply with the
+open-source project you will get to work&amp;nbsp;for.&lt;/p&gt;
+&lt;p&gt;So if you didn&amp;#8217;t know about GSoC, find out more and try to get in. There
+cannot be a better way to get involved in an open-souce project. And hey,
+you get paid for a good cause!&amp;nbsp;:)&lt;/p&gt;
+&lt;p&gt;For more details, visit this &lt;a href=&#34;http://code.google.com/soc/.&#34;&gt;link&lt;/a&gt;.&lt;/p&gt;
+&lt;h3&gt;The&amp;nbsp;Procedure&lt;/h3&gt;
+&lt;p&gt;Getting selected in GSoC is no easy task. It is a long process and in a
+way, it begins&amp;nbsp;now.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Your marks &lt;span class=&#34;caps&#34;&gt;DON&lt;/span&gt;&amp;#8217;T &lt;span class=&#34;caps&#34;&gt;MATTER&lt;/span&gt;. Yes! It is not an issue for them if you
+    have a back or if you are 9 pointer. You can contribute and be a&amp;nbsp;GSoCer.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Select an organisation/project you want to work for. For example:
+    MediaWiki (the software that powers Wikipedia), OpenCV, Wordpress, Drupal,
+    Mozilla, Fedora, etc. There are more than a hundred organisations that
+    participate. Read further on how to select your&amp;nbsp;organisation.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Get involved with the community. Start contributing now and don&amp;#8217;t&amp;nbsp;wait.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Talk to people on &lt;span class=&#34;caps&#34;&gt;IRC&lt;/span&gt; channels of that organisation. Don&amp;#8217;t forget
+   to read &lt;span class=&#34;caps&#34;&gt;IRC&lt;/span&gt; etiquette. And honour them. One suggestion from my side is
+   &lt;em&gt;try to be patient&lt;/em&gt;. It mostly pays off. &lt;a href=&#34;http://www.ircbeginner.com/ircinfo/etiquette.html&#34;&gt;Click here&lt;/a&gt; to read some
+   general &lt;span class=&#34;caps&#34;&gt;IRC&lt;/span&gt; etiquette. The organisation you want to get involved with
+   might have their own guidelines so don&amp;#8217;t forget to check that on their&amp;nbsp;website/wiki.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Join mailing lists. Most of the &lt;span class=&#34;caps&#34;&gt;IRC&lt;/span&gt; etiquette apply to mailing
+   lists also. There might be some additional guidelines as well so look for
+   those on your organisation&amp;#8217;s website/wiki. &lt;a href=&#34;http://kandalaya.org/guidelines.html&#34;&gt;Click here&lt;/a&gt;
+   to read some general mailing list&amp;nbsp;guidelines.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Their can be numerous ways of contributing to a project - coding,
+   testing, documentation, localization, design, promotion, etc. GSoC is all
+   about programming and contribution by coding will count in your
+   selection. So you should work towards contributing by&amp;nbsp;coding.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;The best way to start contributing as a programmer is start solving
+   bugs that are simple or marked for beginners/novices. Slowly you can
+   move to more difficult problems. Don&amp;#8217;t directly dive into something
+   very&amp;nbsp;difficult.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Almost every project/organisation has a page on their website that
+   talks about how you can contribute to that project. For example,
+   Drupal has &lt;a href=&#34;http://drupal.org/getting-involved.&#34;&gt;this page&lt;/a&gt; on their website. These pages
+   carry details to ways of documentation and how you can contribute as
+   a programmer (or as a designer, etc.). Go ahead and read about how
+   you can contribute code, the procedure, steps of contributing, coding
+   standards and practices. &lt;em&gt;You must follow the guidelines strictly&lt;/em&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;When stuck somewhere or don&amp;#8217;t know where to start, write to the
+   mailing list or talk to other contributors on the &lt;span class=&#34;caps&#34;&gt;IRC&lt;/span&gt;. Tell them that
+   you want to contribute but don&amp;#8217;t know where to start and if they can
+   lend a helping hand. &lt;em&gt;Remember: be polite and patient&lt;/em&gt;! Generally
+   their websites provide names of people who you can get in touch with
+   on &lt;span class=&#34;caps&#34;&gt;IRC&lt;/span&gt; for help. If there isn&amp;#8217;t one on their website, then try to get
+   in touch with those who are there on the &lt;span class=&#34;caps&#34;&gt;IRC&lt;/span&gt;&amp;nbsp;channel.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;After a couple of contributions, you can start talking about
+    Google Summer of Code with people who have been helping you out so far.
+    Tell them you want to participate. What is the best way or if there is any
+    idea your contributor would like you to pitch for? Would they like to
+    mentor you? You may also propose a project idea of your own. Read further
+    on how to select a project&amp;nbsp;idea.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Decide which the project idea you would like to work on. Try to have
+    some people backing you up for your project&amp;nbsp;idea.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The official process will begin sometime in March when the
+    participating organisations will be announced on GSoC&amp;#8217;s&amp;nbsp;website.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;After that registrations will open when you will have to register
+    yourself. When you register, you will have to prepare a detailed proposal
+    of what you want to do, how do you plan to achieve that, and a proper
+    timeline of events: what milestone you will cover by&amp;nbsp;when.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Then the voting period will begin. Other contributors from your
+    organisation will vote on all the proposed ideas associated to your
+    organisation. The projects getting highest number of votes get selected.
+    Every organisation has a fixed number of seats. For example in 2011 Drupal
+    had 20 seats while Wordpress had around 10 seats. So out of all the
+    proposed projects for Drupal, top 20 project with highest votes will get&amp;nbsp;selected.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;You will get notified when you get selected. You will have enough
+    time before the project actually starts to get more comfortable in the
+    community and communicate more often with your&amp;nbsp;mentor(s).&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;Selecting your&amp;nbsp;organization&lt;/h3&gt;
+&lt;p&gt;Selecting an organisation is the most important task as everything depends
+on that. So read&amp;nbsp;carefully:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;A list of organisations that participated in GSoC 2011 is available
+   &lt;a href=&#34;http://google-melange.appspot.com/gsoc/accepted_orgs/google/gsoc2011.&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Following are some parameters on the basis of which you may select an
+   organisation for&amp;nbsp;yourself:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Your current&amp;nbsp;skills&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;You are going to be coding after all. So you must consider what are
+the technical skills required to get involved with an organisation/project.
+For example, if you think you are good at C programming and algorithms,
+then selecting Wordpress as an organisation might not help much because
+Wordpress&amp;#8217; code is written in &lt;span class=&#34;caps&#34;&gt;PHP&lt;/span&gt;, &lt;span class=&#34;caps&#34;&gt;HTML&lt;/span&gt;/&lt;span class=&#34;caps&#34;&gt;CSS&lt;/span&gt;, JavaScript. You will have to
+learn all that to get involved. So try selecting an organisation that in
+someway fits your current technical skills. Obviously, you wouldn&amp;#8217;t know
+everything, but if you know something it will be easier for you to catch up
+and learn other things related to what you already&amp;nbsp;know.&lt;/p&gt;
+&lt;p&gt;You may select an organisation even if its technical requirements
+don&amp;#8217;t match your current skill set. But for that, you must have a strong
+reason. For example:&amp;nbsp;interest!&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Your&amp;nbsp;interests&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;As discussed above, you should also take into consideration what you
+are interested in. For example, you might be interested in Graphics (the
+programming part, don&amp;#8217;t confuse with Photoshop please) then you should go
+for organisations related to graphics. If you are interested in networking,
+try organisations like &lt;span class=&#34;caps&#34;&gt;NMAP&lt;/span&gt;. If you are interested in Web Development, try
+Drupal, Wordpress, Joomla, MediaWiki,&amp;nbsp;etc.&lt;/p&gt;
+&lt;p&gt;If you have strong interest in something and you are determined to do
+it, then your current skills don&amp;#8217;t really matter that much. You will be
+able to quickly learn and catch&amp;nbsp;up.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Projects/organisations you think are very&amp;nbsp;cool&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;This is another very important factor. You must believe that the
+organisation you are going to choose is &lt;span class=&#34;caps&#34;&gt;COOL&lt;/span&gt; and &lt;span class=&#34;caps&#34;&gt;DOES&lt;/span&gt; &lt;span class=&#34;caps&#34;&gt;COOL&lt;/span&gt; &lt;span class=&#34;caps&#34;&gt;WORK&lt;/span&gt;. It is a
+motivational factor. And that is what drives you to work for that&amp;nbsp;organisation.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;It is really the combination of the above three factors that you
+   should consider. Give importance to all of the factors and decide wisely!
+   It is also an important decision for a long term point of view. Google
+   Summer of Code works towards creating new contributors who get involved
+   with the organisation for a very long term and contribute. If you are
+   applying, you are trying to get involved with that project deeply as well.
+   And in my personal opinion, you must continue to contribute after GSoC as
+   well. Work for a good cause! That means that you are going to work on that
+   project and contribute to it in your free time. Therefore, the project you
+   select must be a project that you really like as you are going to work on
+   that for a long&amp;nbsp;time.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Start working now!&amp;nbsp;:)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;Select a Project Idea for&amp;nbsp;GSoC&lt;/h3&gt;
+&lt;p&gt;The second most important thing is select a project idea to work on. The
+projects that were selected for GSoC 2011 can be found &lt;a href=&#34;http://google-melange.appspot.com/gsoc/projects/list/google/gsoc2011&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Ideas proposed by the&amp;nbsp;organisation&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Some communities propose ideas of their own and asks aspiring students
+to apply to work on those ideas. Generally these ideas will already have
+someone from the community who will be the owner of the idea and will be
+mentoring for that&amp;nbsp;project.&lt;/p&gt;
+&lt;p&gt;You may talk to the project idea owners about working on the idea you
+like the most. Consider your skills. Do your homework before talking to
+them. Read docs about that project idea on their website. Research. Try to
+formulate a solution for the proposed project idea. When you talk to people
+in the community about a particular idea, try to be as prepared as
+possible. Create documents and host them online somewhere like Google Docs
+or EtherPad so that the docs can be easily shared with&amp;nbsp;others.&lt;/p&gt;
+&lt;p&gt;Generally the proposed idea will be available on the website of your
+organisation. And the page may have a commenting system. Voice your
+opinions there. Discuss&amp;nbsp;ideas.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Ideas proposed by&amp;nbsp;you&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;You may also choose to propose an idea for GSoC. If you think that you
+have a killer idea and you think it might be worth working on, then prepare
+a nice proposal with all the details of your idea: problem statement,
+current solutions (if any), your proposed solution, how you plan to execute
+it, how much time you will take to work on it, work timeline, etc. Document
+it somewhere - Google Docs, EtherPad, or you may also create something like
+a wiki page on your organisation&amp;#8217;s website (read guidelines before creating
+wiki pages, etc.). Be professional, format properly, indent properly, add
+links and images/diagrams where&amp;nbsp;necessary.&lt;/p&gt;
+&lt;p&gt;You should then go ahead and discuss your idea with other contributors.
+Listen to them. Discussions really help. Other contributors will help you
+with making your idea even better. Their suggestions are very very
+important. Talk to them over &lt;span class=&#34;caps&#34;&gt;IRC&lt;/span&gt; so that others can also get involved in
+the&amp;nbsp;discussion.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;Getting Selected for&amp;nbsp;GSoC&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;The only way to get selected for GSoC is to prove that you will be
+   able to do your&amp;nbsp;project.&lt;/li&gt;
+&lt;li&gt;The only way to prove that you will be able to do your project is that
+   show them your work and&amp;nbsp;code.&lt;/li&gt;
+&lt;li&gt;College projects don&amp;#8217;t help because:&lt;ul&gt;
+&lt;li&gt;they might not be related to your organisation&amp;#8217;s&amp;nbsp;field.&lt;/li&gt;
+&lt;li&gt;they are mostly&amp;nbsp;crappy.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;The best way to show that you can work is contributing code before
+   talking to people about your project idea or before applying for an idea
+   proposed by the&amp;nbsp;community.&lt;/li&gt;
+&lt;li&gt;More the work you do, better are your chances of getting selected as
+   that is the only way communities can judge your&amp;nbsp;capabilities.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Coding&amp;nbsp;Period&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;The project coding period will officially begin sometime in May and
+   you will receive your initial payment (in 2011 it was&amp;nbsp;$500).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;There will be a mid-term evaluation. The date will be published on
+   GSoC&amp;#8217;s website. You will have to prove that you have done work until then.
+   Your organisation and your mentor will assess your progress. If they think
+   that you have done good work, you will be passed and you may continue for
+   with your project. You will then get another payment (in 2011 it was
+   $2250). If they think that you have not lived up to their expectations, you
+   will be disqualified from the program and will not be allowed to work
+   further on that project as a GSoC project (however you can continue to work
+   and still contribute but you won&amp;#8217;t get&amp;nbsp;paid).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;In August, you will have your final evaluation when you will be
+   required to submit everything. Your work will be assessed again by the
+   organisation and your mentor. If you pass that, you will get your remaining
+   payment, the GSoC t-shirt and the certificate (which is really cool). If
+   you don&amp;#8217;t pass that evaluation, you won&amp;#8217;t get your final payment, t-shirt
+   and&amp;nbsp;certificate.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The program ends&amp;nbsp;here.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;Help&lt;/h3&gt;
+&lt;p&gt;You can directly reach out to me and I will try to reply as soon as I can.
+You may choose to post your problems on &lt;a href=&#34;https://groups.google.com/forum/?fromgroups#!forum/jiitlug&#34;&gt;&lt;span class=&#34;caps&#34;&gt;OSDC&lt;/span&gt;&amp;#8217;s mailing list&lt;/a&gt;. That ways,
+everyone will&amp;nbsp;benefit.&lt;/p&gt;
+&lt;p&gt;Best of&amp;nbsp;luck!&lt;/p&gt;            </content>
+        </entry>
+            <entry>
+            <title type="html">PasswordProtect - A Firefox Extension for Web Accounts Security</title>
+            <author><name>Vaidik Kapoor</name></author>
+            <link href="/blog/password-protect.html"/>
+            <updated>2011-07-01T10:00:00Z</updated>
+            <published>2011-07-01T10:00:00Z</published>
+            <id>/blog/password-protect.html</id>
+                        <category   scheme="/blog/tags"
+                        term="mozilla"
+                        label="Mozilla" />
+                        <category   scheme="/blog/tags"
+                        term="foss"
+                        label="Foss" />
+                        <category   scheme="/blog/tags"
+                        term="project"
+                        label="Project" />
+                        <category   scheme="/blog/tags"
+                        term="firefox"
+                        label="Firefox" />
+            
+            <content type="html">
+                                &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; Post from my old&amp;nbsp;blog.&lt;/p&gt;
+&lt;p&gt;PasswordProtect is a firefox extension that helps you with keeping your different accounts on the web safe by generating different secure passwords for your accounts. And the best part – you may choose to remember just one password for logging&amp;nbsp;in!&lt;/p&gt;
+&lt;h3&gt;I can&amp;#8217;t remember different passwords for my different&amp;nbsp;accounts&lt;/h3&gt;
+&lt;p&gt;A user may have more than a hundred accounts on the Internet, out of which many may have personal information, bank accounts access, etc. which need to be kept secure. Generally, users tend to keep different passwords for such accounts and it becomes difficult to remember all of them. Also, some users keep same (or similar) passwords for most of their accounts because it is easier to remember. If a hacker hacks into database of a website with low security, he/she might get access to your other accounts as well. One of the most infamous ways of getting passwords out is Password&amp;nbsp;Phishing.&lt;/p&gt;
+&lt;h3&gt;What is&amp;nbsp;PasswordProtect?&lt;/h3&gt;
+&lt;p&gt;PasswordProtect provides a solution to the above problem. It allows you to create secure passwords for your different accounts and lets you remember just one to login all those&amp;nbsp;accounts.&lt;/p&gt;
+&lt;h3&gt;How do I use&amp;nbsp;it?&lt;/h3&gt;
+&lt;p&gt;After installing PasswordProtect, open the PasswordProtect Secure Password Generator – enter the website on which you have that account which you want to secure, enter the password you would like to type in at the time of login and click Generate Secure Password. You will then get a long secure password. Copy it. Open the website where you have your account. Login with your old credentials (without activating PasswordProtect). Change your password to the new secure password. That&amp;#8217;s it! The next time you have to login, you will have to activate PasswordProtect and login with the same password you wished to&amp;nbsp;remember!&lt;/p&gt;
+&lt;p&gt;If you are registering a new account and you would like PasswordProtect to keep it secure just the way it keeps your other accounts secure, just activate it at the time of registering yourself. You don&amp;#8217;t have to use the PasswordProtect Secure Password Generator when regestering a new&amp;nbsp;account.&lt;/p&gt;
+&lt;h3&gt;Advantages&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;Securing your accounts with different passwords which are difficult to&amp;nbsp;hack.&lt;/li&gt;
+&lt;li&gt;PasswordProtect uses the website&amp;#8217;s address (domain specifically) and the password you wish to remember for logging in. So, even if you choose the same password for every website, the secure password generated will be different as the website&amp;#8217;s domain is also used for generating the secure&amp;nbsp;password.&lt;/li&gt;
+&lt;li&gt;You may remember just one password for all your accounts with all your accounts&amp;nbsp;safe.&lt;/li&gt;
+&lt;li&gt;Even if a hacker gets your password from a website&amp;#8217;s database, he will not get access to your other accounts because the password for each account at the backend is&amp;nbsp;different.&lt;/li&gt;
+&lt;li&gt;Protects you from Password Phishing. Even if you end up giving your password on a Phishing website/service and if you had PasswordProtect activated, the password you will give will be specific for that&amp;nbsp;website.&lt;/li&gt;
+&lt;li&gt;Protects you from key logging. Unless it is known that PasswordProtect is in use and activated, using the trapped password would be of no use because PasswordProtect when activated converts the password entered in the form to the secure password specific to that website before submission of login&amp;nbsp;form.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;Download&lt;/h3&gt;
+&lt;p&gt;Download from &lt;a href=&#34;https://addons.mozilla.org/en-US/firefox/addon/passwordprotect/&#34;&gt;Mozilla Addons Website&lt;/a&gt;&lt;br /&gt;
+Code Repository on &lt;a href=&#34;http://code.google.com/p/password-protect/&#34;&gt;Google&amp;nbsp;Code&lt;/a&gt;&lt;/p&gt;            </content>
+        </entry>
+            <entry>
+            <title type="html">So... Google Summer of Code it is!</title>
+            <author><name>Vaidik Kapoor</name></author>
+            <link href="/blog/gsoc-2011.html"/>
+            <updated>2011-05-07T10:00:00Z</updated>
+            <published>2011-05-07T10:00:00Z</published>
+            <id>/blog/gsoc-2011.html</id>
+                        <category   scheme="/blog/tags"
+                        term="gsoc"
+                        label="Gsoc" />
+                        <category   scheme="/blog/tags"
+                        term="foss"
+                        label="Foss" />
+                        <category   scheme="/blog/tags"
+                        term="drupal"
+                        label="Drupal" />
+            
+            <content type="html">
+                                &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; Post from my old&amp;nbsp;blog.&lt;/p&gt;
+&lt;p&gt;Somehow most of the fun and interesting things that have happened and are happening with me have happened because of OSSCamp at &lt;span class=&#34;caps&#34;&gt;JIIT&lt;/span&gt; &lt;span class=&#34;caps&#34;&gt;NOIDA&lt;/span&gt;, India. That last meeting during OSSCamp has changed everything about me as to what I was before I attended OSSCamp.
+That meeting was for discussing the short term and long term goals of &lt;span class=&#34;caps&#34;&gt;JIIT&lt;/span&gt; Open Source Developers Club and everyone was engaged in serious discussions. The meeting ended and the organizers distributed goodies amongst everyone. When every student who attended that meeting was fishing for every single goody after the meeting ended, I was satisfied with the only Firefox sticker I got. There were other stickers there as well… one of them was of Google Summer of Code (GSoC). I chose not to take it – not because I didn&amp;#8217;t want it, but because I wanted to take it only when I deserved to have it. As soon as I thought so, Ankur Saxena mentioned Google Summer of Code as a short term goal – that exact thing that I was wanting to hear about. I wanted to do&amp;nbsp;this.&lt;/p&gt;
+&lt;p&gt;I soon started preparing for my application for Google Summer of Code, hunting for an organization to suit my interest and skill set. Drupal qualified for it. And so I started preparing. Google Summer of Code was the only thing that was on mind. In all honesty, initially I was attached to Drupal only for GSoC. I started using Drupal for the smallest of things I would do (it started with replication of my existing blog that was made using WordPress), attended Drupal 7 Release Party in New Delhi, started participating in providing solutions to everything that I could in the Drupal support forums and &lt;span class=&#34;caps&#34;&gt;IRC&lt;/span&gt; channels. I, also, started working on a project of my own called Khaata - a free web service for college students to log their expenses, borrowings and lending. Its incomplete. But, I do intend to complete it. I started looking for projects and ideas. Not to forget, I bought two books to speed-up my learning and development capabilities. But even way before I did anything or made even a small contribution to Drupal, I started feeling an attachment or should I say love for Drupal. Every time I would learn something new, I would be amazed. This is when I decided that even if I don&amp;#8217;t get selected for GSoC I will contribute to&amp;nbsp;Drupal.&lt;/p&gt;
+&lt;p&gt;I believed in open source. I just didn&amp;#8217;t know how to contribute. In fact, I didn&amp;#8217;t want to contribute as much as I wanted to since I had GSoC in mind. During this period of finding ideas, learning about different open source projects, I really started believing in open source in the true sense and I started appreciating what thousands of contributors do everyday to make this world a better place. I wanted to be one of them. And I am thankful to GSoC for teaching me this – not that GSoC was directly involved in teaching me this but this is what I noticed and realized while I was preparing. As a result, I am now involved with Drupal, Firefox, Gnome, Fedora and a couple of other open source projects in some way or the other (like helping people in support forums and &lt;span class=&#34;caps&#34;&gt;IRC&lt;/span&gt;, evangelism, etc.). In fact, I have already written an extension for Firefox and I am about to complete my&amp;nbsp;second.&lt;/p&gt;
+&lt;p&gt;Back to the point, I did quite a lot of work to find an ideal project. I found one, yes! I decided I was going to enhance the integration of Google Apps in Drupal and therefore, decided to propose my project idea of extending the existing project DrupalGapps and writing application modules for it. I submitted my idea to the community. GSoC for students is a very good start to get exposed to real world developers environment where developers are actively participating in discussions on community hang outs, support forums, mailing lists, &lt;span class=&#34;caps&#34;&gt;IRC&lt;/span&gt; channels, etc. Not that I was new to all this, I was new to the kind of people I communicated with for my project. We have an &lt;span class=&#34;caps&#34;&gt;IRC&lt;/span&gt; channel, a mailing list and some other web spaces for our small community of open source lovers in college but the experience of discussing your project idea and all other cool stuff that you are passionate about with the best of people out there is a great experience. Just interaction with such people teaches you a lot. And so I learned a lot from them! The community helps you so much that what comes out as a result is a highly refined form of what is initially proposed. Something similar happened with my proposal as well. By the end of application period, my application was majorly modified on the basis of suggestions given by many contributors. Stella Power (one of the contributors to DrupalGapps and one of those contributors who really helped me refine my application) suggested me to also setup a demo site for the project. It can be viewed at this&amp;nbsp;link.&lt;/p&gt;
+&lt;p&gt;When one applies for GSoC, the most one can do is give a great proposal and communicate his/her idea to the community properly and keep discussing with more and more people to refine the idea so much that it becomes awesome! That&amp;#8217;s what even I tried to do and I got a lot of responses. And I salute to the spirit of the communities related to open source projects and the people involved as they help you without any personal interest behind this (except good work and progress of course). When the application period is over, then there is not much one can do as far as refining of the projects are concerned. All one can do is wait for that night to come when it would be officially announced (I am in India and according to &lt;span class=&#34;caps&#34;&gt;IST&lt;/span&gt;, the scheduled time was 12:30 &lt;span class=&#34;caps&#34;&gt;AM&lt;/span&gt;  ). They inform you by an email. As the time nears, it just becomes very difficult to wait. I had to… had no option  . From OSSCamp to the day of getting the results, I had worked hard to get this and I was restless. GSoC has been the only thing on my mind for a very long time. I got the mail. The subject said “Congratulations”. Yes, it happened. I got selected! The feeling was amazing. I had worked really hard for it, meeting people and bunking classes to get things right. I had to wait for a long time for the results but the wait was well worth it. The next couple of days were full of unexpected random things that I can&amp;#8217;t share here –&amp;nbsp;celebrations! &lt;/p&gt;
+&lt;p&gt;For a couple of days, it was difficult to believe that it happened. I was filled with joy but also, I had many other things to understand – clearing GSoC is an achievement but it is also a responsibility. The Drupal community has accepted me not to just write code for them but to be a regular contributor and to help the community grow. I have to honour that and therefore, I shall not forget Drupal after completing my project. I have been accepted with my project idea, but that&amp;#8217;s not it. I am supposed to complete it and I have to adhere to the all the associated guidelines. It is quite a shame to not complete what I had decided to…especially when I have come this far. I should also be loyal to my project, maintain it and improve&amp;nbsp;it.&lt;/p&gt;
+&lt;p&gt;Now that when I look back to how it all happened, I did put in a lot of hard work to get it. But, I don&amp;#8217;t think it would have been easy had Ankur Saxena (flyankur) not been there to guide me through this. Ankur Saxena – the original creator of DrupalGapps – has been my mentor (in life and not GSoC though he is a co-mentor  ) and he has selflessly helped me a lot. He has, in many ways, helped me with a lot of things. I shall always be indebted to him for everything – for his support and help. As he has helped, so should I help others with not only GSoC but with everything possible. So people, I am always there to&amp;nbsp;help.&lt;/p&gt;
+&lt;p&gt;Finally, I am happy and lucky to have Kaustubh Shrikanth (houndbee) as my mentor and Stella Power (stella), Daniel Wehner (dereine) and Ankur Saxena (flyankur) as my co-mentors for GSoC. I am looking forward to great experiences as I work with them on this&amp;nbsp;project.&lt;/p&gt;
+&lt;p&gt;This summer is going to be awesome! \m/&lt;br /&gt;
+&lt;/p&gt;
+&lt;h3&gt;Links&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;http://groups.drupal.org/node/145579&#34;&gt;Wiki of my GSoC project&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&#34;http://www.drupal.org/project/drupalgapps&#34;&gt;DrupalGapps on drupal.org&lt;/a&gt;&lt;br /&gt;
+My &lt;a href=&#34;http://groups.drupal.org/node/136534&#34;&gt;project proposal&lt;/a&gt; on groups.drupal.org&lt;br /&gt;
+My application on &lt;a href=&#34;http://www.google-melange.com/gsoc/proposal/review/google/gsoc2011/vaidik/1&#34;&gt;Google Melange&lt;/a&gt;&lt;br /&gt;
+&lt;/p&gt;            </content>
+        </entry>
+            <entry>
+            <title type="html">Firefox 4 Launch Party!</title>
+            <author><name>Vaidik Kapoor</name></author>
+            <link href="/blog/firefox-4-launch-party.html"/>
+            <updated>2011-05-07T10:00:00Z</updated>
+            <published>2011-05-07T10:00:00Z</published>
+            <id>/blog/firefox-4-launch-party.html</id>
+                        <category   scheme="/blog/tags"
+                        term="mozilla"
+                        label="Mozilla" />
+                        <category   scheme="/blog/tags"
+                        term="foss"
+                        label="Foss" />
+                        <category   scheme="/blog/tags"
+                        term="firefox"
+                        label="Firefox" />
+                        <category   scheme="/blog/tags"
+                        term="osdc"
+                        label="Osdc" />
+            
+            <content type="html">
+                                &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; Post from my old&amp;nbsp;blog.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;caps&#34;&gt;JIIT&lt;/span&gt; &lt;span class=&#34;caps&#34;&gt;OSDC&lt;/span&gt; hadn&amp;#8217;t organized an event since a very long time. So the members really wanted to do something new. Around this time, Firefox 4 was also launched. So, the members decided to celebrate the launch of Firefox 4 in the college. We were not the only ones doing this. Communities from all over the world were going to have a launch party as Mozilla openly invited anyone to go ahead and celebrate the launch of Firefox 4 in their community or organization. Therefore, our event became an official event of Mozilla. It also became our college&amp;#8217;s (&lt;span class=&#34;caps&#34;&gt;JIIT&lt;/span&gt;) official event as the Computer Science department was positive about it and was ready to support.
+&lt;img src=&#34;/media/images/firefox-poster_2.jpg&#34; align=&#34;right&#34; width=&#34;30%&#34;&gt;
+We started preparing for the event by getting a logo designed for the event that never got used somehow, but it looks awesome and lives up to the spirit of Firefox 4. This was followed by designing a poster for the event. We got down to the serious business by discussing what to do and what not to do on our official event page on meetup.com (all the other launch parties were also registered here as Mozilla had asked them to do so). Further discussions continued on for days on the mailing list, &lt;span class=&#34;caps&#34;&gt;IRC&lt;/span&gt; channel and during short&amp;nbsp;meetups.&lt;/p&gt;
+&lt;p&gt;Mozilla expected these events to be just for one day. And, we initially decided that the event will be for two days as we wanted to do a lot of things. But with time, our will to work and do something new only increased and hence we decided to have a three-day long event to produce something amazing out of nowhere. After a lot of discussions, we finalized the contents of the three-day long event. The contents included discussions on the first day of the event, hands-on session on Firefox extension development on the next day and finally coding sprint on ideas proposed by the attendees of the event. Discussions were to happen over new features of Firefox 4, new web technologies like &lt;span class=&#34;caps&#34;&gt;HTML5&lt;/span&gt; and &lt;span class=&#34;caps&#34;&gt;CSS3&lt;/span&gt;, Free and Open Source Software (&lt;span class=&#34;caps&#34;&gt;FOSS&lt;/span&gt;),&amp;nbsp;etc.&lt;/p&gt;
+&lt;p&gt;In the meanwhile, we also designed a new logo for &lt;span class=&#34;caps&#34;&gt;OSDC&lt;/span&gt;, designed another poster for the event and worked on other important things like setting up the event wiki page, spreading the word, etc. We had decent funds remaining from the sponsorship of our last event, OSSCamp. So we didn&amp;#8217;t mind being a little extravagant. Logistics were easily taken care of as the college was supporting us and was ready to provide us with almost everything that we needed. The college gave us a nice classroom for discussions and a computer lab (with wi-fi setup) for two days where we were going to have our hands-on sessions and coding&amp;nbsp;sprint.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/media/images/firefox-thefoxgetswings.jpg&#34; align=&#34;left&#34;&gt;
+The event started with discussions over the new features of Firefox 4. Panorama and Tab Candy were the most liked features. Firefox 4, however, comes with a lot of other cool features that are generally not known to most of the end-users. Mozilla believes that Firefox 4 is the fastest version of Firefox as compared to all the previous versions. And honestly, I have noticed this myself. Firefox 4, on startup, takes a little time. But once it has started, it won&amp;#8217;t give you any trouble. There have been major &lt;span class=&#34;caps&#34;&gt;UI&lt;/span&gt; changes as well and all of these changes are attractive and useful. The browser window is not overloaded with hundreds of buttons. The status bar is gone. The horizontal menu on the top has been replaced by a menu with only a single button (like Google Chrome). Unlike Google Chrome, you can always get the old horizontal menu if you don&amp;#8217;t like the new menu. All this has created a lot of space for web pages. One of the major reasons to this is that Google Toolbar is not required any more. In all the previous versions of Firefox, bookmarks were not synced to any web services so that they can be retrieved anywhere anytime. And Google Toolbar was the most appropriate solution to this. Since Firefox Sync has been released, there is absolutely no need to install Google Toolbar. Firefox Sync saves all your preferences and bookmarks and syncs it with your Firefox&amp;nbsp;account.&lt;/p&gt;
+&lt;p&gt;So after discussing all these cool features, we started telling the new comers about open source and open source projects, how are they developed, how does the community work, why is open source so good, what can they benefit from it, etc. We further explained the openness and freedom of open source by showing a custom build of Firefox 4 for Intel Atom processor with some modifications (like changed buttons, toolbars, etc.) built by Tavish Naruka. We further discussed &lt;span class=&#34;caps&#34;&gt;HTML5&lt;/span&gt; and &lt;span class=&#34;caps&#34;&gt;CSS3&lt;/span&gt;. As the next two days were about developing firefox extensions, I thought it would be a good idea to teach the newbies a little about the technologies required for developing firefox extensions. So, I took a brief session on &lt;span class=&#34;caps&#34;&gt;HTML&lt;/span&gt;, &lt;span class=&#34;caps&#34;&gt;XML&lt;/span&gt;, &lt;span class=&#34;caps&#34;&gt;CSS&lt;/span&gt; and Javascript – the technologies that are used in developing firefox&amp;nbsp;extensions.&lt;/p&gt;
+&lt;p&gt;The next day was a more involving day. The session was to take place in a computer lab. So it was prepared for the mega geek-up. We began by demonstrating some really cool examples of &lt;span class=&#34;caps&#34;&gt;HTML5&lt;/span&gt; and got down to the real business by starting the hands-on learning session on firefox extension development. I lead the development session and all the other members were helping out students with implementing whatever I was doing on the big screen. We made it a point that everyone should be together and nobody should be lagging behind. That turned out to be very time consuming as we had to make sure that everyone is understanding everything and we knew that many students were not from a technical background. The fact that they had come to attend the event clearly proved that they wanted to learn and contribute and we had to respect that. So we stopped caring about the time and developed our first HelloWorld extension. This activity consumed almost the whole day and it was tiring for most of the people and for the organizers as well. Therefore, we realized that discussing project ideas to work on the next day would be a good idea. This was certainly the most interesting part of the day. We asked everyone present to think of an idea and propose it. As an idea was proposed, other members would give their feedback and suggestions to help everyone evolve the proposed idea. By the end of it, we had 18 unique interesting ideas to work on. This brainstorming session was a lot of fun for everyone. Many of the attendees for the first time understood the power of communities and the way they help in evolving and polishing good&amp;nbsp;ideas.&lt;/p&gt;
+&lt;p&gt;We had many ambitions for the next day. We had planned to work on most of the project ideas. Therefore, we decided to meetup at 10:00 &lt;span class=&#34;caps&#34;&gt;AM&lt;/span&gt;. And we did (on a Sunday morning)! But, there was some major problem with the internet connection in college. So we couldn&amp;#8217;t do anything in the college and decided to shift to home of one of Anky&amp;#8217;s flat (an existing &lt;span class=&#34;caps&#34;&gt;OSDC&lt;/span&gt; member) where we had access to good internet. This whole process of shifting the venue took around 3 hours. So we started working at around 1:00 &lt;span class=&#34;caps&#34;&gt;PM&lt;/span&gt;. Now that we had lesser time, we decided to work only on some of the projects out of those 18 ideas that were proposed the day before. Even though all of us were newbies, by 5:00 &lt;span class=&#34;caps&#34;&gt;PM&lt;/span&gt; we had achieved major functionality of our project ideas. We were quick because we were working together, helping out each other with difficulties and debugging. We knew that we could have completed at least a couple of projects had everything been in place in the morning. We had to end the event by having a good celebration. After all, that was the whole event was about. Therefore, we halted right there with individual commitments to work on our projects even after the event and complete them and launch them on Mozilla.com. We got beer and food to celebrate. And before the party began, we clicked some crazy&amp;nbsp;photographs!&lt;/p&gt;
+&lt;p&gt;Did I mention about the swag? I guess not. Mozilla mailed us a package of awesome goodies since we had registered our event with Mozilla. The goodies we received included Firefox badges, stickers, tattoos and sweat bands. They also sent three posters for the three event organizers on meetup.com (the site where all the communities had registered their events with&amp;nbsp;Mozilla).&lt;/p&gt;
+&lt;p&gt;Currently, three extensions have been submitted to Mozilla and are available for download. They are in the review queue and hence, are not shown in the add-on gallery on mozilla.com for some time. They will be there soon! Furthermore, five more projects are about to reach their completion. This event successfully taught the students Firefox extension development and also pushed a Firefox extension development phase for &lt;span class=&#34;caps&#34;&gt;JIIT&lt;/span&gt; &lt;span class=&#34;caps&#34;&gt;OSDC&lt;/span&gt;. I also worked on an extension and it is live! Feels really good to&amp;nbsp;contribute!&lt;/p&gt;
+&lt;h3&gt;Links&lt;/h3&gt;
+&lt;p&gt;&lt;span class=&#34;caps&#34;&gt;JIIT&lt;/span&gt; &lt;span class=&#34;caps&#34;&gt;OSDC&lt;/span&gt; &lt;a href=&#34;http://opensource.jiitu.org/wiki&#34;&gt;Official Website&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&#34;http://opensource.jiitu.org/wiki/index.php?title=Firefox_4_Launch_Party_at_JIIT_Noida&#34;&gt;Event Wiki&lt;/a&gt;&lt;br /&gt;
+Official Event Page on &lt;a href=&#34;http://www.meetup.com/Firefox/JIIT-OSDC/80123/?a=bn1_l1&#34;&gt;Meetup.com&lt;/a&gt;&lt;br /&gt;
+&lt;span class=&#34;caps&#34;&gt;JIIT&lt;/span&gt; &lt;span class=&#34;caps&#34;&gt;OSDC&lt;/span&gt; &lt;a href=&#34;http://opensource.jiitu.org/wiki/index.php?title=Projects&#34;&gt;Projects Page&lt;/a&gt; (for Firefox extensions developed during the&amp;nbsp;meetup)&lt;/p&gt;            </content>
+        </entry>
+    </feed>

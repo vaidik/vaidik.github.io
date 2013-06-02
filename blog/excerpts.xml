@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <title>
+        BASIC blog excerpts feed    </title>
+        <link href="blog/excerpts.xml" rel="self" />
+    
+        <link href="/"/>
+    
+        
+    <updated>2013-05-27T19:49:44Z</updated>
+
+    <id>/blog/excerpts.xml/</id>
+
+            <entry>
+            <title type="html">What is Cloud Computing?</title>
+            <author><name>Vaidik Kapoor</name></author>
+            <link href="/blog/cloud-computing.html"/>
+            <updated>2013-03-20T19:30:00Z</updated>
+            <published>2013-03-20T19:30:00Z</published>
+            <id>/blog/cloud-computing.html</id>
+                        <category   scheme="/blog/tags"
+                        term="college"
+                        label="College" />
+            
+            <content type="html">
+                
+                &lt;p&gt;Many students have discussed their project ideas for their Systems &lt;span class=&#34;amp&#34;&gt;&amp;amp;&lt;/span&gt; Network Programming course with me. One thing that I have noticed a lot is that a lot of students have been trying to do something in &lt;a href=&#34;http://en.wikipedia.org/wiki/Cloud_computing&#34;&gt;Cloud Computing&lt;/a&gt;. However, I get this feeling that they have just proposed this without completely understanding what Cloud Computing really is. This post is an attempt to explain Cloud Computing to students, what they can do with it or more specifically what they can do for their Systems &lt;span class=&#34;amp&#34;&gt;&amp;amp;&lt;/span&gt; Network Programming&amp;nbsp;course.&lt;/p&gt;            </content>
+        </entry>
+            <entry>
+            <title type="html">Need for a Good Personal Expenses Management App</title>
+            <author><name>Vaidik Kapoor</name></author>
+            <link href="/blog/need-for-personal-expenses-management-app.html"/>
+            <updated>2013-03-17T01:40:00Z</updated>
+            <published>2013-03-17T01:40:00Z</published>
+            <id>/blog/need-for-personal-expenses-management-app.html</id>
+                        <category   scheme="/blog/tags"
+                        term="projects"
+                        label="Projects" />
+                        <category   scheme="/blog/tags"
+                        term="mobile"
+                        label="Mobile" />
+                        <category   scheme="/blog/tags"
+                        term="ideas"
+                        label="Ideas" />
+            
+            <content type="html">
+                
+                &lt;p&gt;I recently bought my first smart phone - &lt;a href=&#34;http://www.google.co.in/nexus/4/&#34;&gt;Nexus 4&lt;/a&gt;. Until before that,
+the only mobile device that I used to use was my Apple iPad 2. In fact, I
+still use it. Besides various things that I do on my phone, I also want to
+easily keep a track of my spending. Being a college student, that is important
+for me. However during the little time I have spent with my mobile devices, I
+have only realized that there isn&amp;#8217;t a &lt;em&gt;free&lt;/em&gt; app good enough that has been
+able to catch my attention and fulfill my basic&amp;nbsp;needs.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Please note&lt;/strong&gt;: I am not talking about an app for wealth management. I don&amp;#8217;t
+have much knowledge about it and I don&amp;#8217;t know what goes in&amp;nbsp;it.&lt;/p&gt;            </content>
+        </entry>
+            <entry>
+            <title type="html">SMS Based FAQ Retrieval</title>
+            <author><name>Vaidik Kapoor</name></author>
+            <link href="/blog/nlp-project-2013.html"/>
+            <updated>2013-03-02T10:00:00Z</updated>
+            <published>2013-03-02T10:00:00Z</published>
+            <id>/blog/nlp-project-2013.html</id>
+                        <category   scheme="/blog/tags"
+                        term="projects"
+                        label="Projects" />
+                        <category   scheme="/blog/tags"
+                        term="nlp"
+                        label="Nlp" />
+                        <category   scheme="/blog/tags"
+                        term="college"
+                        label="College" />
+            
+            <content type="html">
+                
+                &lt;p&gt;In the recent years, we have seen that the number of mobile users have grown
+exponentially. With smart phones coming in, information is available to most
+anywhere and everywhere. However, it is available to only those who can afford&amp;nbsp;it.&lt;/p&gt;            </content>
+        </entry>
+            <entry>
+            <title type="html">Marg - A Simple Request Router written in PHP</title>
+            <author><name>Vaidik Kapoor</name></author>
+            <link href="/blog/marg.html"/>
+            <updated>2012-11-10T10:00:00Z</updated>
+            <published>2012-11-10T10:00:00Z</published>
+            <id>/blog/marg.html</id>
+                        <category   scheme="/blog/tags"
+                        term="web_development"
+                        label="Web_Development" />
+                        <category   scheme="/blog/tags"
+                        term="http"
+                        label="Http" />
+                        <category   scheme="/blog/tags"
+                        term="php"
+                        label="Php" />
+            
+            <content type="html">
+                
+                &lt;p&gt;&lt;a href=&#34;http://github.com/vaidikkp/marg&#34;&gt;Marg&lt;/a&gt; is a simple &lt;span class=&#34;caps&#34;&gt;HTTP&lt;/span&gt; Request Router, written in &lt;span class=&#34;caps&#34;&gt;PHP&lt;/span&gt;. It has a very simple &lt;span class=&#34;caps&#34;&gt;API&lt;/span&gt;
+and is motivated by my understanding and experience of using existing frameworks
+like Django, Flask, Drupal and some other pieces of code I have read in the past.
+Though I have written this code for my personal use, its free for anyone to use.
+The idea behind writing &lt;a href=&#34;http://github.com/vaidikkp/marg&#34;&gt;Marg&lt;/a&gt; was to have a boilerplate code for myself which I can
+use for my own&amp;nbsp;projects.&lt;/p&gt;            </content>
+        </entry>
+            <entry>
+            <title type="html">First Time at PyCon India</title>
+            <author><name>Vaidik Kapoor</name></author>
+            <link href="/blog/pycon-india-2012.html"/>
+            <updated>2012-10-06T10:00:00Z</updated>
+            <published>2012-10-06T10:00:00Z</published>
+            <id>/blog/pycon-india-2012.html</id>
+                        <category   scheme="/blog/tags"
+                        term="python"
+                        label="Python" />
+                        <category   scheme="/blog/tags"
+                        term="pycon"
+                        label="Pycon" />
+                        <category   scheme="/blog/tags"
+                        term="foss"
+                        label="Foss" />
+            
+            <content type="html">
+                
+                &lt;p&gt;&lt;a href=&#34;http://in.pycon.org/2012/&#34;&gt;PyCon India 2012&lt;/a&gt; happened in Bangalore this year and it was my first PyCon India ever.
+Given that not a lot of good events/conferences for geeks happen here in Delhi/&lt;span class=&#34;caps&#34;&gt;NCR&lt;/span&gt; and
+&lt;a href=&#34;http://us.pycon.org/2012/&#34;&gt;PyCon &lt;span class=&#34;caps&#34;&gt;US&lt;/span&gt;&lt;/a&gt; and &lt;a href=&#34;http://denver2012.drupal.org/&#34;&gt;DrupalCon Denver&lt;/a&gt; were the last two conferences that I attended earlier this
+year in March, I was getting impatient to attend another conference and get together with
+some geeks. I like it because there is lots to learn from the sessions and the smart people 
+who attend these events, and its always fun to know how busy the people you know are
+innovating new and awesome&amp;nbsp;stuff.&lt;/p&gt;
+&lt;p&gt;First of all, I&amp;#8217;d like to thank the &lt;a href=&#34;http://in.pycon.org/2012/&#34;&gt;PyCon India&lt;/a&gt; organizing team for the amazing hard work
+they had put in. PyCon is a completely volunteer driven effort and wouldn&amp;#8217;t have been
+possible without the hard work put in by all the involved&amp;nbsp;volunteers.&lt;/p&gt;            </content>
+        </entry>
+            <entry>
+            <title type="html">Being a Mozilla Rep</title>
+            <author><name>Vaidik Kapoor</name></author>
+            <link href="/blog/mozilla-rep.html"/>
+            <updated>2012-09-06T10:00:00Z</updated>
+            <published>2012-09-06T10:00:00Z</published>
+            <id>/blog/mozilla-rep.html</id>
+                        <category   scheme="/blog/tags"
+                        term="mozilla"
+                        label="Mozilla" />
+                        <category   scheme="/blog/tags"
+                        term="foss"
+                        label="Foss" />
+            
+            <content type="html">
+                
+                &lt;p&gt;I have been contributing to &lt;a href=&#34;http://www.mozilla.org/en-US/&#34;&gt;Mozilla&lt;/a&gt; for about over a year now in different ways. I have not been doing much evangelism outsite my college because I love coding and
+that is how I have been contributing so far. Yes, I have organized some events in my college which, unfortunately, I did not publicise enough in the community either 
+prior or post events. But these events were really successful. With the help of some other volunteers in my college, I was able to really convert a couple of guys into
+code contributors. The output of these events was amazing. One day, I just applied to become a &lt;a href=&#34;https://wiki.mozilla.org/ReMo&#34;&gt;Mozilla Rep&lt;/a&gt;. And guess what, I became one. My mentor is &lt;a href=&#34;http://fuzzyfox.mozhunt.com/&#34;&gt;FuzzyFox&lt;/a&gt;. I look forward to learning a lot from him!&amp;nbsp;:)&lt;/p&gt;            </content>
+        </entry>
+            <entry>
+            <title type="html">The New Blog</title>
+            <author><name>Vaidik Kapoor</name></author>
+            <link href="/blog/the-new-blog.html"/>
+            <updated>2012-09-05T10:00:00Z</updated>
+            <published>2012-09-05T10:00:00Z</published>
+            <id>/blog/the-new-blog.html</id>
+                        <category   scheme="/blog/tags"
+                        term="thoughts"
+                        label="Thoughts" />
+            
+            <content type="html">
+                
+                &lt;p&gt;Yes, finally I have done it. After delaying it for so long, I have finally made
+my new blog. Its not complete yet but its mostly done. There is a lot I have been
+wanting to write for some time now and I don&amp;#8217;t like the idea of using
+Wordpress.com or Blogspot or Blogger or any other blogging platform out there for
+some reason. I want my blog, made with love and care!&amp;nbsp;:)&lt;/p&gt;            </content>
+        </entry>
+            <entry>
+            <title type="html">Google Summer of Code 2012</title>
+            <author><name>Vaidik Kapoor</name></author>
+            <link href="/blog/google-summer-of-code.html"/>
+            <updated>2011-12-20T15:57:00Z</updated>
+            <published>2011-12-20T15:57:00Z</published>
+            <id>/blog/google-summer-of-code.html</id>
+                        <category   scheme="/blog/tags"
+                        term="projects"
+                        label="Projects" />
+                        <category   scheme="/blog/tags"
+                        term="nlp"
+                        label="Nlp" />
+                        <category   scheme="/blog/tags"
+                        term="college"
+                        label="College" />
+            
+            <content type="html">
+                
+                &lt;p&gt;Introduction to Google Summer of Code program and what a student needs to do
+to apply and get selected in the program. This article is an attempt to create
+a guide for the program out of the personal experiences I have had with the&amp;nbsp;program.&lt;/p&gt;            </content>
+        </entry>
+            <entry>
+            <title type="html">PasswordProtect - A Firefox Extension for Web Accounts Security</title>
+            <author><name>Vaidik Kapoor</name></author>
+            <link href="/blog/password-protect.html"/>
+            <updated>2011-07-01T10:00:00Z</updated>
+            <published>2011-07-01T10:00:00Z</published>
+            <id>/blog/password-protect.html</id>
+                        <category   scheme="/blog/tags"
+                        term="mozilla"
+                        label="Mozilla" />
+                        <category   scheme="/blog/tags"
+                        term="foss"
+                        label="Foss" />
+                        <category   scheme="/blog/tags"
+                        term="project"
+                        label="Project" />
+                        <category   scheme="/blog/tags"
+                        term="firefox"
+                        label="Firefox" />
+            
+            <content type="html">
+                
+                &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; Post from my old&amp;nbsp;blog.&lt;/p&gt;
+&lt;p&gt;PasswordProtect is a firefox extension that helps you with keeping your different accounts on the web safe by generating different secure passwords for your accounts. And the best part – you may choose to remember just one password for logging&amp;nbsp;in!&lt;/p&gt;            </content>
+        </entry>
+            <entry>
+            <title type="html">So... Google Summer of Code it is!</title>
+            <author><name>Vaidik Kapoor</name></author>
+            <link href="/blog/gsoc-2011.html"/>
+            <updated>2011-05-07T10:00:00Z</updated>
+            <published>2011-05-07T10:00:00Z</published>
+            <id>/blog/gsoc-2011.html</id>
+                        <category   scheme="/blog/tags"
+                        term="gsoc"
+                        label="Gsoc" />
+                        <category   scheme="/blog/tags"
+                        term="foss"
+                        label="Foss" />
+                        <category   scheme="/blog/tags"
+                        term="drupal"
+                        label="Drupal" />
+            
+            <content type="html">
+                
+                &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; Post from my old&amp;nbsp;blog.&lt;/p&gt;
+&lt;p&gt;Somehow most of the fun and interesting things that have happened and are happening with me have happened because of OSSCamp at &lt;span class=&#34;caps&#34;&gt;JIIT&lt;/span&gt; &lt;span class=&#34;caps&#34;&gt;NOIDA&lt;/span&gt;, India. That last meeting during OSSCamp has changed everything about me as to what I was before I attended&amp;nbsp;OSSCamp.&lt;/p&gt;            </content>
+        </entry>
+            <entry>
+            <title type="html">Firefox 4 Launch Party!</title>
+            <author><name>Vaidik Kapoor</name></author>
+            <link href="/blog/firefox-4-launch-party.html"/>
+            <updated>2011-05-07T10:00:00Z</updated>
+            <published>2011-05-07T10:00:00Z</published>
+            <id>/blog/firefox-4-launch-party.html</id>
+                        <category   scheme="/blog/tags"
+                        term="mozilla"
+                        label="Mozilla" />
+                        <category   scheme="/blog/tags"
+                        term="foss"
+                        label="Foss" />
+                        <category   scheme="/blog/tags"
+                        term="firefox"
+                        label="Firefox" />
+                        <category   scheme="/blog/tags"
+                        term="osdc"
+                        label="Osdc" />
+            
+            <content type="html">
+                
+                &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; Post from my old&amp;nbsp;blog.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;caps&#34;&gt;JIIT&lt;/span&gt; &lt;span class=&#34;caps&#34;&gt;OSDC&lt;/span&gt; hadn&amp;#8217;t organized an event since a very long time. So the members really wanted to do something new. Around this time, Firefox 4 was also launched. So, the members decided to celebrate the launch of Firefox 4 in the college. We were not the only ones doing this. Communities from all over the world were going to have a launch party as Mozilla openly invited anyone to go ahead and celebrate the launch of Firefox 4 in their community or organization. Therefore, our event became an official event of Mozilla. It also became our college&amp;#8217;s (&lt;span class=&#34;caps&#34;&gt;JIIT&lt;/span&gt;) official event as the Computer Science department was positive about it and was ready to&amp;nbsp;support.&lt;/p&gt;            </content>
+        </entry>
+    </feed>

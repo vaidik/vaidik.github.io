@@ -22,7 +22,7 @@
         compatibility mode is within the first 1K bytes
         code.google.com/p/chromium/issues/detail?id=23003 -->
 
-  <title>The New Blog</title>
+  <title>Comments in JSON</title>
   <meta name="description" content="Personal blog of Vaidik Kapoor.">
   <meta name="author" content="Vaidik Kapoor">
 
@@ -51,7 +51,7 @@
         enables HTML5 elements & feature detects -->
     <script src="/media/js/libs/modernizr-1.7.min.js"></script>
     </head>
-<body id="the-new-blog">
+<body id="commentjson">
     <div id="container">
             <div id="main" role="main">
           <header class="clearfix">
@@ -77,35 +77,75 @@
               <div class="post">
         <article>
             <aside>
-                <time datetime="2012-09-05">
-                    September 05, 2012
+                <time datetime="2013-09-11">
+                    September 11, 2013
                 </time>
             </aside>
             <section>
                 <h2>
-                    <a href="">The New Blog</a>
+                    <a href="">Comments in JSON</a>
                 </h2>
-                <p>Yes, finally I have done it. After delaying it for so long, I have finally made
-my new blog. Its not complete yet but its mostly done. There is a lot I have been
-wanting to write for some time now and I don&#8217;t like the idea of using
-Wordpress.com or Blogspot or Blogger or any other blogging platform out there for
-some reason. I want my blog, made with love and care! :)
-My old blog was made on <a href="http://wordpress.org">Wordpress</a> and an existing theme I had almost completely
-customized. This new blog is made using <a href="http://hyde.github.com">Hyde</a>. Hyde is a <a href="http://mickgardner.com/2011/04/27/An-Introduction-To-Static-Site-Generators.html">static site generator</a>, like <a href="http://jekyllrb.com/">Jekyll</a> which powers <a href="http://pages.github.com/">Github Pages</a>, and it is written in <a href="http://www.python.org/">Python</a>. Why did I not
-choose Jekyll - because of Python. I know Python and I don&#8217;t know <a href="http://www.ruby-lang.org/">Ruby</a>. I didn&#8217;t
-even have plans to learn it or anything about it. Hyde, on the other hand, is
-built on top of a <a href="https://www.djangoproject.com/">Django</a>, one of the best web frameworks out there and it uses
-<a href="http://jinja.pocoo.org/docs/">Jinja2</a> for&nbsp;templating.</p>
-<p>As I said, this blog is only almost complete. So you will see things changing and
-new things coming in very soon&nbsp;here.</p>
-<p>Also, I expressed that I wish to write. And that&#8217;s true. Unfortunately, I have
-exams starting tomorrow in college. So my actual <em>first blog post</em> on this shiny
-new blog of mine is&nbsp;due.</p>
-<p><strong>Breaking news</strong> - if you are/were looking for any of my old blog posts, I am sorry
-I am not going to put them back because I can&#8217;t - I lost my old blog&#8217;s backup.
-Yes, that raises a lot of questions - &#8220;did you not have a backup&#8221;, etc. Something
-messy happened sometime back when I lost a lot of my precious data, including the
-backup of my old blog. So&#8230; really&nbsp;sorry!</p>            </section>
+                <p>A lot of projects/people use <a href="http://en.wikipedia.org/wiki/JSON"><span class="caps">JSON</span></a> for storing configurations in <span class="caps">JSON</span>
+files. And it makes a lot of sense to be able to add comments in your
+configuration files in order to explain what every configuration does. We tend
+to forget these things and being able to add comments may come really handy.
+<a href="http://en.wikipedia.org/wiki/YAML"><span class="caps">YAML</span></a>, for instance, allows you to <a href="http://en.wikipedia.org/wiki/YAML#Syntax">add comments</a> and this can
+be really useful in two&nbsp;ways:</p>
+<ol>
+<li>Helps you remember what every configuration&nbsp;means.</li>
+<li>The configuration file becomes self-explanatory in case the project is&nbsp;open-source.</li>
+</ol>
+<p>What should we use to store configurations is out of the scope of this blog
+post (although <span class="caps">IMHO</span> I&#8217;d probably use <span class="caps">YAML</span> instead of <span class="caps">JSON</span> for configurations
+because it just looks a lot more readable to me). But if you are using
+currently using <span class="caps">JSON</span> for this purpose, don&#8217;t you think it&#8217;d be great to have
+a way to add comments in your <span class="caps">JSON</span>&nbsp;files?</p>
+<p>I primarily program in Python so I thought it&#8217;d be nice to have a way to do
+this. So I worked on a little project to do just this. Allow me to introduce
+you to <a href="http://github.com/vaidik/commentjson"><code>commentjson</code></a>. <code>commentjson</code> is a Python library that allows you
+to parse <span class="caps">JSON</span> files that have Python style comments in them, like&nbsp;so:</p>
+<pre><code>{
+    "name": "Vaidik Kapoor", # Person's name
+    "location": "Delhi, India",
+
+    # Section contains info about person's appearance
+    "appearance": {
+        "hair_color": "black",
+        "eyes_color": "black",
+        "height": "6"
+    }
+}
+</code></pre>
+<p><code>commentjson</code> has a really simple <span class="caps">API</span>. commentjson<code>supports every function
+that the</code>json<code>module exposes. In fact, if you have used or are using Python
+standard library's</code>json` module, then you just have to do change one line in
+your&nbsp;code.</p>
+<p>Change</p>
+<pre><code>import json
+</code></pre>
+<p>to</p>
+<pre><code>import commentjson as json
+</code></pre>
+<p>And that&#8217;s it! <code>commentjson</code> has the same <span class="caps">API</span> as Python&#8217;s <code>json</code> module and
+therefore requires no learning or any extra effort at all, other than adding
+comments in your <span class="caps">JSON</span>&nbsp;files.</p>
+<h3>How does it&nbsp;work?</h3>
+<p><code>commentjson</code> does not try to do a lot. The <code>dump</code> and <code>dump</code> functions do
+nothing extra other than using <code>json</code>&#8216;s <code>dump</code> and <code>dumps</code> respectively. The
+<code>load</code> and <code>loads</code> methods use <code>json</code>&#8216;s <code>load</code> and <code>loads</code> functions as well,
+but before that step, <code>commentjson</code> strips out all the comments and returns a
+deserializable <span class="caps">JSON</span> string that can be parsed by <code>json</code> module.</p>
+<p>If an exception is raised at the step when <code>commentjson</code> is using <code>json</code>&#8216;s
+functions, <code>commentjson</code> throws a custom exception called
+<code>JSONLibraryException</code> which nicely wraps around the traceback thrown by
+<code>json</code>. This is to allow you to be able identify the cause of that exception
+with&nbsp;ease.</p>
+<p>I hope people and projects that are already using <span class="caps">JSON</span> for storing
+configurations will find this useful. If there are any more usecases around
+this, please share. <a href="http://github.com/vaidik/commentjson"><code>commentjson</code></a> is available on Github. You are more than
+welcome to file issues and send pull&nbsp;requests.</p>
+<h3>Documentation</h3>
+<p>Thorough documentation is available on <a href="http://commentjson.readthedocs.org/en/latest/"><span class="caps">RTFD</span></a>.</p>            </section>
         </article>
 
         <section>

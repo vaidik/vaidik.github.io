@@ -2,15 +2,47 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <title>
         BASIC blog excerpts feed    </title>
-        <link href="blog/excerpts.xml" rel="self" />
+        <link href="/blog/excerpts.xml" rel="self" />
     
         <link href="/"/>
     
         
-    <updated>2013-06-02T23:10:30Z</updated>
+    <updated>2013-09-11T08:49:24Z</updated>
 
     <id>/blog/excerpts.xml/</id>
 
+            <entry>
+            <title type="html">Comments in JSON</title>
+            <author><name>Vaidik Kapoor</name></author>
+            <link href="/blog/commentjson.html"/>
+            <updated>2013-09-11T10:00:00Z</updated>
+            <published>2013-09-11T10:00:00Z</published>
+            <id>/blog/commentjson.html</id>
+                        <category   scheme="/blog/tags"
+                        term="python"
+                        label="Python" />
+                        <category   scheme="/blog/tags"
+                        term="json"
+                        label="Json" />
+            
+            <content type="html">
+                
+                &lt;p&gt;A lot of projects/people use &lt;a href=&#34;http://en.wikipedia.org/wiki/JSON&#34;&gt;&lt;span class=&#34;caps&#34;&gt;JSON&lt;/span&gt;&lt;/a&gt; for storing configurations in &lt;span class=&#34;caps&#34;&gt;JSON&lt;/span&gt;
+files. And it makes a lot of sense to be able to add comments in your
+configuration files in order to explain what every configuration does. We tend
+to forget these things and being able to add comments may come really handy.
+&lt;a href=&#34;http://en.wikipedia.org/wiki/YAML&#34;&gt;&lt;span class=&#34;caps&#34;&gt;YAML&lt;/span&gt;&lt;/a&gt;, for instance, allows you to &lt;a href=&#34;http://en.wikipedia.org/wiki/YAML#Syntax&#34;&gt;add comments&lt;/a&gt; and this can
+be really useful in two&amp;nbsp;ways:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Helps you remember what every configuration&amp;nbsp;means.&lt;/li&gt;
+&lt;li&gt;The configuration file becomes self-explanatory in case the project is&amp;nbsp;open-source.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;What should we use to store configurations is out of the scope of this blog
+post (although &lt;span class=&#34;caps&#34;&gt;IMHO&lt;/span&gt; I&amp;#8217;d probably use &lt;span class=&#34;caps&#34;&gt;YAML&lt;/span&gt; instead of &lt;span class=&#34;caps&#34;&gt;JSON&lt;/span&gt; for configurations
+because it just looks a lot more readable to me). But if you are using
+currently using &lt;span class=&#34;caps&#34;&gt;JSON&lt;/span&gt; for this purpose, don&amp;#8217;t you think it&amp;#8217;d be great to have
+a way to add comments in your &lt;span class=&#34;caps&#34;&gt;JSON&lt;/span&gt;&amp;nbsp;files?&lt;/p&gt;            </content>
+        </entry>
             <entry>
             <title type="html">What is Cloud Computing?</title>
             <author><name>Vaidik Kapoor</name></author>
@@ -87,7 +119,7 @@ anywhere and everywhere. However, it is available to only those who can afford&a
             <id>/blog/marg.html</id>
                         <category   scheme="/blog/tags"
                         term="web_development"
-                        label="Web_Development" />
+                        label="Web_development" />
                         <category   scheme="/blog/tags"
                         term="http"
                         label="Http" />
@@ -223,28 +255,6 @@ a guide for the program out of the personal experiences I have had with the&amp;
 &lt;p&gt;PasswordProtect is a firefox extension that helps you with keeping your different accounts on the web safe by generating different secure passwords for your accounts. And the best part – you may choose to remember just one password for logging&amp;nbsp;in!&lt;/p&gt;            </content>
         </entry>
             <entry>
-            <title type="html">So... Google Summer of Code it is!</title>
-            <author><name>Vaidik Kapoor</name></author>
-            <link href="/blog/gsoc-2011.html"/>
-            <updated>2011-05-07T10:00:00Z</updated>
-            <published>2011-05-07T10:00:00Z</published>
-            <id>/blog/gsoc-2011.html</id>
-                        <category   scheme="/blog/tags"
-                        term="gsoc"
-                        label="Gsoc" />
-                        <category   scheme="/blog/tags"
-                        term="foss"
-                        label="Foss" />
-                        <category   scheme="/blog/tags"
-                        term="drupal"
-                        label="Drupal" />
-            
-            <content type="html">
-                
-                &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; Post from my old&amp;nbsp;blog.&lt;/p&gt;
-&lt;p&gt;Somehow most of the fun and interesting things that have happened and are happening with me have happened because of OSSCamp at &lt;span class=&#34;caps&#34;&gt;JIIT&lt;/span&gt; &lt;span class=&#34;caps&#34;&gt;NOIDA&lt;/span&gt;, India. That last meeting during OSSCamp has changed everything about me as to what I was before I attended&amp;nbsp;OSSCamp.&lt;/p&gt;            </content>
-        </entry>
-            <entry>
             <title type="html">Firefox 4 Launch Party!</title>
             <author><name>Vaidik Kapoor</name></author>
             <link href="/blog/firefox-4-launch-party.html"/>
@@ -268,5 +278,27 @@ a guide for the program out of the personal experiences I have had with the&amp;
                 
                 &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; Post from my old&amp;nbsp;blog.&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;caps&#34;&gt;JIIT&lt;/span&gt; &lt;span class=&#34;caps&#34;&gt;OSDC&lt;/span&gt; hadn&amp;#8217;t organized an event since a very long time. So the members really wanted to do something new. Around this time, Firefox 4 was also launched. So, the members decided to celebrate the launch of Firefox 4 in the college. We were not the only ones doing this. Communities from all over the world were going to have a launch party as Mozilla openly invited anyone to go ahead and celebrate the launch of Firefox 4 in their community or organization. Therefore, our event became an official event of Mozilla. It also became our college&amp;#8217;s (&lt;span class=&#34;caps&#34;&gt;JIIT&lt;/span&gt;) official event as the Computer Science department was positive about it and was ready to&amp;nbsp;support.&lt;/p&gt;            </content>
+        </entry>
+            <entry>
+            <title type="html">So... Google Summer of Code it is!</title>
+            <author><name>Vaidik Kapoor</name></author>
+            <link href="/blog/gsoc-2011.html"/>
+            <updated>2011-05-07T10:00:00Z</updated>
+            <published>2011-05-07T10:00:00Z</published>
+            <id>/blog/gsoc-2011.html</id>
+                        <category   scheme="/blog/tags"
+                        term="gsoc"
+                        label="Gsoc" />
+                        <category   scheme="/blog/tags"
+                        term="foss"
+                        label="Foss" />
+                        <category   scheme="/blog/tags"
+                        term="drupal"
+                        label="Drupal" />
+            
+            <content type="html">
+                
+                &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; Post from my old&amp;nbsp;blog.&lt;/p&gt;
+&lt;p&gt;Somehow most of the fun and interesting things that have happened and are happening with me have happened because of OSSCamp at &lt;span class=&#34;caps&#34;&gt;JIIT&lt;/span&gt; &lt;span class=&#34;caps&#34;&gt;NOIDA&lt;/span&gt;, India. That last meeting during OSSCamp has changed everything about me as to what I was before I attended&amp;nbsp;OSSCamp.&lt;/p&gt;            </content>
         </entry>
     </feed>

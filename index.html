@@ -77,35 +77,6 @@
               
         <article class="post excerpt">
         <aside>
-            <time datetime="2013-09-11">
-                September 11, 2013
-            </time>
-        </aside>
-                                    <section>
-            <h3>
-                <a href="/blog/commentjson.html">Comments in JSON</a>
-            </h3>
-                                                <p>A lot of projects/people use <a href="http://en.wikipedia.org/wiki/JSON"><span class="caps">JSON</span></a> for storing configurations in <span class="caps">JSON</span>
-files. And it makes a lot of sense to be able to add comments in your
-configuration files in order to explain what every configuration does. We tend
-to forget these things and being able to add comments may come really handy.
-<a href="http://en.wikipedia.org/wiki/YAML"><span class="caps">YAML</span></a>, for instance, allows you to <a href="http://en.wikipedia.org/wiki/YAML#Syntax">add comments</a> and this can
-be really useful in two&nbsp;ways:</p>
-<ol>
-<li>Helps you remember what every configuration&nbsp;means.</li>
-<li>The configuration file becomes self-explanatory in case the project is&nbsp;open-source.</li>
-</ol>
-<p>What should we use to store configurations is out of the scope of this blog
-post (although <span class="caps">IMHO</span> I&#8217;d probably use <span class="caps">YAML</span> instead of <span class="caps">JSON</span> for configurations
-because it just looks a lot more readable to me). But if you are using
-currently using <span class="caps">JSON</span> for this purpose, don&#8217;t you think it&#8217;d be great to have
-a way to add comments in your <span class="caps">JSON</span>&nbsp;files?</p>
-                    <a href="/blog/commentjson.html">Read More...</a>
-                                    </section>
-    </article>
-
-            <article class="post excerpt">
-        <aside>
             <time datetime="2013-03-20">
                 March 20, 2013
             </time>
@@ -159,6 +130,26 @@ anywhere and everywhere. However, it is available to only those who can afford&n
                                     </section>
     </article>
 
+            <article class="post excerpt">
+        <aside>
+            <time datetime="2012-11-10">
+                November 10, 2012
+            </time>
+        </aside>
+                                    <section>
+            <h3>
+                <a href="/blog/marg.html">Marg - A Simple Request Router written in PHP</a>
+            </h3>
+                                                <p><a href="http://github.com/vaidikkp/marg">Marg</a> is a simple <span class="caps">HTTP</span> Request Router, written in <span class="caps">PHP</span>. It has a very simple <span class="caps">API</span>
+and is motivated by my understanding and experience of using existing frameworks
+like Django, Flask, Drupal and some other pieces of code I have read in the past.
+Though I have written this code for my personal use, its free for anyone to use.
+The idea behind writing <a href="http://github.com/vaidikkp/marg">Marg</a> was to have a boilerplate code for myself which I can
+use for my own&nbsp;projects.</p>
+                    <a href="/blog/marg.html">Read More...</a>
+                                    </section>
+    </article>
+
             
 <center><a href="/blog"><span style="font-size: 19px; font-weight: bold;">&laquo; Older Posts in Archives</span></a></center>
 
@@ -191,13 +182,36 @@ anywhere and everywhere. However, it is available to only those who can afford&n
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.js"></script>
   <script>window.jQuery || document.write('<script src="js/libs/jquery-1.5.1.min.js">\x3C/script>')</script>
   
-    
+    <!-- Start Visual Website Optimizer Asynchronous Code -->
+<script type='text/javascript'>
+var _vwo_code=(function(){
+var account_id=22676,
+settings_tolerance=2000,
+library_tolerance=2500,
+use_existing_jquery=false,
+// DO NOT EDIT BELOW THIS LINE
+f=false,d=document;return{use_existing_jquery:function(){return use_existing_jquery;},library_tolerance:function(){return library_tolerance;},finish:function(){if(!f){f=true;var a=d.getElementById('_vis_opt_path_hides');if(a)a.parentNode.removeChild(a);}},finished:function(){return f;},load:function(a){var b=d.createElement('script');b.src=a;b.type='text/javascript';b.innerText;b.onerror=function(){_vwo_code.finish();};d.getElementsByTagName('head')[0].appendChild(b);},init:function(){settings_timer=setTimeout('_vwo_code.finish()',settings_tolerance);this.load('//dev.visualwebsiteoptimizer.com/j.php?a='+account_id+'&u='+encodeURIComponent(d.URL)+'&r='+Math.random());var a=d.createElement('style'),b='body{opacity:0 !important;filter:alpha(opacity=0) !important;background:none !important;}',h=d.getElementsByTagName('head')[0];a.setAttribute('id','_vis_opt_path_hides');a.setAttribute('type','text/css');if(a.styleSheet)a.styleSheet.cssText=b;else a.appendChild(d.createTextNode(b));h.appendChild(a);return settings_timer;}};}());_vwo_settings_timer=_vwo_code.init();
+</script>
+<!-- End Visual Website Optimizer Asynchronous Code -->
+  
 
   <!--[if lt IE 7 ]>
     <script src="js/libs/dd_belatedpng.js"></script>
     <script>DD_belatedPNG.fix('img, .png_bg'); // Fix any <img> or .png_bg bg-images. Also, please read goo.gl/mZiyb </script>
   <![endif]-->
 
-      
+    <!-- asynchronous google analytics: mathiasbynens.be/notes/async-analytics-snippet
+       change the UA-XXXXX-X to be your site's ID -->
+<script>
+    var _gaq = [['_setAccount', ''], ['_trackPageview']];
+    (function(d, t) {
+    var g = d.createElement(t),
+        s = d.getElementsByTagName(t)[0];
+    g.async = true;
+    g.src = ('https:' == location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    s.parentNode.insertBefore(g, s);
+    })(document, 'script');
+</script>
+  
   </body>
 </html>

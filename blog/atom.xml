@@ -7,27 +7,10 @@
         <link href="/"/>
     
         
-    <updated>2013-09-11T08:49:24Z</updated>
+    <updated>2014-09-21T21:10:56Z</updated>
 
     <id>/blog/atom.xml/</id>
 
-            <entry>
-            <title type="html">Comments in JSON</title>
-            <author><name>Vaidik Kapoor</name></author>
-            <link href="/blog/commentjson.html"/>
-            <updated>2013-09-11T10:00:00Z</updated>
-            <published>2013-09-11T10:00:00Z</published>
-            <id>/blog/commentjson.html</id>
-                        <category   scheme="/blog/tags"
-                        term="python"
-                        label="Python" />
-                        <category   scheme="/blog/tags"
-                        term="json"
-                        label="Json" />
-            
-            <content type="html">
-                                            </content>
-        </entry>
             <entry>
             <title type="html">What is Cloud Computing?</title>
             <author><name>Vaidik Kapoor</name></author>

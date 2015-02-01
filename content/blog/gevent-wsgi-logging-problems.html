@@ -49,10 +49,11 @@ try to a non-blocking WSGI web server.
 First consideration was [Tornado][Tornado]. You can use [Flask over
 Tornado][Flask_Tornado]. But the issue with that is that Tornado needs you to
 use it's own networking API instead of the stdlib's networking API. For example,
-if you use the standard MySQL client with Tornado, it's no good as Tornado's
-IOLoop will not be able to handle network requests unless you use Tornado's
-networking API and all requests to MySQL will block the IOLoop. So Tornado could
-not be a drop-in solution.
+if you use the [PyMySQL][pymysql] client (which is the pure Python MySQL client)
+with Tornado, it's no good as Tornado's IOLoop will not be able to handle
+network requests unless you use Tornado's networking API and all requests to
+MySQL will block the IOLoop. So any client that you are using with Tornado, has
+to make use of Tornado's networking API or it cannot be a drop-in solution.
 
 Next in the list was [Gevent][Gevent]. The awesome thing about Gevent is that it
 allows you to monkey-patch Python stdlib's modules that can be made non-blocking
@@ -64,7 +65,10 @@ little more different and difficult rather than how simply they are described
 above. So now was the time to try [Flask over Gevent][Flask_Gevent]. Gevent
 provides a [WSGIServer][GWSGI] that can run any WSGI compliant app like Flask's
 apps. This worked like a charm and the problem of handling multiple concurrent
-request was handled without much of an effort.
+request was handled without much of an effort. **Note:** if we did used
+[MySQLdb][mysqldb] instead of [PyMySQL][pymysql] with Gevent, we will still
+have the same problem as we had in case of PyMySQLdb + Tornado, because MySQLdb
+is written in C and is not Gevent friendly.
 
 But as I said, things are not so easy. You only wish that they were. Everything
 worked fine with the server implementation, except one - capturing access logs.
@@ -155,6 +159,8 @@ soltution? Would love to hear them in comments.
 [GWSGI]: http://gevent.org/gevent.wsgi.html#gevent.wsgi.WSGIHandler
 [Flask]: http://flask.pocoo.org/
 [WSGI]: https://docs.python.org/2/library/wsgiref.html
+[mysqldb]: https://pypi.python.org/pypi/MySQL-python/1.2.5
+[pymysql]: https://pypi.python.org/pypi/PyMySQL
 [Gunicorn]: http://gunicorn.org
 [Tornado]: http://www.tornadoweb.org/
 [Flask_Tornado]: http://flask.pocoo.org/docs/0.10/deploying/wsgi-standalone/#tornado

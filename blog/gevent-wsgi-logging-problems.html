@@ -22,7 +22,7 @@
         compatibility mode is within the first 1K bytes
         code.google.com/p/chromium/issues/detail?id=23003 -->
 
-  <title>Being a Mozilla Rep</title>
+  <title>Problems with logging while using Gevent's WSGI Server</title>
   <meta name="description" content="Personal blog of Vaidik Kapoor.">
   <meta name="author" content="Vaidik Kapoor">
 
@@ -51,7 +51,7 @@
         enables HTML5 elements & feature detects -->
     <script src="/media/js/libs/modernizr-1.7.min.js"></script>
     </head>
-<body id="mozilla-rep">
+<body id="gevent-wsgi-logging-problems">
 <!-- Qualaroo for vaidikkapoor.info -->
 <!-- Paste this code right after the <body> tag on every page of your site. -->
 <!--
@@ -104,33 +104,124 @@
               <div class="post">
         <article>
             <aside>
-                <time datetime="2012-09-06">
-                    September 06, 2012
+                <time datetime="2015-02-01">
+                    February 01, 2015
                 </time>
             </aside>
             <section>
                 <h2>
-                    <a href="">Being a Mozilla Rep</a>
+                    <a href="">Problems with logging while using Gevent's WSGI Server</a>
                 </h2>
-                <p>I have been contributing to <a href="http://www.mozilla.org/en-US/">Mozilla</a> for about over a year now in different ways. I have not been doing much evangelism outsite my college because I love coding and
-that is how I have been contributing so far. Yes, I have organized some events in my college which, unfortunately, I did not publicise enough in the community either 
-prior or post events. But these events were really successful. With the help of some other volunteers in my college, I was able to really convert a couple of guys into
-code contributors. The output of these events was amazing. One day, I just applied to become a <a href="https://wiki.mozilla.org/ReMo">Mozilla Rep</a>. And guess what, I became one. My mentor is <a href="http://fuzzyfox.mozhunt.com/">FuzzyFox</a>. I look forward to learning a lot from him!&nbsp;:)</p>
-<p>Coincidentally, the <a href="https://www.facebook.com/groups/mozilla.delhincr/">Mozilla Delhi/<span class="caps">NCR</span></a> community was meeting up soon after I became the Rep. <a href="http://kinshuksunil.com/">Kinshuk Sunil</a>, another Rep from the Delhi/<span class="caps">NCR</span> region (and my unofficial Mozilla mentor), announced it in the
-community group on Facebook. I&#8217;d like to thank everyone again who wished me. When I attended the meetup, I somehow felt, though slightly, that people started
-treating me a little differently&#8230; as if I had achieved something or I became a leader or something. As I see myself as a Mozilla Rep, I am still a volunteer, though
-my scope of duties as a volunteer has increased from being just a Mozilla volunteer and loyalist to helping others support the Mozilla Mission and get involved with
-Mozilla. I hope I will still be treated as a fellow volunteer as I always used&nbsp;to.</p>
-<p>Anyways, the community met up to gather feedback on the <a href="https://wiki.mozilla.org/Mozparty">Summer Code Party</a> events across Delhi/<span class="caps">NCR</span> and what to do further. Some colleges successfully organized Summer
-Code Party and received a considerable participation whereas some were not able to participate and organize events at all. That&#8217;s alright! However, we did not have 
-enough Summer Code Party events in Delhi/<span class="caps">NCR</span> to host a massive Hack Jam as decided previously. Therefore, in this meeting we decided to scrap the idea of Hack Jam and
-convert it into a MozCamp. MozCamp Delhi will be happen in the format of an <a href="http://en.wikipedia.org/wiki/Unconference">Unconference</a> and is now scheduled to happen on September 22 <span class="amp">&amp;</span> 23 at <a href="http://jmi.ac.in/">Jamia Milia Islamia</a> University campus. The Delhi/<span class="caps">NCR</span> community cannot be thankful enough to the university and our fellow contributors there for helping us organize this. We are planning to cover a multitide of topics/areas related to the&nbsp;web.</p>
-<p>Right after the meetup, I had to treat everybody for becoming a Rep. And the treat turned out to be an unconventional one. We ended up having some mouth watering <a href="http://en.wikipedia.org/wiki/Baati">Litti
-Chokha</a> on a road side stall. That was&nbsp;fun!</p>
-<h3>As a Mozilla&nbsp;Rep</h3>
-<p>It is rare to find non-engineers getting involved with <span class="caps">FOSS</span> projects like Mozilla here in India i.e. majority of the volunteers and contributors are either engineering students or people from the tech community. Rarely you will find people with a non-engineering/non-scientific background getting involved with <span class="caps">FOSS</span> projects. Since we have such a huge number of engineers and engineers-in-the-making involved, we should at least have a considerable amount of code contribution to these <span class="caps">FOSS</span> projects. Unfortunately, that is not the case. I have noticed this (at least here in Delhi/<span class="caps">NCR</span>) that the community is always busy in evangelism. Evangelism is important but most of the times the audience at the receiving end is technical. So why not try to help them become code contributors along with supporters of Mozilla&nbsp;Mission.</p>
-<p>As a Mozilla Rep, this is what I would like to focus on and build here in Delhi/<span class="caps">NCR</span> - a developer community which contributes code to different Mozilla projects as&nbsp;well.</p>
-<p>If you are in Delhi/<span class="caps">NCR</span> (or anywhere else) and want to get involved with Mozilla to support the <a href="http://www.mozilla.org/about/mission.html">Mozilla Mission</a> by volunteering and contributing in any way, do get in touch with me or <a href="http://kinshuksunil.com/">Kinshuk Sunil</a> and we will do our best to help you&nbsp;out.</p>            </section>
+                <p>This article is about the logging problem with <a href="http://gevent.org/">Gevent&#8217;s</a> <a href="http://gevent.org/gevent.wsgi.html#gevent.wsgi.WSGIHandler"><span class="caps">WSGI</span>
+Server</a> and how a simple hack can actually help you solve that problem
+and make sure you continue to use Gevent for serving <span class="caps">WSGI</span> applications
+(<a href="http://flask.pocoo.org/">Flask</a> in this article) without any&nbsp;compromises.</p>
+<p>Flask comes really handy for writing internal services in <a href="http://www.python.org/">Python</a> because
+it is batteries excluded, there is not too much of opinionated design decisions
+that are pushed down your throat and that just makes it easy to do things your
+way. I started working on a project a while back, for which I chose to use Flask
+for precisely the same reasons. The project was an internal service that other
+web applications in the stack would use to do a certain type of&nbsp;task.</p>
+<p>This service is heavy on network and disk I/O. It would query large amounts of
+data from another data store which would have data stored on the disk, and the
+data is transferred to this application over the network. The service would then
+do some processing of this data before it could send it in the&nbsp;response.</p>
+<p>Since this application is mostly bound by I/O, every request would block the
+next request. With a <a href="https://docs.python.org/2/library/wsgiref.html"><span class="caps">WSGI</span></a> server like <a href="http://gunicorn.org">Gunicorn</a>, you can only
+get as far as the number of workers would take you. So I thought I can give a
+try to a non-blocking <span class="caps">WSGI</span> web&nbsp;server.</p>
+<p>First consideration was <a href="http://www.tornadoweb.org/">Tornado</a>. You can use <a href="http://flask.pocoo.org/docs/0.10/deploying/wsgi-standalone/#tornado">Flask over
+Tornado</a>. But the issue with that is that Tornado needs you to
+use it&#8217;s own networking <span class="caps">API</span> instead of the stdlib&#8217;s networking <span class="caps">API</span>. For example,
+if you use the standard MySQL client with Tornado, it&#8217;s no good as Tornado&#8217;s
+IOLoop will not be able to handle network requests unless you use Tornado&#8217;s
+networking <span class="caps">API</span> and all requests to MySQL will block the IOLoop. So Tornado could
+not be a drop-in&nbsp;solution.</p>
+<p>Next in the list was <a href="http://gevent.org/">Gevent</a>. The awesome thing about Gevent is that it
+allows you to monkey-patch Python stdlib&#8217;s modules that can be made non-blocking
+with its own versions of those modules. That way you don&#8217;t have to adopt
+anything new to make your applications non-blocking. Just keep using stdlib&#8217;s
+modules and then monkey patch them and you have a non-blocking version of your
+application ready. Its pretty much a drop-in replacement. Yes, things can be a
+little more different and difficult rather than how simply they are described
+above. So now was the time to try <a href="http://flask.pocoo.org/docs/0.10/deploying/wsgi-standalone/#gevent">Flask over Gevent</a>. Gevent
+provides a <a href="http://gevent.org/gevent.wsgi.html#gevent.wsgi.WSGIHandler">WSGIServer</a> that can run any <span class="caps">WSGI</span> compliant app like Flask&#8217;s
+apps. This worked like a charm and the problem of handling multiple concurrent
+request was handled without much of an&nbsp;effort.</p>
+<p>But as I said, things are not so easy. You only wish that they were. Everything
+worked fine with the server implementation, except one - capturing access logs.
+Gevent&#8217;s WSGIServer prints all access logs to <a href="https://en.wikipedia.org/wiki/Standard_streams#Standard_error_.28stderr.29"><code>stderr</code></a> and provides no
+way to override this behaviour via its APIs. Since access logs are critical for
+debugging production issues and any other ad-hoc requirement that may arise in
+the future, you have to capture them no matter what. In this case, the only way
+you are left with is redirecting <code>stderr</code> to a file like&nbsp;so:</p>
+<pre><code>python app.py 2&gt; /var/log/app.log
+</code></pre>
+<p>This works fine and you may actually use it if it works for you. However, while
+building new applications and servers, you must consider in what ways and
+conditions can your code get deployed. If you know that there can be changing
+situations and environments from deployment-to-deployment, then you have to
+make sure that the variables that change are configurable in some way or
+another - most standard being configuration files. So a nice way to deal with
+the situation would be to have the path for access logs file in your
+configuration file and let your application send all access logs to a file at
+that path, but how do you redirect logs to file whose path is in your
+configuration file? There can be many ways, like if you plan to run your server
+using init scripts, then have your init script parse the configuration file and
+start the server with redirecting <code>stderr</code> stream to the correct access log file
+according to your configuration file. But that seemed to much of unnecessary&nbsp;work.</p>
+<p>Here is a solution that I propose. Since Gevent writes all the logs to <code>stderr</code>,
+what we need to do is somehow redirect everything that is written to <code>stderr</code> to
+another file. Since <a href="https://docs.python.org/2/library/sys.html#sys.stderr"><code>sys.stderr</code></a> is a file object, we can
+monkey-patch <code>sys.stderr</code> with an object that overrides write&nbsp;method:</p>
+<pre><code>class RedirectStderr(object):
+
+    def __init__(self, cfg):
+        self._log_file = open(cfg['access_log_path'], 'a')
+
+    def write(self, msg):
+        self._log_file.write(msg)
+        self._log_file.flush()
+
+import sys
+sys.stderr = RedirectStderr(cfg)
+</code></pre>
+<p>This solution will work just fine and solve <em>almost</em> all our problems. The
+problem is that it gives rise to other problems. Since <code>sys.stderr</code> is nothing
+but a <a href="https://docs.python.org/2/library/stdtypes.html#bltin-file-objects"><code>file</code></a> object, we cannot be sure if Gevent is not using other
+methods on <code>sys.stderr</code> elsewhere in the code. And yes we can find it, but there
+is no point in doing all that. So a better solution would be subclassing <code>file</code>
+class and overriding all that we need to&nbsp;override.</p>
+<pre><code>class RedirectStderr(file):
+
+    def __init__(self, *args, **kwargs):
+        self._cfg = kwargs.pop('cfg')
+        self._log_file = open(self._cfg['access_log_path'], 'a')
+        super(RedirectStderr, self).__init__(*args, **kwargs)
+
+    def write(self, msg):
+        # Just in-case you want to write to both stderr and another log file
+        super(RedirectStderr, self).write(msg)
+
+        # Write to another access log file
+        self._log_file.write(msg)
+        self._log_file.flush()
+
+        # Or use Python's logging facility to log the standard way you log
+        # across your project
+        log.info(msg)
+
+import sys
+sys.stderr = RedirectStderr('/dev/stderr', 'w', cfg=cfg)
+</code></pre>
+<p>This implementation will override only <code>sys.stderr.write</code> leave everything
+intact so that any other use of <code>sys.stderr</code> does not break Gevent, and your&nbsp;application.</p>
+<p>The <code>RedirectStderr</code> class is not meant to just work with <code>stderr</code>. If you
+notice, we open <code>/dev/stderr</code> at the time of instantiating the class. So you can
+use this hack to monkey-patch anything that follows the file interface in&nbsp;Python.</p>
+<p>Hope this is a solution elegant enough for solving this problem. What do you
+think? Can there be an improvement to this? Or do you have a different better
+soltution? Would love to hear them in&nbsp;comments.</p>            </section>
         </article>
 
         <section>

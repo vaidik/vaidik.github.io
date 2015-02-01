@@ -138,6 +138,10 @@ class and overriding all that we need to override.
             # across your project
             log.info(msg)
 
+        def close(self):
+            super(RedirectStderr, self).close()
+            self._log_file.close()
+
     import sys
     sys.stderr = RedirectStderr('/dev/stderr', 'w', cfg=cfg)
 

@@ -106,10 +106,11 @@ try to a non-blocking <span class="caps">WSGI</span> web&nbsp;server.</p>
 <p>First consideration was <a href="http://www.tornadoweb.org/">Tornado</a>. You can use <a href="http://flask.pocoo.org/docs/0.10/deploying/wsgi-standalone/#tornado">Flask over
 Tornado</a>. But the issue with that is that Tornado needs you to
 use it&#8217;s own networking <span class="caps">API</span> instead of the stdlib&#8217;s networking <span class="caps">API</span>. For example,
-if you use the standard MySQL client with Tornado, it&#8217;s no good as Tornado&#8217;s
-IOLoop will not be able to handle network requests unless you use Tornado&#8217;s
-networking <span class="caps">API</span> and all requests to MySQL will block the IOLoop. So Tornado could
-not be a drop-in&nbsp;solution.</p>
+if you use the <a href="https://pypi.python.org/pypi/PyMySQL">PyMySQL</a> client (which is the pure Python MySQL client)
+with Tornado, it&#8217;s no good as Tornado&#8217;s IOLoop will not be able to handle
+network requests unless you use Tornado&#8217;s networking <span class="caps">API</span> and all requests to
+MySQL will block the IOLoop. So any client that you are using with Tornado, has
+to make use of Tornado&#8217;s networking <span class="caps">API</span> or it cannot be a drop-in&nbsp;solution.</p>
 <p>Next in the list was <a href="http://gevent.org/">Gevent</a>. The awesome thing about Gevent is that it
 allows you to monkey-patch Python stdlib&#8217;s modules that can be made non-blocking
 with its own versions of those modules. That way you don&#8217;t have to adopt
@@ -120,7 +121,10 @@ little more different and difficult rather than how simply they are described
 above. So now was the time to try <a href="http://flask.pocoo.org/docs/0.10/deploying/wsgi-standalone/#gevent">Flask over Gevent</a>. Gevent
 provides a <a href="http://gevent.org/gevent.wsgi.html#gevent.wsgi.WSGIHandler">WSGIServer</a> that can run any <span class="caps">WSGI</span> compliant app like Flask&#8217;s
 apps. This worked like a charm and the problem of handling multiple concurrent
-request was handled without much of an&nbsp;effort.</p>
+request was handled without much of an effort. <strong>Note:</strong> if we did used
+<a href="https://pypi.python.org/pypi/MySQL-python/1.2.5">MySQLdb</a> instead of <a href="https://pypi.python.org/pypi/PyMySQL">PyMySQL</a> with Gevent, we will still
+have the same problem as we had in case of PyMySQLdb + Tornado, because MySQLdb
+is written in C and is not Gevent&nbsp;friendly.</p>
 <p>But as I said, things are not so easy. You only wish that they were. Everything
 worked fine with the server implementation, except one - capturing access logs.
 Gevent&#8217;s WSGIServer prints all access logs to <a href="https://en.wikipedia.org/wiki/Standard_streams#Standard_error_.28stderr.29"><code>stderr</code></a> and provides no

@@ -1,0 +1,164 @@
+---
+title: Problems with logging while using Gevent's WSGI Server
+description: 
+    This article describes the logging problem you may face if you wish to use
+    Gevent's WSGI Server for serving any WSGI compliant web application and a
+    hack to solve that problem
+created: !!timestamp '2015-02-01 12:00:00'
+tags:
+    - python
+    - gevent
+    - web
+    - services
+---
+
+{% mark image -%}
+
+{%- endmark %}
+
+{% mark excerpt -%}
+
+This article is about the logging problem with [Gevent's][Gevent] [WSGI
+Server][GWSGI] and how a simple hack can actually help you solve that problem
+and make sure you continue to use Gevent for serving WSGI applications
+([Flask][Flask] in this article) without any compromises.
+
+[Gevent]: http://gevent.org/
+[GWSGI]: http://gevent.org/gevent.wsgi.html#gevent.wsgi.WSGIHandler
+[Flask]: http://flask.pocoo.org/
+
+{%- endmark %}
+
+Flask comes really handy for writing internal services in [Python][Py] because
+it is batteries excluded, there is not too much of opinionated design decisions
+that are pushed down your throat and that just makes it easy to do things your
+way. I started working on a project a while back, for which I chose to use Flask
+for precisely the same reasons. The project was an internal service that other
+web applications in the stack would use to do a certain type of task.
+
+This service is heavy on network and disk I/O. It would query large amounts of
+data from another data store which would have data stored on the disk, and the
+data is transferred to this application over the network. The service would then
+do some processing of this data before it could send it in the response.
+
+Since this application is mostly bound by I/O, every request would block the
+next request. With a [WSGI][WSGI] server like [Gunicorn][Gunicorn], you can only
+get as far as the number of workers would take you. So I thought I can give a
+try to a non-blocking WSGI web server.
+
+First consideration was [Tornado][Tornado]. You can use [Flask over
+Tornado][Flask_Tornado]. But the issue with that is that Tornado needs you to
+use it's own networking API instead of the stdlib's networking API. For example,
+if you use the standard MySQL client with Tornado, it's no good as Tornado's
+IOLoop will not be able to handle network requests unless you use Tornado's
+networking API and all requests to MySQL will block the IOLoop. So Tornado could
+not be a drop-in solution.
+
+Next in the list was [Gevent][Gevent]. The awesome thing about Gevent is that it
+allows you to monkey-patch Python stdlib's modules that can be made non-blocking
+with its own versions of those modules. That way you don't have to adopt
+anything new to make your applications non-blocking. Just keep using stdlib's
+modules and then monkey patch them and you have a non-blocking version of your
+application ready. Its pretty much a drop-in replacement. Yes, things can be a
+little more different and difficult rather than how simply they are described
+above. So now was the time to try [Flask over Gevent][Flask_Gevent]. Gevent
+provides a [WSGIServer][GWSGI] that can run any WSGI compliant app like Flask's
+apps. This worked like a charm and the problem of handling multiple concurrent
+request was handled without much of an effort.
+
+But as I said, things are not so easy. You only wish that they were. Everything
+worked fine with the server implementation, except one - capturing access logs.
+Gevent's WSGIServer prints all access logs to [`stderr`][stderr] and provides no
+way to override this behaviour via its APIs. Since access logs are critical for
+debugging production issues and any other ad-hoc requirement that may arise in
+the future, you have to capture them no matter what. In this case, the only way
+you are left with is redirecting `stderr` to a file like so:
+
+    python app.py 2> /var/log/app.log
+
+This works fine and you may actually use it if it works for you. However, while
+building new applications and servers, you must consider in what ways and
+conditions can your code get deployed. If you know that there can be changing
+situations and environments from deployment-to-deployment, then you have to
+make sure that the variables that change are configurable in some way or
+another - most standard being configuration files. So a nice way to deal with
+the situation would be to have the path for access logs file in your
+configuration file and let your application send all access logs to a file at
+that path, but how do you redirect logs to file whose path is in your
+configuration file? There can be many ways, like if you plan to run your server
+using init scripts, then have your init script parse the configuration file and
+start the server with redirecting `stderr` stream to the correct access log file
+according to your configuration file. But that seemed to much of unnecessary
+work.
+
+Here is a solution that I propose. Since Gevent writes all the logs to `stderr`,
+what we need to do is somehow redirect everything that is written to `stderr` to
+another file. Since [`sys.stderr`][sys_stderr] is a file object, we can
+monkey-patch `sys.stderr` with an object that overrides write method:
+
+    class RedirectStderr(object):
+
+        def __init__(self, cfg):
+            self._log_file = open(cfg['access_log_path'], 'a')
+
+        def write(self, msg):
+            self._log_file.write(msg)
+            self._log_file.flush()
+
+    import sys
+    sys.stderr = RedirectStderr(cfg)
+
+This solution will work just fine and solve *almost* all our problems. The
+problem is that it gives rise to other problems. Since `sys.stderr` is nothing
+but a [`file`][file] object, we cannot be sure if Gevent is not using other
+methods on `sys.stderr` elsewhere in the code. And yes we can find it, but there
+is no point in doing all that. So a better solution would be subclassing `file`
+class and overriding all that we need to override.
+
+    class RedirectStderr(file):
+
+        def __init__(self, *args, **kwargs):
+            self._cfg = kwargs.pop('cfg')
+            self._log_file = open(self._cfg['access_log_path'], 'a')
+            super(RedirectStderr, self).__init__(*args, **kwargs)
+
+        def write(self, msg):
+            # Just in-case you want to write to both stderr and another log file
+            super(RedirectStderr, self).write(msg)
+
+            # Write to another access log file
+            self._log_file.write(msg)
+            self._log_file.flush()
+
+            # Or use Python's logging facility to log the standard way you log
+            # across your project
+            log.info(msg)
+
+    import sys
+    sys.stderr = RedirectStderr('/dev/stderr', 'w', cfg=cfg)
+
+This implementation will override only `sys.stderr.write` leave everything
+intact so that any other use of `sys.stderr` does not break Gevent, and your
+application.
+
+The `RedirectStderr` class is not meant to just work with `stderr`. If you
+notice, we open `/dev/stderr` at the time of instantiating the class. So you can
+use this hack to monkey-patch anything that follows the file interface in
+Python.
+
+Hope this is a solution elegant enough for solving this problem. What do you
+think? Can there be an improvement to this? Or do you have a different better
+soltution? Would love to hear them in comments.
+
+[Py]: http://www.python.org/
+[Gevent]: http://gevent.org/
+[GWSGI]: http://gevent.org/gevent.wsgi.html#gevent.wsgi.WSGIHandler
+[Flask]: http://flask.pocoo.org/
+[WSGI]: https://docs.python.org/2/library/wsgiref.html
+[Gunicorn]: http://gunicorn.org
+[Tornado]: http://www.tornadoweb.org/
+[Flask_Tornado]: http://flask.pocoo.org/docs/0.10/deploying/wsgi-standalone/#tornado
+[Flask_Gevent]: http://flask.pocoo.org/docs/0.10/deploying/wsgi-standalone/#gevent
+[sys_stderr]: https://docs.python.org/2/library/sys.html#sys.stderr
+[file]: https://docs.python.org/2/library/stdtypes.html#bltin-file-objects
+[stderr]: https://en.wikipedia.org/wiki/Standard_streams#Standard_error_.28stderr.29

@@ -7,7 +7,7 @@
         <link href="/"/>
     
         
-    <updated>2015-02-01T20:52:33Z</updated>
+    <updated>2015-02-08T12:59:35Z</updated>
 
     <id>/blog/excerpts.xml/</id>
 
@@ -51,7 +51,15 @@ and make sure you continue to use Gevent for serving &lt;span class=&#34;caps&#3
             
             <content type="html">
                 
-                &lt;p&gt;Many students have discussed their project ideas for their Systems &lt;span class=&#34;amp&#34;&gt;&amp;amp;&lt;/span&gt; Network Programming course with me. One thing that I have noticed a lot is that a lot of students have been trying to do something in &lt;a href=&#34;http://en.wikipedia.org/wiki/Cloud_computing&#34;&gt;Cloud Computing&lt;/a&gt;. However, I get this feeling that they have just proposed this without completely understanding what Cloud Computing really is. This post is an attempt to explain Cloud Computing to students, what they can do with it or more specifically what they can do for their Systems &lt;span class=&#34;amp&#34;&gt;&amp;amp;&lt;/span&gt; Network Programming&amp;nbsp;course.&lt;/p&gt;            </content>
+                &lt;p&gt;I wrote this article while I was doing my undergrad for students who I was
+guiding while mentoring in Sytems and Network Programming lab course work. Every
+lab course would have a semester end assignment (or what we would call semester
+projects). Cloud Computing was one of the areas in which students could do their
+projects. But without any understanding of the area, students would decide to
+make their projects under Cloud Computing and end up doing things that were not
+even closely related to the area. Unfortunately, there was not much help from
+the faculty as well. This article was an attempt to explain the topic/area to
+the students of the lab that I was assisting.&amp;nbsp;ASd&lt;/p&gt;            </content>
         </entry>
             <entry>
             <title type="html">Need for a Good Personal Expenses Management App</title>

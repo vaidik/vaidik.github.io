@@ -7,7 +7,7 @@
         <link href="/"/>
     
         
-    <updated>2015-02-08T12:59:35Z</updated>
+    <updated>2015-02-08T13:19:14Z</updated>
 
     <id>/blog/atom.xml/</id>
 
@@ -64,26 +64,6 @@
                         <category   scheme="/blog/tags"
                         term="ideas"
                         label="Ideas" />
-            
-            <content type="html">
-                                            </content>
-        </entry>
-            <entry>
-            <title type="html">SMS Based FAQ Retrieval</title>
-            <author><name>Vaidik Kapoor</name></author>
-            <link href="/blog/nlp-project-2013.html"/>
-            <updated>2013-03-02T10:00:00Z</updated>
-            <published>2013-03-02T10:00:00Z</published>
-            <id>/blog/nlp-project-2013.html</id>
-                        <category   scheme="/blog/tags"
-                        term="projects"
-                        label="Projects" />
-                        <category   scheme="/blog/tags"
-                        term="nlp"
-                        label="Nlp" />
-                        <category   scheme="/blog/tags"
-                        term="college"
-                        label="College" />
             
             <content type="html">
                                             </content>

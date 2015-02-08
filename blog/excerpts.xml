@@ -7,7 +7,7 @@
         <link href="/"/>
     
         
-    <updated>2015-02-08T12:59:35Z</updated>
+    <updated>2015-02-08T13:19:14Z</updated>
 
     <id>/blog/excerpts.xml/</id>
 
@@ -59,7 +59,7 @@ projects. But without any understanding of the area, students would decide to
 make their projects under Cloud Computing and end up doing things that were not
 even closely related to the area. Unfortunately, there was not much help from
 the faculty as well. This article was an attempt to explain the topic/area to
-the students of the lab that I was assisting.&amp;nbsp;ASd&lt;/p&gt;            </content>
+the students of the lab that I was&amp;nbsp;assisting.&lt;/p&gt;            </content>
         </entry>
             <entry>
             <title type="html">Need for a Good Personal Expenses Management App</title>
@@ -89,29 +89,6 @@ have only realized that there isn&amp;#8217;t a &lt;em&gt;free&lt;/em&gt; app go
 able to catch my attention and fulfill my basic&amp;nbsp;needs.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Please note&lt;/strong&gt;: I am not talking about an app for wealth management. I don&amp;#8217;t
 have much knowledge about it and I don&amp;#8217;t know what goes in&amp;nbsp;it.&lt;/p&gt;            </content>
-        </entry>
-            <entry>
-            <title type="html">SMS Based FAQ Retrieval</title>
-            <author><name>Vaidik Kapoor</name></author>
-            <link href="/blog/nlp-project-2013.html"/>
-            <updated>2013-03-02T10:00:00Z</updated>
-            <published>2013-03-02T10:00:00Z</published>
-            <id>/blog/nlp-project-2013.html</id>
-                        <category   scheme="/blog/tags"
-                        term="projects"
-                        label="Projects" />
-                        <category   scheme="/blog/tags"
-                        term="nlp"
-                        label="Nlp" />
-                        <category   scheme="/blog/tags"
-                        term="college"
-                        label="College" />
-            
-            <content type="html">
-                
-                &lt;p&gt;In the recent years, we have seen that the number of mobile users have grown
-exponentially. With smart phones coming in, information is available to most
-anywhere and everywhere. However, it is available to only those who can afford&amp;nbsp;it.&lt;/p&gt;            </content>
         </entry>
             <entry>
             <title type="html">Marg - A Simple Request Router written in PHP</title>

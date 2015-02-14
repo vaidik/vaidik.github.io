@@ -7,7 +7,7 @@
         <link href="/"/>
     
         
-    <updated>2015-02-08T13:19:14Z</updated>
+    <updated>2015-02-14T09:47:22Z</updated>
 
     <id>/blog/excerpts.xml/</id>
 
@@ -18,6 +18,33 @@
             <updated>2015-02-01T12:00:00Z</updated>
             <published>2015-02-01T12:00:00Z</published>
             <id>/blog/gevent-wsgi-logging-problems.html</id>
+                        <category   scheme="/blog/tags"
+                        term="python"
+                        label="Python" />
+                        <category   scheme="/blog/tags"
+                        term="gevent"
+                        label="Gevent" />
+                        <category   scheme="/blog/tags"
+                        term="web"
+                        label="Web" />
+                        <category   scheme="/blog/tags"
+                        term="services"
+                        label="Services" />
+            
+            <content type="html">
+                
+                &lt;p&gt;This article is about the logging problem with &lt;a href=&#34;http://gevent.org/&#34;&gt;Gevent&amp;#8217;s&lt;/a&gt; &lt;a href=&#34;http://gevent.org/gevent.wsgi.html#gevent.wsgi.WSGIHandler&#34;&gt;&lt;span class=&#34;caps&#34;&gt;WSGI&lt;/span&gt;
+Server&lt;/a&gt; and how a simple hack can actually help you solve that problem
+and make sure you continue to use Gevent for serving &lt;span class=&#34;caps&#34;&gt;WSGI&lt;/span&gt; applications
+(&lt;a href=&#34;http://flask.pocoo.org/&#34;&gt;Flask&lt;/a&gt; in this article) without any&amp;nbsp;compromises.&lt;/p&gt;            </content>
+        </entry>
+            <entry>
+            <title type="html">Incoming - A JSON Validation Framework for Python</title>
+            <author><name>Vaidik Kapoor</name></author>
+            <link href="/blog/incoming-python-json-validation-framework.html"/>
+            <updated>2015-02-01T12:00:00Z</updated>
+            <published>2015-02-01T12:00:00Z</published>
+            <id>/blog/incoming-python-json-validation-framework.html</id>
                         <category   scheme="/blog/tags"
                         term="python"
                         label="Python" />

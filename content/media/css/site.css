@@ -24,6 +24,12 @@ table {
     border-collapse: collapse;
 }
 
+code {
+    display: block;
+    overflow-x: auto;
+    position: relative;
+}
+
 /* clearfix */
 .clear:after {
     content: ".";
@@ -178,6 +184,10 @@ nav a {
 
 .post section h2 {
     margin-bottom: 10px;
+}
+
+.post section h3, .post section h4 {
+    margin-top: 30px;
 }
 
 .post p,ol,ul {
@@ -412,7 +422,6 @@ a.backlink:hover, a.prev:hover, a.next:hover{
   margin-bottom: 12px;
 }
 .code {
-  position: relative;
   -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   -o-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);

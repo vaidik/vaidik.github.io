@@ -1,0 +1,509 @@
+---
+title: Incoming - JSON Validation Framework for Python
+description: 
+    Incoming is a JSON validation framework for Python. Validation of payloads
+    sent over HTTP requests has always been a mess. A bunch of if-then-else
+    further branching into more if-then-else blocks is common and over time
+    becomes extremely difficult to manage. Since REST APIs and the use of JSON
+    for HTTP payload is commong practice, it only made sense to solve the
+    problem of payload validation for JSON payloads. Incoming is an opinionated
+    JSON validation framework which does not bind to any kind of web frameworks.
+    It just tries to make JSON validation sensible and logical by giving it
+    structure and making it possible to re-use validation code across your
+    application.
+created: !!timestamp '2015-03-02 12:00:00'
+tags:
+    - python
+    - web
+    - json
+    - validation
+    - frameworks
+---
+
+{% mark image -%}
+
+{%- endmark %}
+
+{% mark excerpt -%}
+
+[Incoming][incoming] is a JSON validation framework for Python. Validation of payloads
+sent over HTTP requests has always been a mess. A bunch of if-then-else
+further branching into more if-then-else blocks is common and over time
+becomes extremely difficult to manage. Since the use of JSON
+for HTTP payload is a common practice, it only made sense to solve the
+problem of payload validation for payloads in JSON format. [Incoming][incoming] is an opinionated
+JSON validation framework which does not bind to any kind of web frameworks.
+It just tries to make JSON validation sensible and logical by giving it
+structure and making it possible to re-use validation code across your
+application.
+
+[incoming]: https://github.com/vaidik/incoming
+
+{%- endmark %}
+
+### The Problem
+
+Payload validation is a common problem that makes your web applications messy
+and difficult to maintain. Especially if you are doing API development, getting
+tangled in a bunch of if-then-else blocks happens really quickly. But that's not
+the end of it. There are more problems that may come out or grow over time.
+Let's list them down here:
+
+1. Bunch of if-then-else blocks tangled with each other, which make management
+   of code extremely difficult.
+2. Abstracting out validation logic may become difficult over time, not because
+   it is difficult, but there is no logical place to put all that together.
+3. Reporting validation failures becomes too messy and difficult because there
+   is no proper way to do it. You end up reporting validation failures
+   incorrectly.
+
+Put all these issues together, it makes sense to solve these problems together
+as they seem common to most of the web applications, especially those that are
+heavy on APIs.
+
+### The Solution - [Incoming][incoming]
+
+[Incoming][incoming] is an opinionated JSON validation framework that makes it
+possible to validate JSON payloads with ease using structure. Its just a small
+framework that makes it possible for you to solve the problems as listed in the
+previous section in a sane way.
+
+Although [Incoming][incoming] is a framework or task agnostic JSON validation
+framework and it does not have to do anything with what it is used for, let's
+use HTTP APIs as a reference for the sake of this post.
+
+#### Structuring payload validation code into classes
+
+First thing's first, let's get a place in our application to put together all
+our payload validation code. How and why would this work? Usually, every HTTP
+API end-point accepts a kind of payload that has a set format. In case of REST
+APIs, the resources have a format for the payload. So it is possible to put
+together all the validation in some place for an end-point or an API.
+[Incoming][incoming] makes it possible for you. Let's get introduced to
+Incoming's API.
+
+Consider that there is an HTTP API that expects the following JSON payload:
+
+    {
+        "name": "Vaidik" // string,
+        "age": 16 // integer,
+        "gender": "male" // string, male or female only
+    }
+
+To validate the above payload using Incoming, we can write the validator like
+so:
+
+    import json
+
+    from incoming import datatypes, PayloadValidator
+
+    class PersonValidator(PayloadValidator):
+
+        name = datatypes.String()
+        age = datatypes.Integer()
+        gender = datatypes.Function('validate_gender')
+
+        def validate_gender(self, val, **kwargs):
+            val = val.lower()
+            if val == 'male' or val == 'female':
+                return True
+            return False
+
+    validator = PersonValidator()
+
+    payload1 = {
+        'name': 'Vaidik Kapoor',
+        'age': 16.5,
+        'gender': 'mail'
+    }
+    validator.validate(payload1)
+    '''
+    Returns:
+    (False,
+     {'age': ['Invalid data. Expected an integer.'],
+      'gender': ['Invalid data.']})
+    '''
+
+    payload2 = {
+        'name': 'Vaidik Kapoor',
+        'age': 16,
+        'gender': 'male'
+    }
+    validator.validate(payload2)
+    '''
+    Returns:
+    (True, None)
+    '''
+
+This is a simple payload validator written using Incoming. This shows how
+Incoming makes it possible for you to quickly do simple validations of
+fundamental data types and at the same time allows you to do validations using
+separate methods. These methods don't have to be instance methods. Instead they
+can be static methods or class methods or even functions as well.
+
+#### Getting rid of tangled if-then-else blocks which are difficult to read
+
+Consider the following example:
+
+    {
+        "name": "Vaidik", // string
+        "age": 16, // integer
+        "gender": "male" // string, male or female only
+        "department": "engineering", // string, possible values are engineering,
+                                     // marketing, sales
+        "github": "https://github.com/vaidik" // string, required if department
+                                              // is engineering
+    }
+
+There are two new fields in this example. One is `department` - this field can
+take `engineering`, `marketing` and `sales` as values. There is another optional
+field called `github`. This field is required only if `department` is
+`engineering`.
+
+This is how we can validate this using Incoming:
+
+    import json
+
+    from incoming import datatypes, PayloadValidator
+
+    class PersonValidator(PayloadValidator):
+
+        name = datatypes.String()
+        age = datatypes.Integer()
+        gender = datatypes.Function('validate_gender',
+                                    required=False)
+        department = datatypes.Function('validate_department')
+        github = datatypes.Function('validate_github', required=False)
+
+        def validate_gender(self, val, **kwargs):
+            if val == 'male' or val == 'female':
+                return True
+            return False
+
+        def validate_department(self, val, **kwargs):
+            if val in ('engineering', 'marketing', 'sales'):
+                return True
+            return False
+
+        # the entire payload is passed to every validation method or
+        # function
+        def validate_github(self, val, payload, **kwargs):
+            if payload.get('department', None) == 'engineering':
+                if val is None:
+                    return False
+            return True
+
+We can see that you can now easily validate the field `github` and the
+validation may depend on the value of other fields. How we do that is that we
+pass the entire payload to every validation function or method as a keyword
+argument. You can make use of this to write validation rules for one field that
+may depend on the values of other field or fields.
+
+#### Organizing validation logic and code into a more sensible place
+
+Incoming tries to make validation more organized and structured as usually
+validation is the part that goes every where in your application and starts
+scattering really quickly.
+
+I introduced Incoming for validation earlier in this article with an example,
+wherein we used classes for organizing validation code for JSON payloads. So
+here is the first thing - Incoming makes use of classes to make it possible to
+put together validation for different types of payloads.
+
+Other than validation of basic fundamental data types, Incoming provides ways to
+use functions or methods to write validation logic for handling more complex
+types of validations. And in real-world applications, you will end up having
+complex validations. Important thing is that if you can organize this validation
+logic and make it re-usable so that the same logic can be used outside of the
+scope of Incoming if you choose to do so. In the previous examples, we have used
+instance methods for validation. However, Incoming also supports you to use
+static methods, class methods and functions as well for writing validations. So
+instance methods work just fine but in case you want to use the same logic at
+other places in your application, you can look at functions, class methods or
+static methods as well. See the following example:
+
+    import json
+
+    from incoming import datatypes, PayloadValidator
+
+    def validate_age(val, **kwargs):
+        if val > 0:
+            return True
+        return False
+
+    class PersonValidator(PayloadValidator):
+
+        name = datatypes.String()
+        age = datatypes.Function(validate_age)  # notice that reference to
+                                                # validation function is
+                                                # passed instead of name of the
+                                                # method as a string in other
+                                                # cases
+        gender = datatypes.Function('validate_gender',
+                                    required=False)
+        department = datatypes.Function('validate_department')
+        github = datatypes.Function('validate_github', required=False)
+
+        @classmethod
+        def validate_gender(cls, val, **kwargs):
+            if val == 'male' or val == 'female':
+                return True
+            return False
+
+        def validate_department(self, val, **kwargs):
+            if val in ('engineering', 'marketing', 'sales'):
+                return True
+            return False
+
+        # the entire payload is passed to every validation method or
+        # function
+        @staticmethod
+        def validate_github(val, payload, **kwargs):
+            if payload.get('department', None) == 'engineering':
+                if val is None:
+                    return False
+            return True
+
+Notice that `validate_age` is a function, `validate_gender` is a class method
+and `validate_github` is a static method. This makes all the three callables
+useful outside the scope of Incoming as well.
+
+#### Reporting validation failures with proper error messages
+
+This is the kicker. Getting error messages right becomes as difficult and makes
+things even more messier and you can easily start loosing consistency in error
+messages very soon. Incoming makes it possible for you to handle error messages
+nicely.
+
+Incoming validates each and every field that is provided in the payload and that
+is absent in the payload but was mentioned in the payload validator's
+definition. Every time validation fails for any field, Incoming catches the
+failure and returns sensible error messages. Consider the following example:
+
+    import json
+
+    from incoming import datatypes, PayloadValidator
+
+    class PersonValidator(PayloadValidator):
+
+        name = datatypes.String()
+        age = datatypes.Integer()
+        gender = datatypes.Function('validate_gender',
+                                    required=False)
+        department = datatypes.Function('validate_department')
+        github = datatypes.Function('validate_github', required=False)
+
+        def validate_gender(self, val, **kwargs):
+            if val == 'male' or val == 'female':
+                return True
+            return False
+
+        def validate_department(self, val, **kwargs):
+            if val in ('engineering', 'marketing', 'sales'):
+                return True
+            return False
+
+        # the entire payload is passed to every validation method or
+        # function
+        def validate_github(self, val, payload, **kwargs):
+            if payload.get('department', None) == 'engineering':
+                if val is None:
+                    return False
+            return True
+
+    validator = PersonValidator()
+    validator.validate(dict(name='Vaidik', age=16.5, gender='mail'))
+    '''
+    Returns:
+    (False,
+     {'age': ['Invalid data. Expected an integer.'],
+      'department': ['Expecting a value for this field.'],
+      'gender': ['Invalid data.']})
+    '''
+
+Incoming does not stop validating other fields after first validation failure.
+The reason behind this decision was that all the validation failures should be
+reported at once so that the end user can fix the payload before trying again
+and keep on doing hit-and-trial. And part of the reason behind this decision was
+because Incoming was written for web applications to start with, which usually
+have APIs with end users or consumers. Making multiple requests for every field
+in the payload just for checking if the payload validates is rather painful for
+the end user.
+
+Note that the validation for both `age` and `gender` failed. Since `age` is of
+type `Integer`, Incoming returned an error message saying that an integer was
+expected. In case of 'gender', Incoming just says `Invalid data.` because in
+case of type `Function`, Incoming does not know the reason of failure. While 
+this is a good beginning for handling error messages, the error message in case
+of `gender` field is not very helpful to the end user.
+
+There is support for custom error messages when validation fails. This means
+that although Incoing has sane error messages by default, you can always add
+more accurate error messages with respect to your application. Furthermore,
+Incoming allows you to control error messages for every field in your payload.
+Consider the following example:
+
+    import json
+
+    from incoming import datatypes, PayloadValidator
+
+    class PersonValidator(PayloadValidator):
+
+        name = datatypes.String(error='name must be a string')
+        age = datatypes.Integer(error='age must be an integer')
+        gender = datatypes.Function('validate_gender',
+                                    required=False,
+                                    error=('gender can be either male or
+                                           'female'))
+        department = datatypes.Function('validate_department')
+        github = datatypes.Function('validate_github', required=False)
+
+        def validate_gender(self, val, **kwargs):
+            if val == 'male' or val == 'female':
+                return True
+            return False
+
+        def validate_department(self, val, **kwargs):
+            if val in ('engineering', 'marketing', 'sales'):
+                return True
+            return False
+
+        # the entire payload is passed to every validation method or
+        # function
+        def validate_github(self, val, payload, **kwargs):
+            if payload.get('department', None) == 'engineering':
+                if val is None:
+                    return False
+            return True
+
+    validator = PersonValidator()
+    validator.validate(dict(name='Vaidik', age=16.5, gender='mail'))
+    '''
+    Returns:
+    (False,
+     {'age': ['age must be an integer'],
+      'department': ['Expecting a value for this field.'],
+      'gender': ['gender can be either male or female']})
+    '''
+
+Notice that you can easily override error messages while defining your validator
+class. Every field type accepts a keyword argument called `error` which takes a
+string as a value which shall be used if the field's value in the payload is
+invalid.
+
+With fields that have complicated validation logic, one generic error message
+may not be enough. You can conditionally push additional error messages in your
+validation functions or methods. Every validation function or method gets a
+keyword argument called `errors` which is an array of error messages for that
+field. You can push error messages in the array easily, like so:
+
+    import json
+
+    from incoming import datatypes, PayloadValidator
+
+    class PersonValidator(PayloadValidator):
+
+        name = datatypes.String(error='name must be a string')
+        age = datatypes.Integer(error='age must be an integer')
+        gender = datatypes.Function('validate_gender',
+                                    required=False,
+                                    error=('gender can be either male or '
+                                           'female'))
+        department = datatypes.Function('validate_department')
+        github = datatypes.Function('validate_github', required=False)
+
+        def validate_gender(self, val, **kwargs):
+            if val == 'male' or val == 'female':
+                return True
+            return False
+
+        def validate_department(self, val, **kwargs):
+            if val in ('engineering', 'marketing', 'sales'):
+                return True
+            return False
+
+        def validate_github(self, val, payload, errors, **kwargs):
+            if payload.get('department', None) == 'engineering':
+                if val is None:
+                    errors.append('Value required for github when department '
+                                  'is set to "engineering".')
+                    return False
+                elif 'github.com' not in val:
+                    errors.append('Value for field github must be a valid '
+                                  'Github profile link.')
+                    return False
+            return True
+
+    validator = PersonValidator()
+    validator.validate(dict(name='Vaidik', age=16, department='engineering'))
+    '''
+    Returns:
+    (False,
+     {'gender': ['gender can be either male or female'],
+      'github': ['Invalid data.',
+                 'Value required for github when department is set to "engineering".']})
+    '''
+
+    validator.validate(dict(name='Vaidik', age=16, department='engineering',
+                        github='http://gitub.com/vaidik'))
+    '''
+    Returns:
+    (False,
+     {'gender': ['gender can be either male or female'],
+      'github': ['Invalid data.',
+                 'Value for field github must be a valid Github profile link.']})
+    '''
+
+    validator.validate(dict(name='Vaidik', age=16, department='engineering',
+                            github='http://github.com/vaidik'))
+    '''
+    Returns:
+    (False, {'gender': ['gender can be either male or female']})
+    '''
+
+Incoming also has the notion of `required` fields. By default, all fields are
+required. If a required field is missing, Incoming reports that in the
+validation response. For the above validator class, lets try to validate the
+following payload:
+
+    validator.validate(dict(name='Vaidik', age=10))
+    '''
+    Returns:
+    (False, {'department': ['Expecting a value for this field.']})
+    '''
+
+By default, Incoming will use the above error message for missing required
+fields in the payload. This message can be overridden in the class definition
+by setting a class variable `required_error` like so:
+
+    class PersonValidator(PayloadValidator):
+
+        required_error = 'A value for this field must be provided.'
+        ...
+
+    validator.validate(dict(name='Vaidik', age=10))
+    '''
+    Returns:
+    (False, {'department': ['A value for this field must be provided.']})
+    '''
+
+The above example shows how you can customize your error messages for missing
+fields that are required.
+
+### Wrap Up
+
+There are many things that I was not able to cover in this blog post. You can
+find them in the [docs][docs].
+
+My personal pains with validating payloads led me to work on Incoming. It seems
+like a decent solution to me as of now. I tried my best to cover as many
+use-cases as possible but I will not be surprised if I have missed some. I have
+tried my best to keep the API as simple, tidy and easy to comprehend as
+possible with a lot of focus on readability of validators. And I sure will be
+adding features to Incoming in the near future as the need arises.
+
+Does this look like a decent solutin to you? Would you use it in your next
+application? Yes or no - I would love to hear your thoughts!
+
+[docs]: http://incoming.readthedocs.org/en/latest/
+[incoming]: https://github.com/vaidik/incoming

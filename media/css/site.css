@@ -24,6 +24,12 @@ table {
     border-collapse: collapse;
 }
 
+code {
+    display: block;
+    overflow-x: auto;
+    position: relative;
+}
+
 /* clearfix */
 .clear:after {
     content: ".";
@@ -97,11 +103,12 @@ header h1 {
 h1 { font-size: 2.4em; }
 h2 { font-size: 1.8em; }
 h3 { font-size: 1.5em; }
-h1, h2, h3 {
+h4 { font-size: 1.3em; }
+h1, h2, h3, h4 {
     text-shadow: 0 1px 0 rgba(255, 255, 255, 0.75);
 }
 
-h2 a, h3 a {
+h2 a, h3 a, h4 a {
     color: #226091;
 }
 
@@ -177,6 +184,10 @@ nav a {
 
 .post section h2 {
     margin-bottom: 10px;
+}
+
+.post section h3, .post section h4 {
+    margin-top: 30px;
 }
 
 .post p,ol,ul {
@@ -411,7 +422,6 @@ a.backlink:hover, a.prev:hover, a.next:hover{
   margin-bottom: 12px;
 }
 .code {
-  position: relative;
   -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   -o-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);

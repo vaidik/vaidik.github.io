@@ -7,10 +7,36 @@
         <link href="/"/>
     
         
-    <updated>2015-02-14T23:23:40Z</updated>
+    <updated>2015-02-15T21:08:48Z</updated>
 
     <id>/blog/atom.xml/</id>
 
+            <entry>
+            <title type="html">Incoming - JSON Validation Framework for Python</title>
+            <author><name>Vaidik Kapoor</name></author>
+            <link href="/blog/incoming-python-json-validation-framework.html"/>
+            <updated>2015-02-16T12:00:00Z</updated>
+            <published>2015-02-16T12:00:00Z</published>
+            <id>/blog/incoming-python-json-validation-framework.html</id>
+                        <category   scheme="/blog/tags"
+                        term="python"
+                        label="Python" />
+                        <category   scheme="/blog/tags"
+                        term="web"
+                        label="Web" />
+                        <category   scheme="/blog/tags"
+                        term="json"
+                        label="Json" />
+                        <category   scheme="/blog/tags"
+                        term="validation"
+                        label="Validation" />
+                        <category   scheme="/blog/tags"
+                        term="frameworks"
+                        label="Frameworks" />
+            
+            <content type="html">
+                                            </content>
+        </entry>
             <entry>
             <title type="html">Problems with logging while using Gevent's WSGI Server</title>
             <author><name>Vaidik Kapoor</name></author>

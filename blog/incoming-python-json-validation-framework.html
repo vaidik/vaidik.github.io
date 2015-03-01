@@ -23,7 +23,7 @@
         code.google.com/p/chromium/issues/detail?id=23003 -->
 
   <title>Incoming - JSON Validation Framework for Python</title>
-  <meta name="description" content="This article describes the logging problem you may face if you wish to use Gevent's WSGI Server for serving any WSGI compliant web application and a hack to solve that problem">
+  <meta name="description" content="Incoming is a JSON validation framework for Python. Validation of payloads sent over HTTP requests has always been a mess. A bunch of if-then-else further branching into more if-then-else blocks is common and over time becomes extremely difficult to manage. Since REST APIs and the use of JSON for HTTP payload is commong practice, it only made sense to solve the problem of payload validation for JSON payloads. Incoming is an opinionated JSON validation framework which does not bind to any kind of web frameworks. It just tries to make JSON validation sensible and logical by giving it structure and making it possible to re-use validation code across your application.">
   <meta name="author" content="Vaidik Kapoor">
 
   <!--  Mobile viewport optimized: j.mp/bplateviewport -->
@@ -77,132 +77,448 @@
               <div class="post">
         <article>
             <aside>
-                <time datetime="2015-02-01">
-                    February 01, 2015
+                <time datetime="2015-02-16">
+                    February 16, 2015
                 </time>
             </aside>
             <section>
                 <h2>
                     <a href="">Incoming - JSON Validation Framework for Python</a>
                 </h2>
-                <p>This article is about the logging problem with <a href="http://gevent.org/">Gevent&#8217;s</a> <a href="http://gevent.org/gevent.wsgi.html#gevent.wsgi.WSGIHandler"><span class="caps">WSGI</span>
-Server</a> and how a simple hack can actually help you solve that problem
-and make sure you continue to use Gevent for serving <span class="caps">WSGI</span> applications
-(<a href="http://flask.pocoo.org/">Flask</a> in this article) without any&nbsp;compromises.</p>
-<p>Flask comes really handy for writing internal services in <a href="http://www.python.org/">Python</a> because
-it is batteries excluded, there is not too much of opinionated design decisions
-that are pushed down your throat and that just makes it easy to do things your
-way. I started working on a project a while back, for which I chose to use Flask
-for precisely the same reasons. The project was an internal service that other
-web applications in the stack would use to do a certain type of&nbsp;task.</p>
-<p>This service is heavy on network and disk I/O. It would query large amounts of
-data from another data store which would have data stored on the disk, and the
-data is transferred to this application over the network. The service would then
-do some processing of this data before it could send it in the&nbsp;response.</p>
-<p>Since this application is mostly bound by I/O, every request would block the
-next request. With a <a href="https://docs.python.org/2/library/wsgiref.html"><span class="caps">WSGI</span></a> server like <a href="http://gunicorn.org">Gunicorn</a>, you can only
-get as far as the number of workers would take you. So I thought I can give a
-try to a non-blocking <span class="caps">WSGI</span> web&nbsp;server.</p>
-<p>First consideration was <a href="http://www.tornadoweb.org/">Tornado</a>. You can use <a href="http://flask.pocoo.org/docs/0.10/deploying/wsgi-standalone/#tornado">Flask over
-Tornado</a>. But the issue with that is that Tornado needs you to
-use it&#8217;s own networking <span class="caps">API</span> instead of the stdlib&#8217;s networking <span class="caps">API</span>. For example,
-if you use the <a href="https://pypi.python.org/pypi/PyMySQL">PyMySQL</a> client (which is the pure Python MySQL client)
-with Tornado, it&#8217;s no good as Tornado&#8217;s IOLoop will not be able to handle
-network requests unless you use Tornado&#8217;s networking <span class="caps">API</span> and all requests to
-MySQL will block the IOLoop. So any client that you are using with Tornado, has
-to make use of Tornado&#8217;s networking <span class="caps">API</span> or it cannot be a drop-in&nbsp;solution.</p>
-<p>Next in the list was <a href="http://gevent.org/">Gevent</a>. The awesome thing about Gevent is that it
-allows you to monkey-patch Python stdlib&#8217;s modules that can be made non-blocking
-with its own versions of those modules. That way you don&#8217;t have to adopt
-anything new to make your applications non-blocking. Just keep using stdlib&#8217;s
-modules and then monkey patch them and you have a non-blocking version of your
-application ready. Its pretty much a drop-in replacement. Yes, things can be a
-little more different and difficult rather than how simply they are described
-above. So now was the time to try <a href="http://flask.pocoo.org/docs/0.10/deploying/wsgi-standalone/#gevent">Flask over Gevent</a>. Gevent
-provides a <a href="http://gevent.org/gevent.wsgi.html#gevent.wsgi.WSGIHandler">WSGIServer</a> that can run any <span class="caps">WSGI</span> compliant app like Flask&#8217;s
-apps. This worked like a charm and the problem of handling multiple concurrent
-request was handled without much of an effort. <strong>Note:</strong> if we did used
-<a href="https://pypi.python.org/pypi/MySQL-python/1.2.5">MySQLdb</a> instead of <a href="https://pypi.python.org/pypi/PyMySQL">PyMySQL</a> with Gevent, we will still
-have the same problem as we had in case of PyMySQLdb + Tornado, because MySQLdb
-is written in C and is not Gevent&nbsp;friendly.</p>
-<p>But as I said, things are not so easy. You only wish that they were. Everything
-worked fine with the server implementation, except one - capturing access logs.
-Gevent&#8217;s WSGIServer prints all access logs to <a href="https://en.wikipedia.org/wiki/Standard_streams#Standard_error_.28stderr.29"><code>stderr</code></a> and provides no
-way to override this behaviour via its APIs. Since access logs are critical for
-debugging production issues and any other ad-hoc requirement that may arise in
-the future, you have to capture them no matter what. In this case, the only way
-you are left with is redirecting <code>stderr</code> to a file like&nbsp;so:</p>
-<pre><code>python app.py 2&gt; /var/log/app.log
+                <p><a href="https://github.com/vaidik/incoming">Incoming</a> is a <span class="caps">JSON</span> validation framework for Python. Validation of payloads
+sent over <span class="caps">HTTP</span> requests has always been a mess. A bunch of if-then-else
+further branching into more if-then-else blocks is common and over time
+becomes extremely difficult to manage. Since the use of <span class="caps">JSON</span>
+for <span class="caps">HTTP</span> payload is a common practice, it only made sense to solve the
+problem of payload validation for payloads in <span class="caps">JSON</span> format. <a href="https://github.com/vaidik/incoming">Incoming</a> is an opinionated
+<span class="caps">JSON</span> validation framework which does not bind to any kind of web frameworks.
+It just tries to make <span class="caps">JSON</span> validation sensible and logical by giving it
+structure and making it possible to re-use validation code across your&nbsp;application.</p>
+<h3>The&nbsp;Problem</h3>
+<p>Payload validation is a common problem that makes your web applications messy
+and difficult to maintain. Especially if you are doing <span class="caps">API</span> development, getting
+tangled in a bunch of if-then-else blocks happens really quickly. But that&#8217;s not
+the end of it. There are more problems that may come out or grow over time.
+Let&#8217;s list them down&nbsp;here:</p>
+<ol>
+<li>Bunch of if-then-else blocks tangled with each other, which make management
+   of code extremely&nbsp;difficult.</li>
+<li>Abstracting out validation logic may become difficult over time, not because
+   it is difficult, but there is no logical place to put all that&nbsp;together.</li>
+<li>Reporting validation failures becomes too messy and difficult because there
+   is no proper way to do it. You end up reporting validation failures&nbsp;incorrectly.</li>
+</ol>
+<p>Put all these issues together, it makes sense to solve these problems together
+as they seem common to most of the web applications, especially those that are
+heavy on&nbsp;APIs.</p>
+<h3>The Solution - <a href="https://github.com/vaidik/incoming">Incoming</a></h3>
+<p><a href="https://github.com/vaidik/incoming">Incoming</a> is an opinionated <span class="caps">JSON</span> validation framework that makes it
+possible to validate <span class="caps">JSON</span> payloads with ease using structure. Its just a small
+framework that makes it possible for you to solve the problems as listed in the
+previous section in a sane&nbsp;way.</p>
+<p>Although <a href="https://github.com/vaidik/incoming">Incoming</a> is a framework or task agnostic <span class="caps">JSON</span> validation
+framework and it does not have to do anything with what it is used for, let&#8217;s
+use <span class="caps">HTTP</span> APIs as a reference for the sake of this&nbsp;post.</p>
+<h4>Structuring payload validation code into&nbsp;classes</h4>
+<p>First thing&#8217;s first, let&#8217;s get a place in our application to put together all
+our payload validation code. How and why would this work? Usually, every <span class="caps">HTTP</span>
+<span class="caps">API</span> end-point accepts a kind of payload that has a set format. In case of <span class="caps">REST</span>
+APIs, the resources have a format for the payload. So it is possible to put
+together all the validation in some place for an end-point or an <span class="caps">API</span>.
+<a href="https://github.com/vaidik/incoming">Incoming</a> makes it possible for you. Let&#8217;s get introduced to
+Incoming&#8217;s&nbsp;<span class="caps">API</span>.</p>
+<p>Consider that there is an <span class="caps">HTTP</span> <span class="caps">API</span> that expects the following <span class="caps">JSON</span>&nbsp;payload:</p>
+<pre><code>{
+    "name": "Vaidik" // string,
+    "age": 16 // integer,
+    "gender": "male" // string, male or female only
+}
 </code></pre>
-<p>This works fine and you may actually use it if it works for you. However, while
-building new applications and servers, you must consider in what ways and
-conditions can your code get deployed. If you know that there can be changing
-situations and environments from deployment-to-deployment, then you have to
-make sure that the variables that change are configurable in some way or
-another - most standard being configuration files. So a nice way to deal with
-the situation would be to have the path for access logs file in your
-configuration file and let your application send all access logs to a file at
-that path, but how do you redirect logs to file whose path is in your
-configuration file? There can be many ways, like if you plan to run your server
-using init scripts, then have your init script parse the configuration file and
-start the server with redirecting <code>stderr</code> stream to the correct access log file
-according to your configuration file. But that seemed to much of unnecessary&nbsp;work.</p>
-<p>Here is a solution that I propose. Since Gevent writes all the logs to <code>stderr</code>,
-what we need to do is somehow redirect everything that is written to <code>stderr</code> to
-another file. Since <a href="https://docs.python.org/2/library/sys.html#sys.stderr"><code>sys.stderr</code></a> is a file object, we can
-monkey-patch <code>sys.stderr</code> with an object that overrides write&nbsp;method:</p>
-<pre><code>class RedirectStderr(object):
+<p>To validate the above payload using Incoming, we can write the validator like&nbsp;so:</p>
+<pre><code>import json
 
-    def __init__(self, cfg):
-        self._log_file = open(cfg['access_log_path'], 'a')
+from incoming import datatypes, PayloadValidator
 
-    def write(self, msg):
-        self._log_file.write(msg)
-        self._log_file.flush()
+class PersonValidator(PayloadValidator):
 
-import sys
-sys.stderr = RedirectStderr(cfg)
+    name = datatypes.String()
+    age = datatypes.Integer()
+    gender = datatypes.Function('validate_gender')
+
+    def validate_gender(self, val, **kwargs):
+        val = val.lower()
+        if val == 'male' or val == 'female':
+            return True
+        return False
+
+validator = PersonValidator()
+
+payload1 = {
+    'name': 'Vaidik Kapoor',
+    'age': 16.5,
+    'gender': 'mail'
+}
+validator.validate(payload1)
+'''
+Returns:
+(False,
+ {'age': ['Invalid data. Expected an integer.'],
+  'gender': ['Invalid data.']})
+'''
+
+payload2 = {
+    'name': 'Vaidik Kapoor',
+    'age': 16,
+    'gender': 'male'
+}
+validator.validate(payload2)
+'''
+Returns:
+(True, None)
+'''
 </code></pre>
-<p>This solution will work just fine and solve <em>almost</em> all our problems. The
-problem is that it gives rise to other problems. Since <code>sys.stderr</code> is nothing
-but a <a href="https://docs.python.org/2/library/stdtypes.html#bltin-file-objects"><code>file</code></a> object, we cannot be sure if Gevent is not using other
-methods on <code>sys.stderr</code> elsewhere in the code. And yes we can find it, but there
-is no point in doing all that. So a better solution would be subclassing <code>file</code>
-class and overriding all that we need to&nbsp;override.</p>
-<pre><code>class RedirectStderr(file):
-
-    def __init__(self, *args, **kwargs):
-        self._cfg = kwargs.pop('cfg')
-        self._log_file = open(self._cfg['access_log_path'], 'a')
-        super(RedirectStderr, self).__init__(*args, **kwargs)
-
-    def write(self, msg):
-        # Just in-case you want to write to both stderr and another log file
-        super(RedirectStderr, self).write(msg)
-
-        # Write to another access log file
-        self._log_file.write(msg)
-        self._log_file.flush()
-
-        # Or use Python's logging facility to log the standard way you log
-        # across your project
-        log.info(msg)
-
-    def close(self):
-        super(RedirectStderr, self).close()
-        self._log_file.close()
-
-import sys
-sys.stderr = RedirectStderr('/dev/stderr', 'w', cfg=cfg)
+<p>This is a simple payload validator written using Incoming. This shows how
+Incoming makes it possible for you to quickly do simple validations of
+fundamental data types and at the same time allows you to do validations using
+separate methods. These methods don&#8217;t have to be instance methods. Instead they
+can be static methods or class methods or even functions as&nbsp;well.</p>
+<h4>Getting rid of tangled if-then-else blocks which are difficult to&nbsp;read</h4>
+<p>Consider the following&nbsp;example:</p>
+<pre><code>{
+    "name": "Vaidik", // string
+    "age": 16, // integer
+    "gender": "male" // string, male or female only
+    "department": "engineering", // string, possible values are engineering,
+                                 // marketing, sales
+    "github": "https://github.com/vaidik" // string, required if department
+                                          // is engineering
+}
 </code></pre>
-<p>This implementation will override only <code>sys.stderr.write</code> leave everything
-intact so that any other use of <code>sys.stderr</code> does not break Gevent, and your&nbsp;application.</p>
-<p>The <code>RedirectStderr</code> class is not meant to just work with <code>stderr</code>. If you
-notice, we open <code>/dev/stderr</code> at the time of instantiating the class. So you can
-use this hack to monkey-patch anything that follows the file interface in&nbsp;Python.</p>
-<p>Hope this is a solution elegant enough for solving this problem. What do you
-think? Can there be an improvement to this? Or do you have a different better
-soltution? Would love to hear them in&nbsp;comments.</p>            </section>
+<p>There are two new fields in this example. One is <code>department</code> - this field can
+take <code>engineering</code>, <code>marketing</code> and <code>sales</code> as values. There is another optional
+field called <code>github</code>. This field is required only if <code>department</code> is
+<code>engineering</code>.</p>
+<p>This is how we can validate this using&nbsp;Incoming:</p>
+<pre><code>import json
+
+from incoming import datatypes, PayloadValidator
+
+class PersonValidator(PayloadValidator):
+
+    name = datatypes.String()
+    age = datatypes.Integer()
+    gender = datatypes.Function('validate_gender',
+                                required=False)
+    department = datatypes.Function('validate_department')
+    github = datatypes.Function('validate_github', required=False)
+
+    def validate_gender(self, val, **kwargs):
+        if val == 'male' or val == 'female':
+            return True
+        return False
+
+    def validate_department(self, val, **kwargs):
+        if val in ('engineering', 'marketing', 'sales'):
+            return True
+        return False
+
+    # the entire payload is passed to every validation method or
+    # function
+    def validate_github(self, val, payload, **kwargs):
+        if payload.get('department', None) == 'engineering':
+            if val is None:
+                return False
+        return True
+</code></pre>
+<p>We can see that you can now easily validate the field <code>github</code> and the
+validation may depend on the value of other fields. How we do that is that we
+pass the entire payload to every validation function or method as a keyword
+argument. You can make use of this to write validation rules for one field that
+may depend on the values of other field or&nbsp;fields.</p>
+<h4>Organizing validation logic and code into a more sensible&nbsp;place</h4>
+<p>Incoming tries to make validation more organized and structured as usually
+validation is the part that goes every where in your application and starts
+scattering really&nbsp;quickly.</p>
+<p>I introduced Incoming for validation earlier in this article with an example,
+wherein we used classes for organizing validation code for <span class="caps">JSON</span> payloads. So
+here is the first thing - Incoming makes use of classes to make it possible to
+put together validation for different types of&nbsp;payloads.</p>
+<p>Other than validation of basic fundamental data types, Incoming provides ways to
+use functions or methods to write validation logic for handling more complex
+types of validations. And in real-world applications, you will end up having
+complex validations. Important thing is that if you can organize this validation
+logic and make it re-usable so that the same logic can be used outside of the
+scope of Incoming if you choose to do so. In the previous examples, we have used
+instance methods for validation. However, Incoming also supports you to use
+static methods, class methods and functions as well for writing validations. So
+instance methods work just fine but in case you want to use the same logic at
+other places in your application, you can look at functions, class methods or
+static methods as well. See the following&nbsp;example:</p>
+<pre><code>import json
+
+from incoming import datatypes, PayloadValidator
+
+def validate_age(val, **kwargs):
+    if val &gt; 0:
+        return True
+    return False
+
+class PersonValidator(PayloadValidator):
+
+    name = datatypes.String()
+    age = datatypes.Function(validate_age)  # notice that reference to
+                                            # validation function is
+                                            # passed instead of name of the
+                                            # method as a string in other
+                                            # cases
+    gender = datatypes.Function('validate_gender',
+                                required=False)
+    department = datatypes.Function('validate_department')
+    github = datatypes.Function('validate_github', required=False)
+
+    @classmethod
+    def validate_gender(cls, val, **kwargs):
+        if val == 'male' or val == 'female':
+            return True
+        return False
+
+    def validate_department(self, val, **kwargs):
+        if val in ('engineering', 'marketing', 'sales'):
+            return True
+        return False
+
+    # the entire payload is passed to every validation method or
+    # function
+    @staticmethod
+    def validate_github(val, payload, **kwargs):
+        if payload.get('department', None) == 'engineering':
+            if val is None:
+                return False
+        return True
+</code></pre>
+<p>Notice that <code>validate_age</code> is a function, <code>validate_gender</code> is a class method
+and <code>validate_github</code> is a static method. This makes all the three callables
+useful outside the scope of Incoming as&nbsp;well.</p>
+<h4>Reporting validation failures with proper error&nbsp;messages</h4>
+<p>This is the kicker. Getting error messages right becomes as difficult and makes
+things even more messier and you can easily start loosing consistency in error
+messages very soon. Incoming makes it possible for you to handle error messages&nbsp;nicely.</p>
+<p>Incoming validates each and every field that is provided in the payload and that
+is absent in the payload but was mentioned in the payload validator&#8217;s
+definition. Every time validation fails for any field, Incoming catches the
+failure and returns sensible error messages. Consider the following&nbsp;example:</p>
+<pre><code>import json
+
+from incoming import datatypes, PayloadValidator
+
+class PersonValidator(PayloadValidator):
+
+    name = datatypes.String()
+    age = datatypes.Integer()
+    gender = datatypes.Function('validate_gender',
+                                required=False)
+    department = datatypes.Function('validate_department')
+    github = datatypes.Function('validate_github', required=False)
+
+    def validate_gender(self, val, **kwargs):
+        if val == 'male' or val == 'female':
+            return True
+        return False
+
+    def validate_department(self, val, **kwargs):
+        if val in ('engineering', 'marketing', 'sales'):
+            return True
+        return False
+
+    # the entire payload is passed to every validation method or
+    # function
+    def validate_github(self, val, payload, **kwargs):
+        if payload.get('department', None) == 'engineering':
+            if val is None:
+                return False
+        return True
+
+validator = PersonValidator()
+validator.validate(dict(name='Vaidik', age=16.5, gender='mail'))
+'''
+Returns:
+(False,
+ {'age': ['Invalid data. Expected an integer.'],
+  'department': ['Expecting a value for this field.'],
+  'gender': ['Invalid data.']})
+'''
+</code></pre>
+<p>Incoming does not stop validating other fields after first validation failure.
+The reason behind this decision was that all the validation failures should be
+reported at once so that the end user can fix the payload before trying again
+and keep on doing hit-and-trial. And part of the reason behind this decision was
+because Incoming was written for web applications to start with, which usually
+have APIs with end users or consumers. Making multiple requests for every field
+in the payload just for checking if the payload validates is rather painful for
+the end&nbsp;user.</p>
+<p>Note that the validation for both <code>age</code> and <code>gender</code> failed. Since <code>age</code> is of
+type <code>Integer</code>, Incoming returned an error message saying that an integer was
+expected. In case of &#8216;gender&#8217;, Incoming just says <code>Invalid data.</code> because in
+case of type <code>Function</code>, Incoming does not know the reason of failure. While 
+this is a good beginning for handling error messages, the error message in case
+of <code>gender</code> field is not very helpful to the end&nbsp;user.</p>
+<p>There is support for custom error messages when validation fails. This means
+that although Incoing has sane error messages by default, you can always add
+more accurate error messages with respect to your application. Furthermore,
+Incoming allows you to control error messages for every field in your payload.
+Consider the following&nbsp;example:</p>
+<pre><code>import json
+
+from incoming import datatypes, PayloadValidator
+
+class PersonValidator(PayloadValidator):
+
+    name = datatypes.String(error='name must be a string')
+    age = datatypes.Integer(error='age must be an integer')
+    gender = datatypes.Function('validate_gender',
+                                required=False,
+                                error=('gender can be either male or
+                                       'female'))
+    department = datatypes.Function('validate_department')
+    github = datatypes.Function('validate_github', required=False)
+
+    def validate_gender(self, val, **kwargs):
+        if val == 'male' or val == 'female':
+            return True
+        return False
+
+    def validate_department(self, val, **kwargs):
+        if val in ('engineering', 'marketing', 'sales'):
+            return True
+        return False
+
+    # the entire payload is passed to every validation method or
+    # function
+    def validate_github(self, val, payload, **kwargs):
+        if payload.get('department', None) == 'engineering':
+            if val is None:
+                return False
+        return True
+
+validator = PersonValidator()
+validator.validate(dict(name='Vaidik', age=16.5, gender='mail'))
+'''
+Returns:
+(False,
+ {'age': ['age must be an integer'],
+  'department': ['Expecting a value for this field.'],
+  'gender': ['gender can be either male or female']})
+'''
+</code></pre>
+<p>Notice that you can easily override error messages while defining your validator
+class. Every field type accepts a keyword argument called <code>error</code> which takes a
+string as a value which shall be used if the field&#8217;s value in the payload is&nbsp;invalid.</p>
+<p>With fields that have complicated validation logic, one generic error message
+may not be enough. You can conditionally push additional error messages in your
+validation functions or methods. Every validation function or method gets a
+keyword argument called <code>errors</code> which is an array of error messages for that
+field. You can push error messages in the array easily, like&nbsp;so:</p>
+<pre><code>import json
+
+from incoming import datatypes, PayloadValidator
+
+class PersonValidator(PayloadValidator):
+
+    name = datatypes.String(error='name must be a string')
+    age = datatypes.Integer(error='age must be an integer')
+    gender = datatypes.Function('validate_gender',
+                                required=False,
+                                error=('gender can be either male or '
+                                       'female'))
+    department = datatypes.Function('validate_department')
+    github = datatypes.Function('validate_github', required=False)
+
+    def validate_gender(self, val, **kwargs):
+        if val == 'male' or val == 'female':
+            return True
+        return False
+
+    def validate_department(self, val, **kwargs):
+        if val in ('engineering', 'marketing', 'sales'):
+            return True
+        return False
+
+    def validate_github(self, val, payload, errors, **kwargs):
+        if payload.get('department', None) == 'engineering':
+            if val is None:
+                errors.append('Value required for github when department '
+                              'is set to "engineering".')
+                return False
+            elif 'github.com' not in val:
+                errors.append('Value for field github must be a valid '
+                              'Github profile link.')
+                return False
+        return True
+
+validator = PersonValidator()
+validator.validate(dict(name='Vaidik', age=16, department='engineering'))
+'''
+Returns:
+(False,
+ {'gender': ['gender can be either male or female'],
+  'github': ['Invalid data.',
+             'Value required for github when department is set to "engineering".']})
+'''
+
+validator.validate(dict(name='Vaidik', age=16, department='engineering',
+                    github='http://gitub.com/vaidik'))
+'''
+Returns:
+(False,
+ {'gender': ['gender can be either male or female'],
+  'github': ['Invalid data.',
+             'Value for field github must be a valid Github profile link.']})
+'''
+
+validator.validate(dict(name='Vaidik', age=16, department='engineering',
+                        github='http://github.com/vaidik'))
+'''
+Returns:
+(False, {'gender': ['gender can be either male or female']})
+'''
+</code></pre>
+<p>Incoming also has the notion of <code>required</code> fields. By default, all fields are
+required. If a required field is missing, Incoming reports that in the
+validation response. For the above validator class, lets try to validate the
+following&nbsp;payload:</p>
+<pre><code>validator.validate(dict(name='Vaidik', age=10))
+'''
+Returns:
+(False, {'department': ['Expecting a value for this field.']})
+'''
+</code></pre>
+<p>By default, Incoming will use the above error message for missing required
+fields in the payload. This message can be overridden in the class definition
+by setting a class variable <code>required_error</code> like&nbsp;so:</p>
+<pre><code>class PersonValidator(PayloadValidator):
+
+    required_error = 'A value for this field must be provided.'
+    ...
+
+validator.validate(dict(name='Vaidik', age=10))
+'''
+Returns:
+(False, {'department': ['A value for this field must be provided.']})
+'''
+</code></pre>
+<p>The above example shows how you can customize your error messages for missing
+fields that are&nbsp;required.</p>
+<h3>Wrap&nbsp;Up</h3>
+<p>There are many things that I was not able to cover in this blog post. You can
+find them in the <a href="http://incoming.readthedocs.org/en/latest/">docs</a>.</p>
+<p>My personal pains with validating payloads led me to work on Incoming. It seems
+like a decent solution to me as of now. I tried my best to cover as many
+use-cases as possible but I will not be surprised if I have missed some. I have
+tried my best to keep the <span class="caps">API</span> as simple, tidy and easy to comprehend as
+possible with a lot of focus on readability of validators. And I sure will be
+adding features to Incoming in the near future as the need&nbsp;arises.</p>
+<p>Does this look like a decent solutin to you? Would you use it in your next
+application? Yes or no - I would love to hear your&nbsp;thoughts!</p>            </section>
         </article>
 
         <section>

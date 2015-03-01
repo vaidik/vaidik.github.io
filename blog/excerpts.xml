@@ -7,10 +7,45 @@
         <link href="/"/>
     
         
-    <updated>2015-02-14T23:23:41Z</updated>
+    <updated>2015-02-15T21:08:48Z</updated>
 
     <id>/blog/excerpts.xml/</id>
 
+            <entry>
+            <title type="html">Incoming - JSON Validation Framework for Python</title>
+            <author><name>Vaidik Kapoor</name></author>
+            <link href="/blog/incoming-python-json-validation-framework.html"/>
+            <updated>2015-02-16T12:00:00Z</updated>
+            <published>2015-02-16T12:00:00Z</published>
+            <id>/blog/incoming-python-json-validation-framework.html</id>
+                        <category   scheme="/blog/tags"
+                        term="python"
+                        label="Python" />
+                        <category   scheme="/blog/tags"
+                        term="web"
+                        label="Web" />
+                        <category   scheme="/blog/tags"
+                        term="json"
+                        label="Json" />
+                        <category   scheme="/blog/tags"
+                        term="validation"
+                        label="Validation" />
+                        <category   scheme="/blog/tags"
+                        term="frameworks"
+                        label="Frameworks" />
+            
+            <content type="html">
+                
+                &lt;p&gt;&lt;a href=&#34;https://github.com/vaidik/incoming&#34;&gt;Incoming&lt;/a&gt; is a &lt;span class=&#34;caps&#34;&gt;JSON&lt;/span&gt; validation framework for Python. Validation of payloads
+sent over &lt;span class=&#34;caps&#34;&gt;HTTP&lt;/span&gt; requests has always been a mess. A bunch of if-then-else
+further branching into more if-then-else blocks is common and over time
+becomes extremely difficult to manage. Since the use of &lt;span class=&#34;caps&#34;&gt;JSON&lt;/span&gt;
+for &lt;span class=&#34;caps&#34;&gt;HTTP&lt;/span&gt; payload is a common practice, it only made sense to solve the
+problem of payload validation for payloads in &lt;span class=&#34;caps&#34;&gt;JSON&lt;/span&gt; format. &lt;a href=&#34;https://github.com/vaidik/incoming&#34;&gt;Incoming&lt;/a&gt; is an opinionated
+&lt;span class=&#34;caps&#34;&gt;JSON&lt;/span&gt; validation framework which does not bind to any kind of web frameworks.
+It just tries to make &lt;span class=&#34;caps&#34;&gt;JSON&lt;/span&gt; validation sensible and logical by giving it
+structure and making it possible to re-use validation code across your&amp;nbsp;application.&lt;/p&gt;            </content>
+        </entry>
             <entry>
             <title type="html">Problems with logging while using Gevent's WSGI Server</title>
             <author><name>Vaidik Kapoor</name></author>

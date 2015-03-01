@@ -30,6 +30,12 @@ code {
     position: relative;
 }
 
+p code {
+    display: inline-block;
+    overflow: none;
+    vertical-align: middle;
+}
+
 /* clearfix */
 .clear:after {
     content: ".";
@@ -184,6 +190,10 @@ nav a {
 
 .post section h2 {
     margin-bottom: 10px;
+}
+
+.post section h3.post-title {
+    margin-top: 0px;
 }
 
 .post section h3, .post section h4 {

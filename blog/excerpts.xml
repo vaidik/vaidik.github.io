@@ -7,7 +7,7 @@
         <link href="/"/>
     
         
-    <updated>2015-02-15T21:08:48Z</updated>
+    <updated>2015-03-02T03:47:00Z</updated>
 
     <id>/blog/excerpts.xml/</id>
 
@@ -15,8 +15,8 @@
             <title type="html">Incoming - JSON Validation Framework for Python</title>
             <author><name>Vaidik Kapoor</name></author>
             <link href="/blog/incoming-python-json-validation-framework.html"/>
-            <updated>2015-02-16T12:00:00Z</updated>
-            <published>2015-02-16T12:00:00Z</published>
+            <updated>2015-03-02T12:00:00Z</updated>
+            <published>2015-03-02T12:00:00Z</published>
             <id>/blog/incoming-python-json-validation-framework.html</id>
                         <category   scheme="/blog/tags"
                         term="python"

@@ -28,6 +28,9 @@
   resource.meta.description }}{% endblock %}">
   <meta name="author" content="Vaidik Kapoor">
 
+  <meta prefix="og: http://ogp.me/ns#" property="og:title" content="{{ resource.meta.title }}" />
+  <meta prefix="og: http://ogp.me/ns#" property="og:description" content="{{ resource.meta.description }}" />
+
   <!--  Mobile viewport optimized: j.mp/bplateviewport -->
   <meta name="viewport" content="{{ resource.meta.viewport }}">
 

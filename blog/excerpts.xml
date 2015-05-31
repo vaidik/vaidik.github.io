@@ -7,10 +7,48 @@
         <link href="/"/>
     
         
-    <updated>2015-03-02T18:58:09Z</updated>
+    <updated>2015-05-31T19:20:35Z</updated>
 
     <id>/blog/excerpts.xml/</id>
 
+            <entry>
+            <title type="html">Understanding Non Blocking I/O with Python - Part 1</title>
+            <author><name>Vaidik Kapoor</name></author>
+            <link href="/blog/understanding-non-blocking-io-with-python-part-1.html"/>
+            <updated>2015-05-31T12:00:00Z</updated>
+            <published>2015-05-31T12:00:00Z</published>
+            <id>/blog/understanding-non-blocking-io-with-python-part-1.html</id>
+                        <category   scheme="/blog/tags"
+                        term="python"
+                        label="Python" />
+                        <category   scheme="/blog/tags"
+                        term="asynchronous"
+                        label="Asynchronous" />
+                        <category   scheme="/blog/tags"
+                        term="io"
+                        label="Io" />
+                        <category   scheme="/blog/tags"
+                        term="nonblocking"
+                        label="Nonblocking" />
+                        <category   scheme="/blog/tags"
+                        term="network"
+                        label="Network" />
+            
+            <content type="html">
+                
+                &lt;p&gt;As someone working with the web stack and languages like Python or Ruby, there
+are high chances that you have heard of Non Blocking I/O. You might as well be
+using it with some of your projects or have tried your hands with libraries
+like Gevent or Tornado. But how do these libraries make network requests non
+blocking. This is something that I had always wondered when I tried Gevent. I
+just couldn&amp;#8217;t get my head around the fact that when you send something to a
+socket or receive from it, it will block execution for the at least the amount
+of time it takes to transmit the data. So how do I make it possible to execute
+something else while I/O is happening? So I started digging in, trying to
+understand how to make some network request non blocking in&amp;nbsp;Python.&lt;/p&gt;
+&lt;p&gt;With this article series, I will try to introduce the topic and go in as much
+detail as&amp;nbsp;possible.&lt;/p&gt;            </content>
+        </entry>
             <entry>
             <title type="html">Incoming - JSON Validation Framework for Python</title>
             <author><name>Vaidik Kapoor</name></author>

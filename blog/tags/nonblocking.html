@@ -22,12 +22,12 @@
         compatibility mode is within the first 1K bytes
         code.google.com/p/chromium/issues/detail?id=23003 -->
 
-  <title>Vaidik's thoughts</title>
-  <meta name="description" content="Vaidik's thoughts">
+  <title></title>
+  <meta name="description" content="Personal blog of Vaidik Kapoor.">
   <meta name="author" content="Vaidik Kapoor">
 
-  <meta prefix="og: http://ogp.me/ns#" property="og:title" content="Vaidik's thoughts" />
-  <meta prefix="og: http://ogp.me/ns#" property="og:description" content="Vaidik's thoughts" />
+  <meta prefix="og: http://ogp.me/ns#" property="og:title" content="" />
+  <meta prefix="og: http://ogp.me/ns#" property="og:description" content="Personal blog of Vaidik Kapoor." />
 
   <!--  Mobile viewport optimized: j.mp/bplateviewport -->
   <meta name="viewport" content="">
@@ -54,14 +54,14 @@
         enables HTML5 elements & feature detects -->
     <script src="/media/js/libs/modernizr-1.7.min.js"></script>
     </head>
-<body id="index">
+<body id="nonblocking">
     <div id="container">
             <div id="main" role="main">
           <header class="clearfix">
               <h1>Vaidik Kapoor</h1>
                                           <nav >
         <a title="Home Page"
-        class="active home"
+        class="home"
         href="/index.html">
         Home
     </a>    <a title="Blog Archives"
@@ -77,107 +77,50 @@
           </header>
 
           <section class="content">
-              
-        <article class="post excerpt">
-        <aside>
-            <time datetime="2015-05-31">
-                May 31, 2015
-            </time>
-        </aside>
-                                    <section>
-            <h3 class="post-title">
-                <a href="/blog/understanding-non-blocking-io-with-python-part-1.html">Understanding Non Blocking I/O with Python - Part 1</a>
-            </h3>
-                                                <p>As someone working with the web stack and languages like Python or Ruby, there
-are high chances that you have heard of Non Blocking I/O. You might as well be
-using it with some of your projects or have tried your hands with libraries
-like Gevent or Tornado. But how do these libraries make network requests non
-blocking. This is something that I had always wondered when I tried Gevent. I
-just couldn&#8217;t get my head around the fact that when you send something to a
-socket or receive from it, it will block execution for the at least the amount
-of time it takes to transmit the data. So how do I make it possible to execute
-something else while I/O is happening? So I started digging in, trying to
-understand how to make some network request non blocking in&nbsp;Python.</p>
-<p>With this article series, I will try to introduce the topic and go in as much
-detail as&nbsp;possible.</p>
-                    <a href="/blog/understanding-non-blocking-io-with-python-part-1.html">Read More...</a>
-                                    </section>
-    </article>
-
-            <article class="post excerpt">
-        <aside>
-            <time datetime="2015-03-02">
-                March 02, 2015
-            </time>
-        </aside>
-                                    <section>
-            <h3 class="post-title">
-                <a href="/blog/incoming-python-json-validation-framework.html">Incoming - JSON Validation Framework for Python</a>
-            </h3>
-                                                <p><a href="https://github.com/vaidik/incoming">Incoming</a> is a <span class="caps">JSON</span> validation framework for Python. Validation of payloads
-sent over <span class="caps">HTTP</span> requests has always been a mess. A bunch of if-then-else
-further branching into more if-then-else blocks is common and over time
-becomes extremely difficult to manage. Since the use of <span class="caps">JSON</span>
-for <span class="caps">HTTP</span> payload is a common practice, it only made sense to solve the
-problem of payload validation for payloads in <span class="caps">JSON</span> format. <a href="https://github.com/vaidik/incoming">Incoming</a> is an opinionated
-<span class="caps">JSON</span> validation framework which does not bind to any kind of web frameworks.
-It just tries to make <span class="caps">JSON</span> validation sensible and logical by giving it
-structure and making it possible to re-use validation code across your&nbsp;application.</p>
-                    <a href="/blog/incoming-python-json-validation-framework.html">Read More...</a>
-                                    </section>
-    </article>
-
-            <article class="post excerpt">
-        <aside>
-            <time datetime="2015-02-01">
-                February 01, 2015
-            </time>
-        </aside>
-                                    <section>
-            <h3 class="post-title">
-                <a href="/blog/gevent-wsgi-logging-problems.html">Problems with logging while using Gevent's WSGI Server</a>
-            </h3>
-                                                <p>This article is about the logging problem with <a href="http://gevent.org/">Gevent&#8217;s</a> <a href="http://gevent.org/gevent.wsgi.html#gevent.wsgi.WSGIHandler"><span class="caps">WSGI</span>
-Server</a> and how a simple hack can actually help you solve that problem
-and make sure you continue to use Gevent for serving <span class="caps">WSGI</span> applications
-(<a href="http://flask.pocoo.org/">Flask</a> in this article) without any&nbsp;compromises.</p>
-                    <a href="/blog/gevent-wsgi-logging-problems.html">Read More...</a>
-                                    </section>
-    </article>
-
-            <article class="post excerpt">
-        <aside>
-            <time datetime="2013-03-20">
-                March 20, 2013
-            </time>
-        </aside>
-                                    <section>
-            <h3 class="post-title">
-                <a href="/blog/cloud-computing.html">What is Cloud Computing?</a>
-            </h3>
-                                                <p>I wrote this article while I was doing my undergrad for students who I was
-guiding while mentoring in Sytems and Network Programming lab course work. Every
-lab course would have a semester end assignment (or what we would call semester
-projects). Cloud Computing was one of the areas in which students could do their
-projects. But without any understanding of the area, students would decide to
-make their projects under Cloud Computing and end up doing things that were not
-even closely related to the area. Unfortunately, there was not much help from
-the faculty as well. This article was an attempt to explain the topic/area to
-the students of the lab that I was&nbsp;assisting.</p>
-                    <a href="/blog/cloud-computing.html">Read More...</a>
-                                    </section>
-    </article>
-
-            
-<center><a href="/blog"><span style="font-size: 19px; font-weight: bold;">&laquo; Older Posts in Archives</span></a></center>
-
+              <section class="archives">
+<h1 class="tag title">nonblocking</h1>
+<ul class="posts clear">
+<li class="post clear">
+    <time datetime="2015-05-31">
+        Sun, 31 May 2015
+    </time>
+    <a href="/blog/understanding-non-blocking-io-with-python-part-1.html">Understanding Non Blocking I/O with Python - Part 1</a>
+        <ul class="tags">
+        <li>
+        <a class="small" href="/blog/tags/python.html">
+            python
+        </a>
+    </li>
+        <li>
+        <a class="small" href="/blog/tags/asynchronous.html">
+            asynchronous
+        </a>
+    </li>
+        <li>
+        <a class="small" href="/blog/tags/io.html">
+            io
+        </a>
+    </li>
+        <li>
+        <a class="small" href="/blog/tags/nonblocking.html">
+            nonblocking
+        </a>
+    </li>
+        <li>
+        <a class="small" href="/blog/tags/network.html">
+            network
+        </a>
+    </li>
+        </ul>
+    </li></ul>
+</section>
           </section>
       </div>
 
       <footer>
                               <nav >
         <a title="Home Page"
-        class="active home"
+        class="home"
         href="/index.html">
         Home
     </a>    <a title="Blog Archives"

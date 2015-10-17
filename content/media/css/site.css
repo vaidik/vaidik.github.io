@@ -36,6 +36,11 @@ p code {
     vertical-align: middle;
 }
 
+li code {
+    display: inline-block;
+    overflow: inherit;
+}
+
 /* clearfix */
 .clear:after {
     content: ".";

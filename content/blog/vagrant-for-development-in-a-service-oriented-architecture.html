@@ -1,0 +1,402 @@
+---
+title: Vagrant for Development in a Service Oriented Architecture (SOA)
+description: 
+    Vagrant is an amazing tool for developing throw-away dev environment that
+    closely resembles production. You may find a ton of projects on Github that
+    make use of Vagrant for development. However, they use Vagrant for
+    development of the project alone. That may work fine with one off projects
+    or open-source projects. In a real world scenario where you have more than
+    one projects working together, setting them up locally may be difficult.
+    This post presents a way you can use Vagrant in an Service Oriented
+    Architecture where it may be possible for you to use the same Vagrant setup
+    with multiple projects.
+created: !!timestamp '2015-10-17 12:00:00'
+tags:
+    - vagrant
+    - programming
+    - ops
+    - devops
+    - productivity
+    - automation
+---
+
+{% mark image -%}
+
+{%- endmark %}
+
+{% mark excerpt -%}
+
+[Vagrant][vagrant] is an amazing tool for developing throw-away dev environment
+that closely resembles production. It greatly reduces turn around times and
+effort on setting up your development environment. It gives you the flexibility
+to experiment around, play with new experimental stuff and if you mess it up,
+then you can easily destroy and quickly re-create another one.
+
+You may find a ton of projects on Github that make use of Vagrant for
+development. However, they use Vagrant for development of the project alone.
+That may work fine with one off projects or open-source projects. In a real
+world scenario where you have more than one projects working together, setting
+them up locally may be difficult. This post presents a way you can use Vagrant
+in an Service Oriented Architecture where it may be possible for you to use the
+same Vagrant setup with multiple projects.
+
+[vagrant]: https://vagrantup.com
+
+{%- endmark %}
+
+## Our Requirements
+
+This is something that I spent a considerable amount of time while working with
+my previous employer - [Wingify](https://wingify.com). At Wingify, one of my
+responsibilities was how can I improve developer productivity and ensure that
+the software that gets pushed to production actually works after deployment. The
+things that I considered were essential for a good development environment are:
+
+**Developer Productivity** - make sure that developers' productivity and
+ease-of-development is not compromised. Vagrant uses virtualized environments
+for setting up dev environments. It works with [Virtualbox][virtualbox]
+[out-of-the-box][virtualbox-provider]. We had to make sure that developers
+don't have to use different tools (like IDE) even if their code is running in
+virtualized environments.
+
+**Configuration Management** - configuration and system orchestration has to be
+managed through code. Infrastructure must be codified so that both Ops and Devs
+can read it, understand it, modify it as needed and eventually everyone
+contributes to it. We were already using [Puppet][puppet] for this. The best
+thing is that Vagrant works with Puppet. And not just with Puppet, it works with
+a ton of other [configuration management tools][provisioners]. So you can use
+your favorite tool.
+
+**Dev/Prod Parity** - One of the first things to do in this case was make sure
+that the developers are at least using the same set of tools and setting up
+their development environments exactly the same way as we will setup the
+production servers. If you are using configuration management tools, it should
+be fairly simple to put together a development environment provisioned using
+them. But its not just that. Even minute things like lack of a proxy in
+development environment for connect to another TCP service can lead to a failure
+in production. To avoid such things, well... provision all intermediate layers
+as well. For example, we use [mysql-proxy][mysql-proxy] in production to
+connect to our [MySQL][mysql] servers. We made sure that in our development
+environment, our apps also make use of mysql-proxy to connect to MySQL instead
+of working with it directly.
+
+**All essential services must be provisioned** - the stage at which I had made
+it a priority to make dev environments productive was the stage where we already
+had tons of services (written by us) that together made our product work. Not
+all of them were essential for day-to-day development of our product, but at
+least a few were. So the most important problem to solve for us was how to make
+the dev environment have the critical services automatically set up, leaving
+enough room to add new services later. This was also important, especially with
+respect to how people use Vagrant essentially i.e. using it to work on one
+independent project.
+
+## Customizing Vagrant, just a little bit
+
+Vagrant's getting started docs are pretty good with getting you to have your
+first development environment set up really quickly. But if you don't pay
+attention to the campabilities of what Vagrant can do, you may end up not using
+Vagrant to the best of its abilities.
+
+### Dedicate a repositorty for your Vagrant setup
+
+One of our needs was to have multiple projects available in our
+development environment. You can achieve this with Vagrant using [Synced
+Folders][synced-folders]. Synced Folders share a folder on your machine at a
+specified location on your guest machine. This makes it easy for developers to
+keep using the tools they love on their host machine (things like IDEs, other
+CLI tools, etc.).
+
+Usually how different projects use Vagrant and Synced Folders is they drop
+Vagrantfile in the root of the project and share the current directory `"."`
+with the guest machine using Synced Folders.
+
+    webapplication/
+        models/
+        views/
+        controllers/
+        README.md
+        Vagrantfile         # Vagrant configuration
+        vagrant/            # Provisioning scripts, bash, Puppet, ansible, etc.
+
+The Vagrantfile in this above typical project will use the Synced Folder feature
+to share the code like so:
+
+    config.vm.synced_folder ".", "/var/www/webapplication"
+
+So when you run `vagrant up`, the above directory is shared and made available
+in the virtual machine. The scripts in the `vagrant/` directory are used for
+setting up the rest of the things required to run the `webapplication`.
+
+As this may work wonderfully with an independent project, this organization of
+Vagrant configuration and projects fails in the case when you want multiple
+projects provisioned in the same environment because its hard to decide where
+to put all the configuration.
+
+So we decided to go ahead and make a seperate project for all Vagrant related
+stuff. Our Vagrant setup looks like this:
+
+    dev-environment/
+        hiera/
+        lib/
+        scripts/
+        README.md
+        Vagrantfile
+        nodes.pp
+        hiera.yaml
+        config.default.yml
+        ...                 # Some other stuff
+
+Let me explain what are these things for:
+
+1. **hiera/**, **hiera.yaml**, **nodes.pp**: this is all Puppet specific stuff
+   that we will see later.
+2. **lib/**: Ruby code that is used for doing some custom stuff with Vagrant. We
+   will see this shortly.
+3. **scripts/**: a few Bash scripts for doing some very basic setups like
+   installing some extra dependencies for Puppet.
+4. **config.default.yml**: A reference configuration file, which is more
+   developer friendly. It is used by the Vagrantfile.
+5. **Vagranfile**: the standard Vagrantfile with some modifications.
+
+### Flexibile configuration in Vagrantfile
+
+Vagrant environments are configured using something called a
+[Vagrantfile][vagrantfile]. All the configuration related to your Vagrant
+environment resides here. It describes the type of machine required for your
+project and how to provision this machine.
+
+The syntax of Vagrantfile is [Ruby][ruby]. You don't have to know the language
+for working with Vagrantfile. The syntax is pretty simple. But if you do know
+the language, you can do a lot with Vagrantfile(s). Since a Vagrantfile just has
+Ruby code, you can do a lot of fancy things in there to make Vagrant work
+according to your needs.
+
+The `config.default.yml` file in the previous section is just a reference
+configuration file. It needs to be copied. Our setup requires a `config.yml`
+file instead of the default file but in the same format. The `config.yml` file
+looks something like this:
+
+    ---
+    scm:
+        github:
+            enabled: true
+            api_token: null       # set your API token here
+        bitbucket:
+            enabled: true
+            api_token: null       # set your API token here
+    puppet:
+        path: <path to puppet>
+    projects:
+        website: <Path to website>
+        webapplication: <Path to webapplication>
+        queue-workers: <Path to queue-workers>
+        analytics-service: <Path to analytics-service>
+
+The config file is in [YAML][yaml] format. At the beginning of the
+`Vagrantfile`, we parse the contents which are available through out the file.
+This file lists down multiple things. We will see each one of them one-by-one.
+
+### Using Synced Folders to sync multiple projects
+
+**projects**: This key in `config.yml` is the list of projects that we would
+like to be set up in our Vagrant environment. In our `Vagrantfile`, we just use
+Synced Folders to make these projects available at the locations they should be
+made available at.
+
+    app.vm.synced_folder vagrant_config["projects"]["website"],
+        "/var/www/website",
+        owner: 'www-data',
+        group: 'www-data',
+        mount_options: ["dmode=775,fmode=664"]
+    app.vm.synced_folder vagrant_config["projects"]["webapplication"],
+        "/var/www/webapplication",
+        owner: 'www-data',
+        group: 'www-data',
+        mount_options: ["dmode=775,fmode=664"]
+    app.vm.synced_folder vagrant_config["projects"]["queue-workers"],
+        "/opt/queue-workers",
+        owner: 'queue_workers',
+        group: 'queue_workers',
+        mount_options: ["dmode=775,fmode=664"]
+    app.vm.synced_folder vagrant_config["projects"]["analytics-service"],
+        "/opt/analytics-service",
+        owner: 'analytics',
+        group: 'analytics',
+        mount_options: ["dmode=775,fmode=664"]
+
+This does a few things that are important for our environment:
+
+1. Developers organize their projects differently. Every project may lie at a
+   different location from host to host. This way, developers can put their
+   projects anywhere on their machine and then configure our Vagrant set up to
+   sync the code in the guest machine from the locations specified in
+   `config.yml`.
+2. If a new project needs to be provisioned, then you can just add the project
+   in `config.yml`, add it in `Vagrantfile` like above and have Puppet do the
+   set up. This way adding new projects does not require a lot of work.
+
+### Puppet for provisioning
+
+**puppet** - this key creates a space for customizing the Puppet setup we use
+for setting up Vagrant. How we use Puppet at Wingify is that there is one
+repository where all the Puppet modules, manifests and Hiera data lies. When
+setting up the development environment using this project, one of the first
+steps to use Vagrant is clone this Puppet code-base somewhere on your host
+machine. Then add the Path to the project in your Vagrantfile.
+
+This is what we do in our `Vagrantfile`:
+
+    config.vm.provision "puppet" do |puppet|
+        modulepath = File.join(vagrant_config["puppet"]["path"], "modules")
+        config.vm.synced_folder vagrant_config["puppet"]["path"], "/etc/puppet"
+
+        puppet.manifests_path = "."
+        puppet.module_path = modulepath
+        puppet.manifest_file = "nodes.pp"
+        puppet.hiera_config_path = "hiera.yaml"
+
+        puppet.facter = {
+            "in_vagrant"       => true,
+        }
+        puppet.options = "--parser future"
+    end
+
+Using this, we configure Vagrant to use Puppet in a slightly different way. This
+tells Vagrant to load the Puppet modules from the Puppet repository, use the
+site manifest which is seperate for Vagrant machines which is lying in this
+repository i.e. vagrant repository - `nodes.pp`.
+
+#### Configuration data
+
+The last thing that is important is where to load the actual configuration from.
+In Puppet world, [Hiera][hiera] is very commonly used for this. Our Puppet
+repository comes with some sane defaults for every module. These configurations'
+default values are overridden depending upon which environment is that module
+used for provisioning. Such is the case with Vagrant as well. The values that
+override the defaults are checked in the vagrant repository. The hierarchy for
+Hiera is defined in `hiera.yaml` and the configuration values that override the
+defaults are available in `hiera/` directory.
+
+#### Vagrant-aware Puppet modules
+
+Usually, the Puppet module for setting up your project will also clone your
+project to the target machine. In case of Vagrant with your project already
+synced to the guest machine, this may fail. You might want to avoid the cloning
+step in your Puppet module. In our Vagrant file, we added a pre-defined custom
+fact (called `in_vagrant`) that can be used in your modules to be aware if you
+are in Vagrant or not.
+
+Consider this example:
+
+    if $::in_vagrant != true {
+        vcsrepo { '/var/www/webapplication':
+            ensure   => latest,
+            owner    => 'www-data',
+            group    => 'www-data',
+            provider => git,
+            require  => [ Package['git'] ],
+            source   => 'ssh://git@github.com/yourorganization/webapplication.git',
+        }
+    }
+
+In the above Puppet code snippet, we are making sure that we don't checkout our
+repository when we are in Vagrant.
+
+### Stay secure - use proper SSH keys
+
+As you may be sharing some projects from host to guest, there may be some
+projects where you don't need to share them from guest to host but still want to
+set them up. You can just go ahead and use your Puppet modules for doing that,
+but you need to set up proper accesses to clone these projects in your
+virtualized environment.
+
+**scm**: this key requires you to tell us which SCM providers are your projects
+using and share the access credentials so that we can generate a new set of SSH
+keys inside the virtual machine and use the API of these providers to directly
+add your newly generated SSH key so that the process of setting up is fully
+automated.
+
+Other than automating the complete set up, it also adds a level of security. If
+a breach happens, you have finer level of control over which set of keys to
+revoke.
+
+## Multi-Machine Setup
+
+All this will work absolutely fine for your multiple project requirement where
+you have more than one services running and working with each other.
+
+There can be a couple of things that still can be improved:
+
+1. Multiple projects on one machine requiring the same package but with a
+   different version may lead to a situation difficult to handle.
+2. Multiple services running on the same port may become difficult to deal with.
+   You can solve this using another proxy in between but this may not be ideal
+   as this is not the way you may be doing this in production.
+3. If you have services that are accessed using proxy and the upstream service
+   lives on another machine, well it may be better if it was actually running on
+   a different machine.
+
+You can achieve all this using [Vagrant's Multi-Machine][multi-machine], perhaps
+more than this.
+
+As I mentioned earlier in this post, we use `mysql-proxy` to connect to the main
+MySQL server, we can leverage Vagrant's multi machine feature to have two
+virtual machines on the same private network and make sure that MySQL is
+actually running on a different machine.
+
+For our example, we can arrange our services like so:
+
+	VM1:
+		- webapplication
+		- analytics-service
+		- mysql-proxy
+	VM2:
+		- website
+		- mysql
+
+In the above set up, we have two virtual machines. VM1 has `webapplication` and
+`analytics-service` running, both of which depend on MySQL. So they make use of
+`mysql-proxy` to connect to MySQL.
+
+On VM2, we run MySQL. So the `mysql-proxy` on VM1 proxies to VM2. We also
+decided to put the `website` on VM2 for two reasons - one that this VM will
+probably be under-provisioned with just MySQL running on it and two that the
+webapplication runs behind Apache on port 80 but the website is served using
+Nginx on port 80 and both cannot run on the same machine without putting another
+proxy in front of them.
+
+This way we have managed to make all services come as close to production set up
+as possible.
+
+## Conclusion
+
+1. Using Vagrant and changing it a bit to our needs really helped us have the
+   most critical services set up with ease. Having most of the services set up
+   locally also makes it possible for end-to-end testing.
+2. **Packaging the VMs** into Vagrant boxes helps reduce set up time a lot.
+   Otherwise, first run may take really long to complete.
+3. Development environment is much closer to production environments. We see
+   relatively lesser environment specific bugs.
+4. Developers have a better understanding of production systems. May be some day
+   the will be able to contribute to Puppet code base as well.
+
+Do you think these wins are worth the effort? Do share your thoughts.
+
+I [presented a talk][slides] at [FUDCon Pune 2015][fudcon] on the same topic.
+You might find the contents of that useful as well.
+
+[puppet]: https://puppetlabs.com/
+[vagrant]: https://vagrantup.com
+[vagrantfile]: https://docs.vagrantup.com/v2/vagrantfile/
+[provisioners]: https://docs.vagrantup.com/v2/provisioning/index.html
+[virtualbox]: https://www.virtualbox.org/
+[virtualbox-provider]: https://docs.vagrantup.com/v2/virtualbox/index.html
+[mysql]: https://www.mysql.com/
+[mysql-proxy]: https://dev.mysql.com/downloads/mysql-proxy/
+[ruby]: https://www.ruby-lang.org/en/
+[synced-folders]: https://docs.vagrantup.com/v2/synced-folders/index.html
+[yaml]: http://yaml.org/
+[hiera]: http://docs.puppetlabs.com/hiera/1/
+[multi-machine]: https://docs.vagrantup.com/v2/multi-machine/
+[slides]: http://www.slideshare.net/kapoorvaidik/vagrant-for-effective-devops-culture
+[fudcon]: http://fudcon.in/

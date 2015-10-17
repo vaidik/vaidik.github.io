@@ -7,10 +7,51 @@
         <link href="/"/>
     
         
-    <updated>2015-05-31T19:20:35Z</updated>
+    <updated>2015-10-18T01:37:34Z</updated>
 
     <id>/blog/excerpts.xml/</id>
 
+            <entry>
+            <title type="html">Vagrant for Development in a Service Oriented Architecture (SOA)</title>
+            <author><name>Vaidik Kapoor</name></author>
+            <link href="/blog/vagrant-for-development-in-a-service-oriented-architecture.html"/>
+            <updated>2015-10-17T12:00:00Z</updated>
+            <published>2015-10-17T12:00:00Z</published>
+            <id>/blog/vagrant-for-development-in-a-service-oriented-architecture.html</id>
+                        <category   scheme="/blog/tags"
+                        term="vagrant"
+                        label="Vagrant" />
+                        <category   scheme="/blog/tags"
+                        term="programming"
+                        label="Programming" />
+                        <category   scheme="/blog/tags"
+                        term="ops"
+                        label="Ops" />
+                        <category   scheme="/blog/tags"
+                        term="devops"
+                        label="Devops" />
+                        <category   scheme="/blog/tags"
+                        term="productivity"
+                        label="Productivity" />
+                        <category   scheme="/blog/tags"
+                        term="automation"
+                        label="Automation" />
+            
+            <content type="html">
+                
+                &lt;p&gt;&lt;a href=&#34;https://vagrantup.com&#34;&gt;Vagrant&lt;/a&gt; is an amazing tool for developing throw-away dev environment
+that closely resembles production. It greatly reduces turn around times and
+effort on setting up your development environment. It gives you the flexibility
+to experiment around, play with new experimental stuff and if you mess it up,
+then you can easily destroy and quickly re-create another&amp;nbsp;one.&lt;/p&gt;
+&lt;p&gt;You may find a ton of projects on Github that make use of Vagrant for
+development. However, they use Vagrant for development of the project alone.
+That may work fine with one off projects or open-source projects. In a real
+world scenario where you have more than one projects working together, setting
+them up locally may be difficult. This post presents a way you can use Vagrant
+in an Service Oriented Architecture where it may be possible for you to use the
+same Vagrant setup with multiple&amp;nbsp;projects.&lt;/p&gt;            </content>
+        </entry>
             <entry>
             <title type="html">Understanding Non Blocking I/O with Python - Part 1</title>
             <author><name>Vaidik Kapoor</name></author>

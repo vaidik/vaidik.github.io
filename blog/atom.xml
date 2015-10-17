@@ -7,10 +7,39 @@
         <link href="/"/>
     
         
-    <updated>2015-05-31T19:20:34Z</updated>
+    <updated>2015-10-18T01:37:33Z</updated>
 
     <id>/blog/atom.xml/</id>
 
+            <entry>
+            <title type="html">Vagrant for Development in a Service Oriented Architecture (SOA)</title>
+            <author><name>Vaidik Kapoor</name></author>
+            <link href="/blog/vagrant-for-development-in-a-service-oriented-architecture.html"/>
+            <updated>2015-10-17T12:00:00Z</updated>
+            <published>2015-10-17T12:00:00Z</published>
+            <id>/blog/vagrant-for-development-in-a-service-oriented-architecture.html</id>
+                        <category   scheme="/blog/tags"
+                        term="vagrant"
+                        label="Vagrant" />
+                        <category   scheme="/blog/tags"
+                        term="programming"
+                        label="Programming" />
+                        <category   scheme="/blog/tags"
+                        term="ops"
+                        label="Ops" />
+                        <category   scheme="/blog/tags"
+                        term="devops"
+                        label="Devops" />
+                        <category   scheme="/blog/tags"
+                        term="productivity"
+                        label="Productivity" />
+                        <category   scheme="/blog/tags"
+                        term="automation"
+                        label="Automation" />
+            
+            <content type="html">
+                                            </content>
+        </entry>
             <entry>
             <title type="html">Understanding Non Blocking I/O with Python - Part 1</title>
             <author><name>Vaidik Kapoor</name></author>

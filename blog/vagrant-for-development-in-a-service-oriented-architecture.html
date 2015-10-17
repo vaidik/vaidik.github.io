@@ -1,0 +1,479 @@
+<!doctype html>
+<!-- https://github.com/paulirish/html5-boilerplate/blob/master/index.html -->
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="">
+
+  <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+       Remove this if you use the .htaccess -->
+  <meta http-equiv="X-UA-Compatible" content="">
+
+  <!-- encoding must be specified within the first 512 bytes
+        www.whatwg.org/specs/web-apps/current-work/multipage/semantics.html#charset -->
+
+  <!-- meta element for compatibility mode needs to be before
+        all elements except title & meta
+        msdn.microsoft.com/en-us/library/cc288325(VS.85).aspx -->
+  <!-- Chrome Frame is only invoked if meta element for
+        compatibility mode is within the first 1K bytes
+        code.google.com/p/chromium/issues/detail?id=23003 -->
+
+  <title>Vagrant for Development in a Service Oriented Architecture (SOA)</title>
+  <meta name="description" content="Vagrant is an amazing tool for developing throw-away dev environment that closely resembles production. You may find a ton of projects on Github that make use of Vagrant for development. However, they use Vagrant for development of the project alone. That may work fine with one off projects or open-source projects. In a real world scenario where you have more than one projects working together, setting them up locally may be difficult. This post presents a way you can use Vagrant in an Service Oriented Architecture where it may be possible for you to use the same Vagrant setup with multiple projects.">
+  <meta name="author" content="Vaidik Kapoor">
+
+  <meta prefix="og: http://ogp.me/ns#" property="og:title" content="Vagrant for Development in a Service Oriented Architecture (SOA)" />
+  <meta prefix="og: http://ogp.me/ns#" property="og:description" content="Vagrant is an amazing tool for developing throw-away dev environment that closely resembles production. You may find a ton of projects on Github that make use of Vagrant for development. However, they use Vagrant for development of the project alone. That may work fine with one off projects or open-source projects. In a real world scenario where you have more than one projects working together, setting them up locally may be difficult. This post presents a way you can use Vagrant in an Service Oriented Architecture where it may be possible for you to use the same Vagrant setup with multiple projects." />
+
+  <!--  Mobile viewport optimized: j.mp/bplateviewport -->
+  <meta name="viewport" content="">
+
+    <!-- Place favicon.ico & apple-touch-icon.png
+        in the root of your domain and delete these references -->
+  <link rel="shortcut icon" href="/media/favicon.ico">
+  <link rel="apple-touch-icon" href="/media/apple-touch-icon.png">
+  
+  <!-- External Fonts -->
+  <link href='http://fonts.googleapis.com/css?family=Mate+SC|Oxygen' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Balthazar' rel='stylesheet' type='text/css'>
+
+  <!-- highlight.js -->
+  <link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/default.min.css">
+  <script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+    <link rel="stylesheet" href="/media/css/site.css">
+  <link rel="stylesheet" href="/media/css/syntax.css">
+  
+    <!-- All JavaScript at the bottom, except for Modernizr which
+        enables HTML5 elements & feature detects -->
+    <script src="/media/js/libs/modernizr-1.7.min.js"></script>
+    </head>
+<body id="vagrant-for-development-in-a-service-oriented-architecture">
+    <div id="container">
+            <div id="main" role="main">
+          <header class="clearfix">
+              <h1>Vaidik Kapoor</h1>
+                                          <nav >
+        <a title="Home Page"
+        class="home"
+        href="/index.html">
+        Home
+    </a>    <a title="Blog Archives"
+        class="active blog"
+        href="/blog">
+        Archives
+    </a>    <a title="About"
+        class="about"
+        href="/about.html">
+        About
+    </a></nav>
+              
+          </header>
+
+          <section class="content">
+              <div class="post">
+        <article>
+            <aside>
+                <time datetime="2015-10-17">
+                    October 17, 2015
+                </time>
+            </aside>
+            <section>
+                <h2>
+                    <a href="">Vagrant for Development in a Service Oriented Architecture (SOA)</a>
+                </h2>
+                <p><a href="https://vagrantup.com">Vagrant</a> is an amazing tool for developing throw-away dev environment
+that closely resembles production. It greatly reduces turn around times and
+effort on setting up your development environment. It gives you the flexibility
+to experiment around, play with new experimental stuff and if you mess it up,
+then you can easily destroy and quickly re-create another&nbsp;one.</p>
+<p>You may find a ton of projects on Github that make use of Vagrant for
+development. However, they use Vagrant for development of the project alone.
+That may work fine with one off projects or open-source projects. In a real
+world scenario where you have more than one projects working together, setting
+them up locally may be difficult. This post presents a way you can use Vagrant
+in an Service Oriented Architecture where it may be possible for you to use the
+same Vagrant setup with multiple&nbsp;projects.</p>
+<h2>Our&nbsp;Requirements</h2>
+<p>This is something that I spent a considerable amount of time while working with
+my previous employer - <a href="https://wingify.com">Wingify</a>. At Wingify, one of my
+responsibilities was how can I improve developer productivity and ensure that
+the software that gets pushed to production actually works after deployment. The
+things that I considered were essential for a good development environment&nbsp;are:</p>
+<p><strong>Developer Productivity</strong> - make sure that developers&#8217; productivity and
+ease-of-development is not compromised. Vagrant uses virtualized environments
+for setting up dev environments. It works with <a href="https://www.virtualbox.org/">Virtualbox</a>
+<a href="https://docs.vagrantup.com/v2/virtualbox/index.html">out-of-the-box</a>. We had to make sure that developers
+don&#8217;t have to use different tools (like <span class="caps">IDE</span>) even if their code is running in
+virtualized&nbsp;environments.</p>
+<p><strong>Configuration Management</strong> - configuration and system orchestration has to be
+managed through code. Infrastructure must be codified so that both Ops and Devs
+can read it, understand it, modify it as needed and eventually everyone
+contributes to it. We were already using <a href="https://puppetlabs.com/">Puppet</a> for this. The best
+thing is that Vagrant works with Puppet. And not just with Puppet, it works with
+a ton of other <a href="https://docs.vagrantup.com/v2/provisioning/index.html">configuration management tools</a>. So you can use
+your favorite&nbsp;tool.</p>
+<p><strong>Dev/Prod Parity</strong> - One of the first things to do in this case was make sure
+that the developers are at least using the same set of tools and setting up
+their development environments exactly the same way as we will setup the
+production servers. If you are using configuration management tools, it should
+be fairly simple to put together a development environment provisioned using
+them. But its not just that. Even minute things like lack of a proxy in
+development environment for connect to another <span class="caps">TCP</span> service can lead to a failure
+in production. To avoid such things, well&#8230; provision all intermediate layers
+as well. For example, we use <a href="https://dev.mysql.com/downloads/mysql-proxy/">mysql-proxy</a> in production to
+connect to our <a href="https://www.mysql.com/">MySQL</a> servers. We made sure that in our development
+environment, our apps also make use of mysql-proxy to connect to MySQL instead
+of working with it&nbsp;directly.</p>
+<p><strong>All essential services must be provisioned</strong> - the stage at which I had made
+it a priority to make dev environments productive was the stage where we already
+had tons of services (written by us) that together made our product work. Not
+all of them were essential for day-to-day development of our product, but at
+least a few were. So the most important problem to solve for us was how to make
+the dev environment have the critical services automatically set up, leaving
+enough room to add new services later. This was also important, especially with
+respect to how people use Vagrant essentially i.e. using it to work on one
+independent&nbsp;project.</p>
+<h2>Customizing Vagrant, just a little&nbsp;bit</h2>
+<p>Vagrant&#8217;s getting started docs are pretty good with getting you to have your
+first development environment set up really quickly. But if you don&#8217;t pay
+attention to the campabilities of what Vagrant can do, you may end up not using
+Vagrant to the best of its&nbsp;abilities.</p>
+<h3>Dedicate a repositorty for your Vagrant&nbsp;setup</h3>
+<p>One of our needs was to have multiple projects available in our
+development environment. You can achieve this with Vagrant using <a href="https://docs.vagrantup.com/v2/synced-folders/index.html">Synced
+Folders</a>. Synced Folders share a folder on your machine at a
+specified location on your guest machine. This makes it easy for developers to
+keep using the tools they love on their host machine (things like IDEs, other
+<span class="caps">CLI</span> tools,&nbsp;etc.).</p>
+<p>Usually how different projects use Vagrant and Synced Folders is they drop
+Vagrantfile in the root of the project and share the current directory <code>"."</code>
+with the guest machine using Synced&nbsp;Folders.</p>
+<pre><code>webapplication/
+    models/
+    views/
+    controllers/
+    README.md
+    Vagrantfile         # Vagrant configuration
+    vagrant/            # Provisioning scripts, bash, Puppet, ansible, etc.
+</code></pre>
+<p>The Vagrantfile in this above typical project will use the Synced Folder feature
+to share the code like&nbsp;so:</p>
+<pre><code>config.vm.synced_folder ".", "/var/www/webapplication"
+</code></pre>
+<p>So when you run <code>vagrant up</code>, the above directory is shared and made available
+in the virtual machine. The scripts in the <code>vagrant/</code> directory are used for
+setting up the rest of the things required to run the <code>webapplication</code>.</p>
+<p>As this may work wonderfully with an independent project, this organization of
+Vagrant configuration and projects fails in the case when you want multiple
+projects provisioned in the same environment because its hard to decide where
+to put all the&nbsp;configuration.</p>
+<p>So we decided to go ahead and make a seperate project for all Vagrant related
+stuff. Our Vagrant setup looks like&nbsp;this:</p>
+<pre><code>dev-environment/
+    hiera/
+    lib/
+    scripts/
+    README.md
+    Vagrantfile
+    nodes.pp
+    hiera.yaml
+    config.default.yml
+    ...                 # Some other stuff
+</code></pre>
+<p>Let me explain what are these things&nbsp;for:</p>
+<ol>
+<li><strong>hiera/</strong>, <strong>hiera.yaml</strong>, <strong>nodes.pp</strong>: this is all Puppet specific stuff
+   that we will see&nbsp;later.</li>
+<li><strong>lib/</strong>: Ruby code that is used for doing some custom stuff with Vagrant. We
+   will see this&nbsp;shortly.</li>
+<li><strong>scripts/</strong>: a few Bash scripts for doing some very basic setups like
+   installing some extra dependencies for&nbsp;Puppet.</li>
+<li><strong>config.default.yml</strong>: A reference configuration file, which is more
+   developer friendly. It is used by the&nbsp;Vagrantfile.</li>
+<li><strong>Vagranfile</strong>: the standard Vagrantfile with some&nbsp;modifications.</li>
+</ol>
+<h3>Flexibile configuration in&nbsp;Vagrantfile</h3>
+<p>Vagrant environments are configured using something called a
+<a href="https://docs.vagrantup.com/v2/vagrantfile/">Vagrantfile</a>. All the configuration related to your Vagrant
+environment resides here. It describes the type of machine required for your
+project and how to provision this&nbsp;machine.</p>
+<p>The syntax of Vagrantfile is <a href="https://www.ruby-lang.org/en/">Ruby</a>. You don&#8217;t have to know the language
+for working with Vagrantfile. The syntax is pretty simple. But if you do know
+the language, you can do a lot with Vagrantfile(s). Since a Vagrantfile just has
+Ruby code, you can do a lot of fancy things in there to make Vagrant work
+according to your&nbsp;needs.</p>
+<p>The <code>config.default.yml</code> file in the previous section is just a reference
+configuration file. It needs to be copied. Our setup requires a <code>config.yml</code>
+file instead of the default file but in the same format. The <code>config.yml</code> file
+looks something like&nbsp;this:</p>
+<pre><code>---
+scm:
+    github:
+        enabled: true
+        api_token: null       # set your API token here
+    bitbucket:
+        enabled: true
+        api_token: null       # set your API token here
+puppet:
+    path: &lt;path to puppet&gt;
+projects:
+    website: &lt;Path to website&gt;
+    webapplication: &lt;Path to webapplication&gt;
+    queue-workers: &lt;Path to queue-workers&gt;
+    analytics-service: &lt;Path to analytics-service&gt;
+</code></pre>
+<p>The config file is in <a href="http://yaml.org/"><span class="caps">YAML</span></a> format. At the beginning of the
+<code>Vagrantfile</code>, we parse the contents which are available through out the file.
+This file lists down multiple things. We will see each one of them&nbsp;one-by-one.</p>
+<h3>Using Synced Folders to sync multiple&nbsp;projects</h3>
+<p><strong>projects</strong>: This key in <code>config.yml</code> is the list of projects that we would
+like to be set up in our Vagrant environment. In our <code>Vagrantfile</code>, we just use
+Synced Folders to make these projects available at the locations they should be
+made available&nbsp;at.</p>
+<pre><code>app.vm.synced_folder vagrant_config["projects"]["website"],
+    "/var/www/website",
+    owner: 'www-data',
+    group: 'www-data',
+    mount_options: ["dmode=775,fmode=664"]
+app.vm.synced_folder vagrant_config["projects"]["webapplication"],
+    "/var/www/webapplication",
+    owner: 'www-data',
+    group: 'www-data',
+    mount_options: ["dmode=775,fmode=664"]
+app.vm.synced_folder vagrant_config["projects"]["queue-workers"],
+    "/opt/queue-workers",
+    owner: 'queue_workers',
+    group: 'queue_workers',
+    mount_options: ["dmode=775,fmode=664"]
+app.vm.synced_folder vagrant_config["projects"]["analytics-service"],
+    "/opt/analytics-service",
+    owner: 'analytics',
+    group: 'analytics',
+    mount_options: ["dmode=775,fmode=664"]
+</code></pre>
+<p>This does a few things that are important for our&nbsp;environment:</p>
+<ol>
+<li>Developers organize their projects differently. Every project may lie at a
+   different location from host to host. This way, developers can put their
+   projects anywhere on their machine and then configure our Vagrant set up to
+   sync the code in the guest machine from the locations specified in
+   <code>config.yml</code>.</li>
+<li>If a new project needs to be provisioned, then you can just add the project
+   in <code>config.yml</code>, add it in <code>Vagrantfile</code> like above and have Puppet do the
+   set up. This way adding new projects does not require a lot of&nbsp;work.</li>
+</ol>
+<h3>Puppet for&nbsp;provisioning</h3>
+<p><strong>puppet</strong> - this key creates a space for customizing the Puppet setup we use
+for setting up Vagrant. How we use Puppet at Wingify is that there is one
+repository where all the Puppet modules, manifests and Hiera data lies. When
+setting up the development environment using this project, one of the first
+steps to use Vagrant is clone this Puppet code-base somewhere on your host
+machine. Then add the Path to the project in your&nbsp;Vagrantfile.</p>
+<p>This is what we do in our <code>Vagrantfile</code>:</p>
+<pre><code>config.vm.provision "puppet" do |puppet|
+    modulepath = File.join(vagrant_config["puppet"]["path"], "modules")
+    config.vm.synced_folder vagrant_config["puppet"]["path"], "/etc/puppet"
+
+    puppet.manifests_path = "."
+    puppet.module_path = modulepath
+    puppet.manifest_file = "nodes.pp"
+    puppet.hiera_config_path = "hiera.yaml"
+
+    puppet.facter = {
+        "in_vagrant"       =&gt; true,
+    }
+    puppet.options = "--parser future"
+end
+</code></pre>
+<p>Using this, we configure Vagrant to use Puppet in a slightly different way. This
+tells Vagrant to load the Puppet modules from the Puppet repository, use the
+site manifest which is seperate for Vagrant machines which is lying in this
+repository i.e. vagrant repository - <code>nodes.pp</code>.</p>
+<h4>Configuration&nbsp;data</h4>
+<p>The last thing that is important is where to load the actual configuration from.
+In Puppet world, <a href="http://docs.puppetlabs.com/hiera/1/">Hiera</a> is very commonly used for this. Our Puppet
+repository comes with some sane defaults for every module. These configurations&#8217;
+default values are overridden depending upon which environment is that module
+used for provisioning. Such is the case with Vagrant as well. The values that
+override the defaults are checked in the vagrant repository. The hierarchy for
+Hiera is defined in <code>hiera.yaml</code> and the configuration values that override the
+defaults are available in <code>hiera/</code> directory.</p>
+<h4>Vagrant-aware Puppet&nbsp;modules</h4>
+<p>Usually, the Puppet module for setting up your project will also clone your
+project to the target machine. In case of Vagrant with your project already
+synced to the guest machine, this may fail. You might want to avoid the cloning
+step in your Puppet module. In our Vagrant file, we added a pre-defined custom
+fact (called <code>in_vagrant</code>) that can be used in your modules to be aware if you
+are in Vagrant or&nbsp;not.</p>
+<p>Consider this&nbsp;example:</p>
+<pre><code>if $::in_vagrant != true {
+    vcsrepo { '/var/www/webapplication':
+        ensure   =&gt; latest,
+        owner    =&gt; 'www-data',
+        group    =&gt; 'www-data',
+        provider =&gt; git,
+        require  =&gt; [ Package['git'] ],
+        source   =&gt; 'ssh://git@github.com/yourorganization/webapplication.git',
+    }
+}
+</code></pre>
+<p>In the above Puppet code snippet, we are making sure that we don&#8217;t checkout our
+repository when we are in&nbsp;Vagrant.</p>
+<h3>Stay secure - use proper <span class="caps">SSH</span>&nbsp;keys</h3>
+<p>As you may be sharing some projects from host to guest, there may be some
+projects where you don&#8217;t need to share them from guest to host but still want to
+set them up. You can just go ahead and use your Puppet modules for doing that,
+but you need to set up proper accesses to clone these projects in your
+virtualized&nbsp;environment.</p>
+<p><strong>scm</strong>: this key requires you to tell us which <span class="caps">SCM</span> providers are your projects
+using and share the access credentials so that we can generate a new set of <span class="caps">SSH</span>
+keys inside the virtual machine and use the <span class="caps">API</span> of these providers to directly
+add your newly generated <span class="caps">SSH</span> key so that the process of setting up is fully&nbsp;automated.</p>
+<p>Other than automating the complete set up, it also adds a level of security. If
+a breach happens, you have finer level of control over which set of keys to&nbsp;revoke.</p>
+<h2>Multi-Machine&nbsp;Setup</h2>
+<p>All this will work absolutely fine for your multiple project requirement where
+you have more than one services running and working with each&nbsp;other.</p>
+<p>There can be a couple of things that still can be&nbsp;improved:</p>
+<ol>
+<li>Multiple projects on one machine requiring the same package but with a
+   different version may lead to a situation difficult to&nbsp;handle.</li>
+<li>Multiple services running on the same port may become difficult to deal with.
+   You can solve this using another proxy in between but this may not be ideal
+   as this is not the way you may be doing this in&nbsp;production.</li>
+<li>If you have services that are accessed using proxy and the upstream service
+   lives on another machine, well it may be better if it was actually running on
+   a different&nbsp;machine.</li>
+</ol>
+<p>You can achieve all this using <a href="https://docs.vagrantup.com/v2/multi-machine/">Vagrant&#8217;s Multi-Machine</a>, perhaps
+more than&nbsp;this.</p>
+<p>As I mentioned earlier in this post, we use <code>mysql-proxy</code> to connect to the main
+MySQL server, we can leverage Vagrant&#8217;s multi machine feature to have two
+virtual machines on the same private network and make sure that MySQL is
+actually running on a different&nbsp;machine.</p>
+<p>For our example, we can arrange our services like&nbsp;so:</p>
+<pre><code>VM1:
+    - webapplication
+    - analytics-service
+    - mysql-proxy
+VM2:
+    - website
+    - mysql
+</code></pre>
+<p>In the above set up, we have two virtual machines. <span class="caps">VM1</span> has <code>webapplication</code> and
+<code>analytics-service</code> running, both of which depend on MySQL. So they make use of
+<code>mysql-proxy</code> to connect to&nbsp;MySQL.</p>
+<p>On <span class="caps">VM2</span>, we run MySQL. So the <code>mysql-proxy</code> on <span class="caps">VM1</span> proxies to <span class="caps">VM2</span>. We also
+decided to put the <code>website</code> on <span class="caps">VM2</span> for two reasons - one that this <span class="caps">VM</span> will
+probably be under-provisioned with just MySQL running on it and two that the
+webapplication runs behind Apache on port 80 but the website is served using
+Nginx on port 80 and both cannot run on the same machine without putting another
+proxy in front of&nbsp;them.</p>
+<p>This way we have managed to make all services come as close to production set up
+as&nbsp;possible.</p>
+<h2>Conclusion</h2>
+<ol>
+<li>Using Vagrant and changing it a bit to our needs really helped us have the
+   most critical services set up with ease. Having most of the services set up
+   locally also makes it possible for end-to-end&nbsp;testing.</li>
+<li><strong>Packaging the VMs</strong> into Vagrant boxes helps reduce set up time a lot.
+   Otherwise, first run may take really long to&nbsp;complete.</li>
+<li>Development environment is much closer to production environments. We see
+   relatively lesser environment specific&nbsp;bugs.</li>
+<li>Developers have a better understanding of production systems. May be some day
+   the will be able to contribute to Puppet code base as&nbsp;well.</li>
+</ol>
+<p>Do you think these wins are worth the effort? Do share your&nbsp;thoughts.</p>
+<p>I <a href="http://www.slideshare.net/kapoorvaidik/vagrant-for-effective-devops-culture">presented a talk</a> at <a href="http://fudcon.in/">FUDCon Pune 2015</a> on the same topic.
+You might find the contents of that useful as&nbsp;well.</p>            </section>
+        </article>
+
+        <section>
+            <div id="disqus_thread"></div>
+            <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'vaidikkapoor'; // required: replace example with your forum shortname
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+                (function() {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+            <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </section>
+    </div>          </section>
+      </div>
+
+      <footer>
+                              <nav >
+        <a title="Home Page"
+        class="home"
+        href="/index.html">
+        Home
+    </a>    <a title="Blog Archives"
+        class="active blog"
+        href="/blog">
+        Archives
+    </a>    <a title="About"
+        class="about"
+        href="/about.html">
+        About
+    </a></nav>
+                    <section class="credits">
+              Built using <a href="http://ringce.com/hyde" target="_blank">Hyde</a>.
+          </section>
+      </footer>
+      </div> <!--! end of #container -->
+  
+    <!-- Javascript at the bottom for fast page loading -->
+    <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if necessary -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.js"></script>
+  <script>window.jQuery || document.write('<script src="js/libs/jquery-1.5.1.min.js">\x3C/script>')</script>
+  
+    <script type="text/javascript">
+  window.heap=window.heap||[],heap.load=function(t,e){window.heap.appid=t,window.heap.config=e;var a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=("https:"===document.location.protocol?"https:":"http:")+"//cdn.heapanalytics.com/js/heap.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(t){return function(){heap.push([t].concat(Array.prototype.slice.call(arguments,0)))}},p=["clearEventProperties","identify","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+  heap.load("2141231414");
+</script>
+  <!-- Start Visual Website Optimizer Asynchronous Code -->
+<script type='text/javascript'>
+var _vwo_code=(function(){
+var account_id=22676,
+settings_tolerance=2000,
+library_tolerance=2500,
+use_existing_jquery=false,
+// DO NOT EDIT BELOW THIS LINE
+f=false,d=document;return{use_existing_jquery:function(){return use_existing_jquery;},library_tolerance:function(){return library_tolerance;},finish:function(){if(!f){f=true;var a=d.getElementById('_vis_opt_path_hides');if(a)a.parentNode.removeChild(a);}},finished:function(){return f;},load:function(a){var b=d.createElement('script');b.src=a;b.type='text/javascript';b.innerText;b.onerror=function(){_vwo_code.finish();};d.getElementsByTagName('head')[0].appendChild(b);},init:function(){settings_timer=setTimeout('_vwo_code.finish()',settings_tolerance);this.load('//dev.visualwebsiteoptimizer.com/j.php?a='+account_id+'&u='+encodeURIComponent(d.URL)+'&r='+Math.random());var a=d.createElement('style'),b='body{opacity:0 !important;filter:alpha(opacity=0) !important;background:none !important;}',h=d.getElementsByTagName('head')[0];a.setAttribute('id','_vis_opt_path_hides');a.setAttribute('type','text/css');if(a.styleSheet)a.styleSheet.cssText=b;else a.appendChild(d.createTextNode(b));h.appendChild(a);return settings_timer;}};}());_vwo_settings_timer=_vwo_code.init();
+</script>
+<!-- End Visual Website Optimizer Asynchronous Code -->
+  
+
+  <!--[if lt IE 7 ]>
+    <script src="js/libs/dd_belatedpng.js"></script>
+    <script>DD_belatedPNG.fix('img, .png_bg'); // Fix any <img> or .png_bg bg-images. Also, please read goo.gl/mZiyb </script>
+  <![endif]-->
+
+    <!-- asynchronous google analytics: mathiasbynens.be/notes/async-analytics-snippet
+       change the UA-XXXXX-X to be your site's ID -->
+<script>
+    var _gaq = [['_setAccount', ''], ['_trackPageview']];
+    (function(d, t) {
+    var g = d.createElement(t),
+        s = d.getElementsByTagName(t)[0];
+    g.async = true;
+    g.src = ('https:' == location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    s.parentNode.insertBefore(g, s);
+    })(document, 'script');
+</script>
+  
+  </body>
+</html>

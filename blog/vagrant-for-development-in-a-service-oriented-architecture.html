@@ -165,8 +165,10 @@ with the guest machine using Synced&nbsp;Folders.</p>
 </code></pre>
 <p>The Vagrantfile in this above typical project will use the Synced Folder feature
 to share the code like&nbsp;so:</p>
-<pre><code>config.vm.synced_folder ".", "/var/www/webapplication"
+<pre><code class="ruby">
+config.vm.synced_folder ".", "/var/www/webapplication"
 </code></pre>
+
 <p>So when you run <code>vagrant up</code>, the above directory is shared and made available
 in the virtual machine. The scripts in the <code>vagrant/</code> directory are used for
 setting up the rest of the things required to run the <code>webapplication</code>.</p>
@@ -176,7 +178,8 @@ projects provisioned in the same environment because its hard to decide where
 to put all the&nbsp;configuration.</p>
 <p>So we decided to go ahead and make a seperate project for all Vagrant related
 stuff. Our Vagrant setup looks like&nbsp;this:</p>
-<pre><code>dev-environment/
+<pre><code class="bash">
+dev-environment/
     hiera/
     lib/
     scripts/
@@ -187,6 +190,7 @@ stuff. Our Vagrant setup looks like&nbsp;this:</p>
     config.default.yml
     ...                 # Some other stuff
 </code></pre>
+
 <p>Let me explain what are these things&nbsp;for:</p>
 <ol>
 <li><strong>hiera/</strong>, <strong>hiera.yaml</strong>, <strong>nodes.pp</strong>: this is all Puppet specific stuff
@@ -213,7 +217,8 @@ according to your&nbsp;needs.</p>
 configuration file. It needs to be copied. Our setup requires a <code>config.yml</code>
 file instead of the default file but in the same format. The <code>config.yml</code> file
 looks something like&nbsp;this:</p>
-<pre><code>---
+<pre><code class="yaml">
+---
 scm:
     github:
         enabled: true
@@ -222,13 +227,14 @@ scm:
         enabled: true
         api_token: null       # set your API token here
 puppet:
-    path: &lt;path to puppet&gt;
+    path: <path to puppet>
 projects:
-    website: &lt;Path to website&gt;
-    webapplication: &lt;Path to webapplication&gt;
-    queue-workers: &lt;Path to queue-workers&gt;
-    analytics-service: &lt;Path to analytics-service&gt;
+    website: <Path to website>
+    webapplication: <Path to webapplication>
+    queue-workers: <Path to queue-workers>
+    analytics-service: <Path to analytics-service>
 </code></pre>
+
 <p>The config file is in <a href="http://yaml.org/"><span class="caps">YAML</span></a> format. At the beginning of the
 <code>Vagrantfile</code>, we parse the contents which are available through out the file.
 This file lists down multiple things. We will see each one of them&nbsp;one-by-one.</p>
@@ -237,7 +243,8 @@ This file lists down multiple things. We will see each one of them&nbsp;one-by-o
 like to be set up in our Vagrant environment. In our <code>Vagrantfile</code>, we just use
 Synced Folders to make these projects available at the locations they should be
 made available&nbsp;at.</p>
-<pre><code>app.vm.synced_folder vagrant_config["projects"]["website"],
+<pre><code class="ruby">
+app.vm.synced_folder vagrant_config["projects"]["website"],
     "/var/www/website",
     owner: 'www-data',
     group: 'www-data',
@@ -258,6 +265,7 @@ app.vm.synced_folder vagrant_config["projects"]["analytics-service"],
     group: 'analytics',
     mount_options: ["dmode=775,fmode=664"]
 </code></pre>
+
 <p>This does a few things that are important for our&nbsp;environment:</p>
 <ol>
 <li>Developers organize their projects differently. Every project may lie at a
@@ -277,7 +285,8 @@ setting up the development environment using this project, one of the first
 steps to use Vagrant is clone this Puppet code-base somewhere on your host
 machine. Then add the Path to the project in your&nbsp;Vagrantfile.</p>
 <p>This is what we do in our <code>Vagrantfile</code>:</p>
-<pre><code>config.vm.provision "puppet" do |puppet|
+<pre><code class="ruby">
+config.vm.provision "puppet" do |puppet|
     modulepath = File.join(vagrant_config["puppet"]["path"], "modules")
     config.vm.synced_folder vagrant_config["puppet"]["path"], "/etc/puppet"
 
@@ -287,11 +296,12 @@ machine. Then add the Path to the project in your&nbsp;Vagrantfile.</p>
     puppet.hiera_config_path = "hiera.yaml"
 
     puppet.facter = {
-        "in_vagrant"       =&gt; true,
+        "in_vagrant"       => true,
     }
     puppet.options = "--parser future"
 end
 </code></pre>
+
 <p>Using this, we configure Vagrant to use Puppet in a slightly different way. This
 tells Vagrant to load the Puppet modules from the Puppet repository, use the
 site manifest which is seperate for Vagrant machines which is lying in this
@@ -313,17 +323,19 @@ step in your Puppet module. In our Vagrant file, we added a pre-defined custom
 fact (called <code>in_vagrant</code>) that can be used in your modules to be aware if you
 are in Vagrant or&nbsp;not.</p>
 <p>Consider this&nbsp;example:</p>
-<pre><code>if $::in_vagrant != true {
+<pre><code class="puppet">
+if $::in_vagrant != true {
     vcsrepo { '/var/www/webapplication':
-        ensure   =&gt; latest,
-        owner    =&gt; 'www-data',
-        group    =&gt; 'www-data',
-        provider =&gt; git,
-        require  =&gt; [ Package['git'] ],
-        source   =&gt; 'ssh://git@github.com/yourorganization/webapplication.git',
+        ensure   => latest,
+        owner    => 'www-data',
+        group    => 'www-data',
+        provider => git,
+        require  => [ Package['git'] ],
+        source   => 'ssh://git@github.com/yourorganization/webapplication.git',
     }
 }
 </code></pre>
+
 <p>In the above Puppet code snippet, we are making sure that we don&#8217;t checkout our
 repository when we are in&nbsp;Vagrant.</p>
 <h3>Stay secure - use proper <span class="caps">SSH</span>&nbsp;keys</h3>

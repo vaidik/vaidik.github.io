@@ -1,10 +1,7 @@
 #!/bin/bash
 
-"
-Hyde publisher plugin for publishing to Github Pages.
-
-Script to do the actual static file shifting from dev to master.
-"
+### Hyde publisher plugin for publishing to Github Pages.
+### Script to do the actual static file shifting from dev to master.
 
 # checkout master branch
 git checkout master
@@ -26,5 +23,5 @@ then
     # go back to where you were
     git checkout dev
 else
-	echo "Error: you must commit changes made in your dev branch."
+    echo "Error: you must commit changes made in your dev branch."
 fi

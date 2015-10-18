@@ -121,7 +121,9 @@ with the guest machine using Synced Folders.
 The Vagrantfile in this above typical project will use the Synced Folder feature
 to share the code like so:
 
-    config.vm.synced_folder ".", "/var/www/webapplication"
+<pre><code class="ruby">
+config.vm.synced_folder ".", "/var/www/webapplication"
+</code></pre>
 
 So when you run `vagrant up`, the above directory is shared and made available
 in the virtual machine. The scripts in the `vagrant/` directory are used for
@@ -135,16 +137,18 @@ to put all the configuration.
 So we decided to go ahead and make a seperate project for all Vagrant related
 stuff. Our Vagrant setup looks like this:
 
-    dev-environment/
-        hiera/
-        lib/
-        scripts/
-        README.md
-        Vagrantfile
-        nodes.pp
-        hiera.yaml
-        config.default.yml
-        ...                 # Some other stuff
+<pre><code class="bash">
+dev-environment/
+    hiera/
+    lib/
+    scripts/
+    README.md
+    Vagrantfile
+    nodes.pp
+    hiera.yaml
+    config.default.yml
+    ...                 # Some other stuff
+</code></pre>
 
 Let me explain what are these things for:
 
@@ -176,21 +180,23 @@ configuration file. It needs to be copied. Our setup requires a `config.yml`
 file instead of the default file but in the same format. The `config.yml` file
 looks something like this:
 
-    ---
-    scm:
-        github:
-            enabled: true
-            api_token: null       # set your API token here
-        bitbucket:
-            enabled: true
-            api_token: null       # set your API token here
-    puppet:
-        path: <path to puppet>
-    projects:
-        website: <Path to website>
-        webapplication: <Path to webapplication>
-        queue-workers: <Path to queue-workers>
-        analytics-service: <Path to analytics-service>
+<pre><code class="yaml">
+---
+scm:
+    github:
+        enabled: true
+        api_token: null       # set your API token here
+    bitbucket:
+        enabled: true
+        api_token: null       # set your API token here
+puppet:
+    path: <path to puppet>
+projects:
+    website: <Path to website>
+    webapplication: <Path to webapplication>
+    queue-workers: <Path to queue-workers>
+    analytics-service: <Path to analytics-service>
+</code></pre>
 
 The config file is in [YAML][yaml] format. At the beginning of the
 `Vagrantfile`, we parse the contents which are available through out the file.
@@ -203,26 +209,28 @@ like to be set up in our Vagrant environment. In our `Vagrantfile`, we just use
 Synced Folders to make these projects available at the locations they should be
 made available at.
 
-    app.vm.synced_folder vagrant_config["projects"]["website"],
-        "/var/www/website",
-        owner: 'www-data',
-        group: 'www-data',
-        mount_options: ["dmode=775,fmode=664"]
-    app.vm.synced_folder vagrant_config["projects"]["webapplication"],
-        "/var/www/webapplication",
-        owner: 'www-data',
-        group: 'www-data',
-        mount_options: ["dmode=775,fmode=664"]
-    app.vm.synced_folder vagrant_config["projects"]["queue-workers"],
-        "/opt/queue-workers",
-        owner: 'queue_workers',
-        group: 'queue_workers',
-        mount_options: ["dmode=775,fmode=664"]
-    app.vm.synced_folder vagrant_config["projects"]["analytics-service"],
-        "/opt/analytics-service",
-        owner: 'analytics',
-        group: 'analytics',
-        mount_options: ["dmode=775,fmode=664"]
+<pre><code class="ruby">
+app.vm.synced_folder vagrant_config["projects"]["website"],
+    "/var/www/website",
+    owner: 'www-data',
+    group: 'www-data',
+    mount_options: ["dmode=775,fmode=664"]
+app.vm.synced_folder vagrant_config["projects"]["webapplication"],
+    "/var/www/webapplication",
+    owner: 'www-data',
+    group: 'www-data',
+    mount_options: ["dmode=775,fmode=664"]
+app.vm.synced_folder vagrant_config["projects"]["queue-workers"],
+    "/opt/queue-workers",
+    owner: 'queue_workers',
+    group: 'queue_workers',
+    mount_options: ["dmode=775,fmode=664"]
+app.vm.synced_folder vagrant_config["projects"]["analytics-service"],
+    "/opt/analytics-service",
+    owner: 'analytics',
+    group: 'analytics',
+    mount_options: ["dmode=775,fmode=664"]
+</code></pre>
 
 This does a few things that are important for our environment:
 
@@ -246,20 +254,22 @@ machine. Then add the Path to the project in your Vagrantfile.
 
 This is what we do in our `Vagrantfile`:
 
-    config.vm.provision "puppet" do |puppet|
-        modulepath = File.join(vagrant_config["puppet"]["path"], "modules")
-        config.vm.synced_folder vagrant_config["puppet"]["path"], "/etc/puppet"
+<pre><code class="ruby">
+config.vm.provision "puppet" do |puppet|
+	modulepath = File.join(vagrant_config["puppet"]["path"], "modules")
+	config.vm.synced_folder vagrant_config["puppet"]["path"], "/etc/puppet"
 
-        puppet.manifests_path = "."
-        puppet.module_path = modulepath
-        puppet.manifest_file = "nodes.pp"
-        puppet.hiera_config_path = "hiera.yaml"
+	puppet.manifests_path = "."
+	puppet.module_path = modulepath
+	puppet.manifest_file = "nodes.pp"
+	puppet.hiera_config_path = "hiera.yaml"
 
-        puppet.facter = {
-            "in_vagrant"       => true,
-        }
-        puppet.options = "--parser future"
-    end
+	puppet.facter = {
+		"in_vagrant"       => true,
+	}
+	puppet.options = "--parser future"
+end
+</code></pre>
 
 Using this, we configure Vagrant to use Puppet in a slightly different way. This
 tells Vagrant to load the Puppet modules from the Puppet repository, use the
@@ -288,16 +298,18 @@ are in Vagrant or not.
 
 Consider this example:
 
-    if $::in_vagrant != true {
-        vcsrepo { '/var/www/webapplication':
-            ensure   => latest,
-            owner    => 'www-data',
-            group    => 'www-data',
-            provider => git,
-            require  => [ Package['git'] ],
-            source   => 'ssh://git@github.com/yourorganization/webapplication.git',
-        }
-    }
+<pre><code class="puppet">
+if $::in_vagrant != true {
+	vcsrepo { '/var/www/webapplication':
+		ensure   => latest,
+		owner    => 'www-data',
+		group    => 'www-data',
+		provider => git,
+		require  => [ Package['git'] ],
+		source   => 'ssh://git@github.com/yourorganization/webapplication.git',
+	}
+}
+</code></pre>
 
 In the above Puppet code snippet, we are making sure that we don't checkout our
 repository when we are in Vagrant.
@@ -346,13 +358,13 @@ actually running on a different machine.
 
 For our example, we can arrange our services like so:
 
-	VM1:
-		- webapplication
-		- analytics-service
-		- mysql-proxy
-	VM2:
-		- website
-		- mysql
+    VM1:
+        - webapplication
+        - analytics-service
+        - mysql-proxy
+    VM2:
+        - website
+        - mysql
 
 In the above set up, we have two virtual machines. VM1 has `webapplication` and
 `analytics-service` running, both of which depend on MySQL. So they make use of

@@ -47,6 +47,8 @@
   <script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script>
 
+  <link rel="canonical" href="https://medium.com/@vaidikkapoor/vagrant-for-development-in-a-service-oriented-architecture-soa-54ad1f26ff53">
+
     <link rel="stylesheet" href="/media/css/site.css">
   <link rel="stylesheet" href="/media/css/syntax.css">
   
@@ -165,9 +167,7 @@ with the guest machine using Synced&nbsp;Folders.</p>
 </code></pre>
 <p>The Vagrantfile in this above typical project will use the Synced Folder feature
 to share the code like&nbsp;so:</p>
-<pre><code class="ruby">
-config.vm.synced_folder ".", "/var/www/webapplication"
-</code></pre>
+<pre><code class="ruby">config.vm.synced_folder ".", "/var/www/webapplication"</code></pre>
 
 <p>So when you run <code>vagrant up</code>, the above directory is shared and made available
 in the virtual machine. The scripts in the <code>vagrant/</code> directory are used for

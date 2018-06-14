@@ -47,6 +47,8 @@
   <script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script>
 
+  <link rel="canonical" href="https://medium.com/@vaidikkapoor/understanding-non-blocking-i-o-with-python-part-1-ec31a2e2db9b">
+
     <link rel="stylesheet" href="/media/css/site.css">
   <link rel="stylesheet" href="/media/css/syntax.css">
   
@@ -113,7 +115,7 @@ any use of the <span class="caps">CPU</span> while it is waiting for the databas
 execution of other tasks. And the overall progress of the entire system may get
 suffered. If the function is blocking because it is doing some <span class="caps">CPU</span> task, well
 then we cannot do much. But if it is blocking because of I/O, we know that the
-<span class="caps">CPU</span> is idle and can be used for starting another task that needs&nbsp;<span class="caps">CPU</span>.</p>
+<span class="caps">CPU</span> is idle and can be used for starting another task that needs <span class="caps">CPU</span>.</p>
 <p>Lets see an example of blocking network request. I have a very simple <span class="caps">TCP</span> server
 written in&nbsp;Python:</p>
 <pre><code>import socket

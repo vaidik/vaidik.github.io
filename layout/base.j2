@@ -24,8 +24,7 @@
         code.google.com/p/chromium/issues/detail?id=23003 -->
 
   <title>{% block title %}{{ resource.meta.title }}{% endblock %}</title>
-  <meta name="description" content="{% block description %}{{
-  resource.meta.description }}{% endblock %}">
+  <meta name="description" content="{% block description %}{{ resource.meta.description }}{% endblock %}">
   <meta name="author" content="Vaidik Kapoor">
 
   <meta prefix="og: http://ogp.me/ns#" property="og:title" content="{{ resource.meta.title }}" />
@@ -50,6 +49,8 @@
   <link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/default.min.css">
   <script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script>
+
+  <link rel="canonical" href="{% block canonical %}{{ resource.meta.canonical }}{% endblock %}">
 
   {% block css %}
   <link rel="stylesheet" href="{{ media_url('css/site.css') }}">
